@@ -4,14 +4,14 @@ import Head from 'next/head'
 import { Nav } from './Nav'
 
 import { makeGoogleFontsURL } from "utils/fonts";
-
+import {Box} from "@chakra-ui/react"
 type Props = {
   children?: ReactNode
   title?: string
 }
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <>
+  <Box>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -22,11 +22,11 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
         rel="stylesheet"
       />
     </Head>
-    <Nav/>
+    <Nav></Nav>
     {children}
     {/* <footer>
     </footer> */}
-  </>
+  </Box>
 )
 
 export default Layout

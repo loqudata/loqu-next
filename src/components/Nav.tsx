@@ -1,7 +1,8 @@
-import { Box, Button, Flex, Heading, HStack, Link } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, HStack } from "@chakra-ui/react";
 import React from "react";
 import { responsivePadding } from "../shared/theme";
 import { NavLink } from "./NavLink";
+import { Link } from "./Link";
 
 const routes = [
   { name: "About", path: "/about" },

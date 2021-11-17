@@ -1,11 +1,14 @@
 import { Box, Flex, Heading, VStack, Text, Img, Stack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 import World from "../../../assets/world_dots_grey.svg";
 import { ChakraSearchBox } from "../../search/components/SearchBox";
-import { navigate } from "vite-plugin-ssr/client/router";
+
+
 
 export const LandingPage = () => {
   const props = {} as any;
+  const router = useRouter()
   return (
     <Flex
       w="full"
@@ -46,7 +49,7 @@ export const LandingPage = () => {
               backgroundColor: "white",
               boxShadow: "sm",
             }}
-            refine={(v) => navigate("/search?q="+encodeURIComponent(v))}
+            refine={(v) => router.push("/search?q="+encodeURIComponent(v))}
           ></ChakraSearchBox>
         </Box>
       </VStack>
