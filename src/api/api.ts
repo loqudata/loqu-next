@@ -5,7 +5,7 @@
 import { Query } from "compassql/build/src/query/query";
 import { recommend } from "compassql/build/src/recommend";
 import * as s from "compassql/build/src/schema";
-const { build, Schema } = s;
+const { build } = s;
 // import { build as buildSchema, Schema } from "compassql/build/compassql";
 // import { build as buildSchema, Schema } from "compassql/build/src/schema";
 // import "isomorphic-fetch";
@@ -15,19 +15,20 @@ import { AppConfig } from "@/models/config";
 // export {Query, Schema, Data};
 
 import { fromSpecQueryModelGroup, ResultPlotWithKey } from "@/models/result";
+import { ISchema } from "./schema";
 
 /**
  * Submit recommendation query request from CompassQL
  */
 export function fetchCompassQLRecommend(
   query: Query,
-  schema: Schema,
+  schema: ISchema,
   data: InlineData,
   config?: AppConfig
 ): Promise<ResultPlotWithKey[]> {
   if (config && config.serverUrl) {
     const endpoint = "recommend";
-
+    
     return fetch(`${config.serverUrl}/${endpoint}`, {
       method: "POST",
       headers: {
@@ -69,7 +70,7 @@ export function fetchCompassQLRecommend(
 export function fetchCompassQLBuildSchema(
   data: Object[],
   config?: AppConfig
-): Promise<Schema> {
+): Promise<ISchema> {
   return new Promise((resolve) => {
     const ns = build(data);
     console.log(ns);

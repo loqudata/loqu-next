@@ -1,3 +1,5 @@
+
+// @ts-nocheck
 import { ExpandedType } from "compassql/build/src/query/expandedtype";
 import { isWildcard } from "compassql/build/src/wildcard";
 import * as vegaExpression from "vega-expression";

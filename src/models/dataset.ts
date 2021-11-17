@@ -36,6 +36,9 @@ interface DatasetLoad {
   data: Data;
 }
 
+console.log("dataset model");
+
+
 /**
  * datasetLoad makes HTTP requests to data location, parses it and creates table schema.
  * it emits dataset.request which sets the state to loading
@@ -65,31 +68,31 @@ export const dataset = createModel<RootModel>()({
     // handle state changes with impure functions.
     // use async/await for async actions
     async datasetLoad(payload: DatasetLoad, state) {
-      // console.log("This is current root state", state);
+      console.log("This is current root state", state);
       const { name, data } = payload;
       this.request({ name });
 
-      if (isUrlData(data)) {
-        return fetch(data.url)
-          .then((response) => response.json())
-          .then((values: any) => {
-            return buildSchemaAndDispatchDataReceive(
-              { values },
-              state.config,
-              this,
-              name
-            );
-          });
-      } else if (isInlineData(data)) {
-        return buildSchemaAndDispatchDataReceive(
-          data,
-          state.config,
-          this,
-          name
-        );
-      } else {
-        throw new Error("dataset load error: dataset type not detected");
-      }
+      // if (isUrlData(data)) {
+      //   return fetch(data.url)
+      //     .then((response) => response.json())
+      //     .then((values: any) => {
+      //       return buildSchemaAndDispatchDataReceive(
+      //         { values },
+      //         state.config,
+      //         this,
+      //         name
+      //       );
+      //     }).catch((e) => console.error(e));
+      // } else if (isInlineData(data)) {
+      //   return buildSchemaAndDispatchDataReceive(
+      //     data,
+      //     state.config,
+      //     this,
+      //     name
+      //   );
+      // } else {
+      //   throw new Error("dataset load error: dataset type not detected");
+      // }
     },
   }),
 });

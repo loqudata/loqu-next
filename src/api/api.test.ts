@@ -3,7 +3,7 @@ declare var require: any;
 const fetchMock = require("fetch-mock");
 import { fetchCompassQLBuildSchema, fetchCompassQLRecommend } from "./api";
 
-import { Channel } from "vega-lite/build/src/channel";
+import { X } from "vega-lite/build/src/channel";
 import { Type } from "vega-lite/build/src/type";
 
 import { Query } from "compassql/build/src/query/query";
@@ -17,7 +17,7 @@ describe("api/api", () => {
       spec: {
         mark: "?",
         encodings: [
-          { channel: Channel.X, field: "*", type: Type.QUANTITATIVE },
+          { channel: X, field: "*", type: Type.quantitative },
         ],
       },
       nest: [{ groupBy: "fieldTransform" }],
