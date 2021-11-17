@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
-import { Nav } from './Nav'
+import React, { ReactNode } from "react";
+import Link from "next/link";
+import Head from "next/head";
+import { Nav } from "./Nav";
 
 import { makeGoogleFontsURL } from "utils/fonts";
-import {Box} from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
 type Props = {
-  children?: ReactNode
-  title?: string
-}
+  children?: ReactNode;
+  title?: string;
+};
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title = "This is the default title" }: Props) => (
   <Box>
     <Head>
       <title>{title}</title>
@@ -27,6 +27,6 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     {/* <footer>
     </footer> */}
   </Box>
-)
+);
 
-export default Layout
+export default Layout;

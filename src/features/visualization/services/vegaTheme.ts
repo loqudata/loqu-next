@@ -1,7 +1,6 @@
-
-import {Config as VgConfig} from 'vega';
-import {Config as VlConfig} from 'vega-lite';
-import { theme } from '../../../shared/theme';
+import { Config as VgConfig } from "vega";
+import { Config as VlConfig } from "vega-lite";
+import { theme } from "../../../shared/theme";
 
 export type Config = VgConfig | VlConfig;
 
@@ -10,11 +9,11 @@ export type Config = VgConfig | VlConfig;
 const markColor = theme.colors.primary["600"];
 
 const vegaTheme: Config = {
-  background: '#fff',
+  background: "#fff",
   font: "Inter",
-  
+
   // mark: {fill: markColor},
-  
+
   // // it seems like the mark fill was being merged before the null
   // line: {fill: null, stroke: markColor, strokeWidth: 2},
   // arc: {fill: markColor},
@@ -42,10 +41,10 @@ const vegaTheme: Config = {
 
   // TODO: evaluate rest of these
   legend: {
-    labelBaseline: 'middle',
+    labelBaseline: "middle",
     labelFontSize: 11,
     symbolSize: 50,
-    symbolType: 'square',
+    symbolType: "square",
   },
 
   // range: {

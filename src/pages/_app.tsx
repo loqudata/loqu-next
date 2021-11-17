@@ -7,12 +7,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <CoreApp>
       <NoSsr>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       </NoSsr>
     </CoreApp>
   );
 }
-
 
 // export default dynamic(() => Promise.resolve(MyApp), {
 //   ssr: false,

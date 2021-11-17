@@ -1,26 +1,35 @@
-import {Query} from 'compassql/build/src/query/query';
-import {SpecQuery} from 'compassql/build/src/query/spec';
-import {createSelector} from 'reselect';
-import {RootState} from '../store/store';
-import {ShelfFilter} from '@/models/shelf/filter';
-import {getDefaultGroupBy, Shelf, ShelfGroupBy, toQuery} from '@/models/shelf/index';
-import {hasWildcards, ShelfUnitSpec} from '@/models/shelf/spec';
+import { Query } from "compassql/build/src/query/query";
+import { SpecQuery } from "compassql/build/src/query/spec";
+import { createSelector } from "reselect";
+import { RootState } from "../store/store";
+import { ShelfFilter } from "@/models/shelf/filter";
+import {
+  getDefaultGroupBy,
+  Shelf,
+  ShelfGroupBy,
+  toQuery,
+} from "@/models/shelf/index";
+import { hasWildcards, ShelfUnitSpec } from "@/models/shelf/spec";
 
-export const selectShelf = (state: RootState): Shelf => state.shelf
+export const selectShelf = (state: RootState): Shelf => state.shelf;
 
-export const selectShelfGroupBy = createSelector(selectShelf,
+export const selectShelfGroupBy = createSelector(
+  selectShelf,
   (shelf: Shelf): ShelfGroupBy => shelf.groupBy
 );
 
-export const selectShelfSpec = createSelector(selectShelf,
+export const selectShelfSpec = createSelector(
+  selectShelf,
   (shelf: Shelf): ShelfUnitSpec => shelf.spec
 );
 
-export const selectFilters = createSelector(selectShelf,
+export const selectFilters = createSelector(
+  selectShelf,
   (shelf: Shelf): ShelfFilter[] => shelf.filters
 );
 
-export const selectShelfAutoAddCount = createSelector(selectShelf,
+export const selectShelfAutoAddCount = createSelector(
+  selectShelf,
   (shelf: Shelf) => shelf.autoAddCount
 );
 
@@ -28,8 +37,12 @@ export const selectQuery = createSelector(
   selectShelfSpec,
   selectShelfGroupBy,
   selectShelfAutoAddCount,
-  (spec: ShelfUnitSpec, groupBy: ShelfGroupBy, autoAddCount: boolean): Query => {
-    return toQuery({spec, groupBy, autoAddCount});
+  (
+    spec: ShelfUnitSpec,
+    groupBy: ShelfGroupBy,
+    autoAddCount: boolean
+  ): Query => {
+    return toQuery({ spec, groupBy, autoAddCount });
   }
 );
 

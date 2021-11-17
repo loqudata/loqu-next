@@ -1,19 +1,27 @@
-import {EncodingQuery, isAutoCountQuery, isValueQuery} from 'compassql/build/src/query/encoding';
-import {SpecQuery} from 'compassql/build/src/query/spec';
-import {isWildcard, isWildcardDef, SHORT_WILDCARD} from 'compassql/build/src/wildcard';
-import {Config} from 'vega-lite';
-import {Channel} from 'vega-lite/build/src/channel';
+import {
+  EncodingQuery,
+  isAutoCountQuery,
+  isValueQuery,
+} from "compassql/build/src/query/encoding";
+import { SpecQuery } from "compassql/build/src/query/spec";
+import {
+  isWildcard,
+  isWildcardDef,
+  SHORT_WILDCARD,
+} from "compassql/build/src/wildcard";
+import { Config } from "vega-lite";
+import { Channel } from "vega-lite/build/src/channel";
 import {
   fromEncodingQueries,
   ShelfAnyEncodingDef,
   ShelfMark,
   SpecificEncoding,
   toEncodingQuery,
-  toFieldQuery
-} from './encoding';
+  toFieldQuery,
+} from "./encoding";
 
-export * from './encoding';
-export * from './function';
+export * from "./encoding";
+export * from "./function";
 
 /**
  * A model state for the shelf of a unit specification.
@@ -39,8 +47,9 @@ export interface ShelfUnitSpec {
 
 export function toSpecQuery(spec: ShelfUnitSpec): SpecQuery {
   const config: Config = spec.config;
-  const encodings: EncodingQuery[] = specificEncodingsToEncodingQueries(spec.encoding).concat(spec.anyEncodings.map(
-    fd => toEncodingQuery(fd, '?'))) ;
+  const encodings: EncodingQuery[] = specificEncodingsToEncodingQueries(
+    spec.encoding
+  ).concat(spec.anyEncodings.map((fd) => toEncodingQuery(fd, "?")));
   const mark: ShelfMark = spec.mark;
 
   return {
@@ -48,25 +57,28 @@ export function toSpecQuery(spec: ShelfUnitSpec): SpecQuery {
     //@ts-ignore
     mark,
     //@ts-ignore
-    config
+    config,
   };
 }
 
-export function fromSpecQuery(spec: SpecQuery, oldConfig?: Config): ShelfUnitSpec {
-  const {mark, encodings, config, transform} = spec;
+export function fromSpecQuery(
+  spec: SpecQuery,
+  oldConfig?: Config
+): ShelfUnitSpec {
+  const { mark, encodings, config, transform } = spec;
   if (isWildcardDef(mark)) {
-    throw new Error('Voyager 2 does not support custom wildcard mark yet');
+    throw new Error("Voyager 2 does not support custom wildcard mark yet");
   }
 
   if (transform && transform.length > 0) {
-    throw new Error('fromSpecQuery should not contain transform');
+    throw new Error("fromSpecQuery should not contain transform");
   }
 
   return {
     mark,
     ...fromEncodingQueries(encodings),
     //@ts-ignore
-    config: config || oldConfig
+    config: config || oldConfig,
   };
 }
 
@@ -79,7 +91,9 @@ export interface HasWildcard {
 
 // FIXME: remove this method and rely on CompassQL's method.
 export function hasWildcards(spec: SpecQuery): HasWildcard {
-  let hasWildcardField = false, hasWildcardFn = false, hasWildcardChannel = false;
+  let hasWildcardField = false,
+    hasWildcardFn = false,
+    hasWildcardChannel = false;
   for (const encQ of spec.encodings) {
     if (isValueQuery(encQ)) {
       continue;
@@ -87,14 +101,17 @@ export function hasWildcards(spec: SpecQuery): HasWildcard {
       if (isWildcard(encQ.autoCount)) {
         hasWildcardFn = true;
       }
-    } else { // encQ is FieldQuery
+    } else {
+      // encQ is FieldQuery
       if (isWildcard(encQ.field)) {
         hasWildcardField = true;
       }
 
-      if (isWildcard(encQ.aggregate) ||
-          isWildcard(encQ.bin) ||
-          isWildcard(encQ.timeUnit)) {
+      if (
+        isWildcard(encQ.aggregate) ||
+        isWildcard(encQ.bin) ||
+        isWildcard(encQ.timeUnit)
+      ) {
         hasWildcardFn = true;
       }
 
@@ -107,21 +124,22 @@ export function hasWildcards(spec: SpecQuery): HasWildcard {
     hasAnyWildcard: hasWildcardChannel || hasWildcardField || hasWildcardFn,
     hasWildcardField,
     hasWildcardFn,
-    hasWildcardChannel
+    hasWildcardChannel,
   };
 }
 
-function specificEncodingsToEncodingQueries(encoding: SpecificEncoding): EncodingQuery[] {
+function specificEncodingsToEncodingQueries(
+  encoding: SpecificEncoding
+): EncodingQuery[] {
   // Assemble definition of encodings with specific channels first
   return Object.keys(encoding).map((channel: Channel) => {
     return toFieldQuery(encoding[channel], channel);
   });
 }
 
-
 export const DEFAULT_SHELF_UNIT_SPEC: Readonly<ShelfUnitSpec> = {
   mark: SHORT_WILDCARD,
   encoding: {},
   anyEncodings: [],
-  config: {}
+  config: {},
 };

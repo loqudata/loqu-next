@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 import { VisualizePage } from "../features/visualization/components/VisualizePage";
 import NoSsr from "../components/NoSsr";
 const VisPage = () => (
-    <VisualizePage />
+  <VisualizePage />
   // <Layout title="Loqu Visualizer">
   //   {/* <NoSsr> */}
   //   {/* </NoSsr> */}
@@ -15,8 +15,8 @@ const VisPage = () => (
 
 // export default VisPage;
 
-const VP =  dynamic(() => Promise.resolve(VisPage), {
- ssr: false,
+const VP = dynamic(() => Promise.resolve(VisPage), {
+  ssr: false,
 });
 
-export default  VP
+export default VP;

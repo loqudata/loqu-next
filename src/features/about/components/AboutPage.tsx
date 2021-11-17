@@ -20,11 +20,11 @@ export const AboutPage = ({ content = "" }: { content?: string }) => {
         </Text>
       </Stack>
       <Container maxW="3xl" p={responsivePadding}>
-        {content ? (
-          // <Markdown options={{ overrides: getMarkdownToJSXComponents() }}>
-            {content}
-          // </Markdown>
-        ) : null}
+        {content
+          ? // <Markdown options={{ overrides: getMarkdownToJSXComponents() }}>
+            { content }
+          : // </Markdown>
+            null}
       </Container>
     </Box>
   );

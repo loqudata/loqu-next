@@ -10,11 +10,10 @@ import React from "react";
 import { connectSearchBox } from "react-instantsearch-dom";
 import { SearchBoxProvided } from "react-instantsearch-core";
 
-
 // I coupled this to Next pretty closely. In the future, uncouple.
 // The query param should be passed from a higher
 // Also, because the actual InstantSearchJS value is not updated except for our hack
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 export const ChakraSearchBox = ({
   currentRefinement,
@@ -22,13 +21,13 @@ export const ChakraSearchBox = ({
   styleProps,
   ...props
 }: SearchBoxProvided & { styleProps?: InputProps }) => {
-  const rt = useRouter()
+  const rt = useRouter();
   // console.log(pg);
-  const q = rt.query.search as string
+  const q = rt.query.search as string;
   if (q) {
-    refine(q)
+    refine(q);
   }
-  
+
   return (
     <InputGroup>
       <InputLeftElement

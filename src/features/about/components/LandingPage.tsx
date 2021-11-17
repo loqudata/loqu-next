@@ -6,7 +6,7 @@ import { ChakraSearchBox } from "../../search/components/SearchBox";
 
 export const LandingPage = () => {
   const props = {} as any;
-  const router = useRouter()
+  const router = useRouter();
   return (
     <Flex
       w="full"
@@ -47,7 +47,7 @@ export const LandingPage = () => {
               backgroundColor: "white",
               boxShadow: "sm",
             }}
-            refine={(v) => router.push("/search?q="+encodeURIComponent(v))}
+            refine={(v) => router.push("/search?q=" + encodeURIComponent(v))}
           ></ChakraSearchBox>
         </Box>
       </VStack>

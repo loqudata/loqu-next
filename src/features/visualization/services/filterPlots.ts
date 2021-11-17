@@ -15,7 +15,7 @@ export const filterPlots =
   (plot: ResultPlot): boolean => {
     if (!schema.fieldSchemas) {
       console.log("what", schema);
-      return true
+      return true;
     }
     for (let field of plot.fieldInfos) {
       const f = field.fieldDef;

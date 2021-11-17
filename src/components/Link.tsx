@@ -7,7 +7,7 @@ import {
 
 interface ILinkProps extends NextLinkProps {
   chakraProps?: ChackraLinkProps;
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export const Link = (props: ILinkProps) => {

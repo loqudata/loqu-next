@@ -24,7 +24,7 @@ const modifyPlot = (
     data,
     // height: 200,
     // width: 300,
-    config: useConfig ? vegaTheme as any: null,
+    config: useConfig ? (vegaTheme as any) : null,
   };
 };
 
@@ -73,15 +73,18 @@ export const Plot = ({
             icon={<BsBookmark fontSize="md" />}
           />
         </Tooltip>
-        <Tooltip label="Add Plot/Fields to Main View" aria-label="bookmark plot">
-        <IconButton
-          size="sm"
-          variant="ghost"
-          p={1}
-          colorScheme="primary"
-          aria-label="edit plot"
-          icon={<BsPlusLg fontSize="md" />}
-        />
+        <Tooltip
+          label="Add Plot/Fields to Main View"
+          aria-label="bookmark plot"
+        >
+          <IconButton
+            size="sm"
+            variant="ghost"
+            p={1}
+            colorScheme="primary"
+            aria-label="edit plot"
+            icon={<BsPlusLg fontSize="md" />}
+          />
         </Tooltip>
       </HStack>
     </Flex>

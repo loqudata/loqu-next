@@ -3,8 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 import Layout from "../components/Layout";
-const IndexPage = () => (
-  <LandingPage/>
-);
+const IndexPage = () => <LandingPage />;
 
 export default IndexPage;

@@ -6,7 +6,7 @@ import { searchClient } from "../services/searchClient";
 import { RefinementList } from "./RefinementList";
 import { HitsPerPage } from "./HitsPerPage";
 import { SortBy } from "./SortBy";
-import {Stats} from "./Stats"
+import { Stats } from "./Stats";
 
 // With both these searchboxes, the overall experience feels slower
 // Could it be Chakra UI doing runtime styling?
@@ -26,7 +26,7 @@ export const Search = () => (
           <SearchBox />
         </Box>
         <HStack mt={[2, null, null, 0]} alignContent="center">
-          <Stats/>
+          <Stats />
           <HitsPerPage
             items={[
               { label: "5 per page", value: 5 },

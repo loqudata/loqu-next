@@ -302,9 +302,9 @@ export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
           console.log("got count res", res);
 
           if (!res[0] || !res[0].count) {
-            return
+            return;
           }
-          
+
           if (res[0].count < 1000) {
             dispatch.dataset.datasetLoad({
               name: "prop_provided",

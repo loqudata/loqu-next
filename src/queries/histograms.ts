@@ -1,11 +1,10 @@
-
-import {Query} from 'compassql/build/src/query/query';
-import {SHORT_WILDCARD} from 'compassql/build/src/wildcard';
-import {QueryCreator} from './base';
+import { Query } from "compassql/build/src/query/query";
+import { SHORT_WILDCARD } from "compassql/build/src/wildcard";
+import { QueryCreator } from "./base";
 
 export const histograms: QueryCreator = {
-  type: 'histograms',
-  title: 'Univariate Summaries',
+  type: "histograms",
+  title: "Univariate Summaries",
   filterSpecifiedView: undefined,
   createQuery(query: Query): Query {
     return {
@@ -16,24 +15,25 @@ export const histograms: QueryCreator = {
         encodings: [
           {
             channel: SHORT_WILDCARD,
-            bin: SHORT_WILDCARD, timeUnit: SHORT_WILDCARD,
+            bin: SHORT_WILDCARD,
+            timeUnit: SHORT_WILDCARD,
             field: SHORT_WILDCARD,
-            type: SHORT_WILDCARD
+            type: SHORT_WILDCARD,
           },
           {
             channel: SHORT_WILDCARD,
-            aggregate: 'count',
-            field: '*',
-            type: 'quantitative'
-          }
-        ]
+            aggregate: "count",
+            field: "*",
+            type: "quantitative",
+          },
+        ],
       },
-      groupBy: 'fieldTransform',
+      groupBy: "fieldTransform",
       // FieldOrder should dominates everything else
-      orderBy: ['fieldOrder', 'aggregationQuality', 'effectiveness'],
+      orderBy: ["fieldOrder", "aggregationQuality", "effectiveness"],
       // aggregationQuality should be the same
-      chooseBy: ['aggregationQuality', 'effectiveness'],
-      config: { autoAddCount: false }
+      chooseBy: ["aggregationQuality", "effectiveness"],
+      config: { autoAddCount: false },
     };
-  }
+  },
 };

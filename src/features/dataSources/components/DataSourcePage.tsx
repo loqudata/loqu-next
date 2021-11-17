@@ -41,8 +41,8 @@ export const DataSourcePage = () => {
       >
         The names and logos here may be trademarks of their respective owners
         and are used solely for descriptive purposes. The logos are from
-        Wikimedia Commons and have been published by that organization under their
-        public domain or fair use policies.
+        Wikimedia Commons and have been published by that organization under
+        their public domain or fair use policies.
         {/* may be displayed by fair use under Section 107 of
         the Copyright Act or because they are in the public domain. */}
       </Text>

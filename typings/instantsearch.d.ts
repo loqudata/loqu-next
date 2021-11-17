@@ -1,3 +1,3 @@
 declare module "typesense-instantsearch-adapter";
-declare module "compassql"
-declare module "*.svg"
+declare module "compassql";
+declare module "*.svg";

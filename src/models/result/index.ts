@@ -56,9 +56,7 @@ import { fetchCompassQLRecommend } from "../../api/api";
 // import { ResultType } from "..//result";
 import { selectConfig, selectData, selectSchema } from "../../selectors/index";
 
-export type ResultAction =
-  | ResultRequest
-  | ResultReceive
+export type ResultAction = ResultRequest | ResultReceive;
 
 // type ResultActionType = ResultAction["type"];
 
@@ -121,13 +119,13 @@ export const DEFAULT_LIMIT: { [K in ResultType]: number } = {
 };
 
 interface ResultRequest {
-  resultType: ResultType
+  resultType: ResultType;
 }
 
 interface ResultReceive {
-  resultType: ResultType,
-  query: Query,
-  plots: ResultPlot[]
+  resultType: ResultType;
+  query: Query;
+  plots: ResultPlot[];
 }
 
 interface ResultRequestAsync {
@@ -164,13 +162,13 @@ export const result = createModel<RootModel>()({
   effects: (dispatch) => ({
     // handle state changes with impure functions.
     // use async/await for async actions
-    
+
     async requestAsync(payload: ResultRequestAsync, state) {
       const schema = selectSchema(state);
       const data = selectData(state);
       const config = selectConfig(state);
 
-      const {resultType, query, filterKey} = payload
+      const { resultType, query, filterKey } = payload;
       this.request(resultType);
       // state.
 

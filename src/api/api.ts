@@ -3,9 +3,9 @@
  */
 
 import { Query } from "compassql/build/src/query/query";
-import {recommend} from "compassql/build/src/recommend";
+import { recommend } from "compassql/build/src/recommend";
 import * as s from "compassql/build/src/schema";
-const { build, Schema } = s
+const { build, Schema } = s;
 // import { build as buildSchema, Schema } from "compassql/build/compassql";
 // import { build as buildSchema, Schema } from "compassql/build/src/schema";
 // import "isomorphic-fetch";
@@ -14,7 +14,7 @@ import { AppConfig } from "@/models/config";
 // import {  ResultPlotWithKey } from "@/models/result";
 // export {Query, Schema, Data};
 
-import {fromSpecQueryModelGroup, ResultPlotWithKey} from '@/models/result';
+import { fromSpecQueryModelGroup, ResultPlotWithKey } from "@/models/result";
 
 /**
  * Submit recommendation query request from CompassQL
@@ -48,12 +48,12 @@ export function fetchCompassQLRecommend(
       const modelGroup = recommend(query, schema).result;
 
       // console.log("RESULTS");
-      
+
       // console.log(modelGroup);
-      
-      const actual = fromSpecQueryModelGroup(modelGroup, { name: "source" })
+
+      const actual = fromSpecQueryModelGroup(modelGroup, { name: "source" });
       // console.log(actual);
-      
+
       // resolve([])
       // TODO:
       // - replace this with different cached data source's unique names
@@ -68,13 +68,11 @@ export function fetchCompassQLRecommend(
  */
 export function fetchCompassQLBuildSchema(
   data: Object[],
-  config?: AppConfig,
+  config?: AppConfig
 ): Promise<Schema> {
-  
-    
-    return new Promise((resolve) => {
-      const ns = build(data)
-      console.log(ns);
-      resolve(ns)
-    });
+  return new Promise((resolve) => {
+    const ns = build(data);
+    console.log(ns);
+    resolve(ns);
+  });
 }

@@ -47,7 +47,15 @@ const HighlightDescription = ({ hit }: { hit: any }) => {
 
 export const Result = ({ hit }: { hit: NormalDataset }) => {
   return (
-    <Link href={"/visualize?id=" + encodeURIComponent(hit.id) + "&portal=" + encodeURIComponent(hit.portal_source)} _hover={{ textDecoration: "none" }}>
+    <Link
+      href={
+        "/visualize?id=" +
+        encodeURIComponent(hit.id) +
+        "&portal=" +
+        encodeURIComponent(hit.portal_source)
+      }
+      _hover={{ textDecoration: "none" }}
+    >
       <Box
         minW="2xs"
         p="4"

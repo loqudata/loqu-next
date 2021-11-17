@@ -1,7 +1,7 @@
 import { Plot } from "./Plot";
 
-import data from "@/data/cars.json"
-import React from "react"
+import data from "@/data/cars.json";
+import React from "react";
 
 const examplePlot = {
   fieldInfos: [
@@ -53,4 +53,6 @@ export default {
   component: Plot,
 };
 
-export const SimpleStory = () => <Plot plot={examplePlot as any} data={{values: data}}/>;
+export const SimpleStory = () => (
+  <Plot plot={examplePlot as any} data={{ values: data }} />
+);

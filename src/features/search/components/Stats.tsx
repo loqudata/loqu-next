@@ -1,7 +1,7 @@
 import React from "react";
 import { connectStats } from "react-instantsearch-dom";
 import { StatsProvided } from "react-instantsearch-core";
-import {Text} from "@chakra-ui/react"
+import { Text } from "@chakra-ui/react";
 
 const InternalStats = ({ nbHits, processingTimeMS }: StatsProvided) => {
   let hitCountPhrase;

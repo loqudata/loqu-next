@@ -8,4 +8,4 @@ export type Store = typeof store;
 export type Dispatch = RematchDispatch<RootModel>;
 export type RootState = RematchRootState<RootModel>;
 
-store.subscribe(createQueryListener(store))
+store.subscribe(createQueryListener(store));
