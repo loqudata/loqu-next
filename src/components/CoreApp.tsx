@@ -12,10 +12,10 @@ import { store, RootState, Dispatch } from "../store/store";
 
 export const CoreApp: React.FC = ({ children }) => {
   return (
-    <Layout>
-      <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme}>
+      <Layout>
         <Provider store={store}>{children}</Provider>
-      </ChakraProvider>
-    </Layout>
+      </Layout>
+    </ChakraProvider>
   );
 };

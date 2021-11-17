@@ -14,6 +14,7 @@ export const Nav = () => {
   return (
     // TODO: make the distance from each side uniform
     <Flex
+      as="nav"
       px={responsivePadding}
       py={2}
       boxShadow="sm"

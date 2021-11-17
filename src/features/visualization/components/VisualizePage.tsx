@@ -9,8 +9,8 @@ import { useRouter } from 'next/router'
 export const VisualizePage = () => {
   const rt = useRouter()
   // console.log(pg);
-  const socrata_url = rt.query ? "https://" + rt.query.portal + "/resource/" + rt.query.id + ".json" : undefined
-  console.log(socrata_url);
+  const socrata_url = rt.query && rt.query.portal ? "https://" + rt.query.portal + "/resource/" + rt.query.id + ".json" : undefined
+  // console.log(socrata_url);
   
   return (
     <Box h="90vh" px={responsivePadding} py={1}>

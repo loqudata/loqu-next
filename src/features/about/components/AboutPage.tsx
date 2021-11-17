@@ -8,7 +8,7 @@ import { responsivePadding, theme } from "shared/theme";
 
 // import { getMarkdownToJSXComponents } from "../../../components/ChakraComponents";
 
-export const AboutPage = ({ content = "" }: { content: string }) => {
+export const AboutPage = ({ content = "" }: { content?: string }) => {
   return (
     <Box>
       <Stack backgroundColor="gray.50" w="full" p={responsivePadding}>

@@ -3,7 +3,7 @@ import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
     // This is the public read-only API key
-    apiKey: import.meta.env.VITE_TYPESENSE_READ_API_KEY,
+    apiKey: process.env.NEXT_PUBLIC_TYPESENSE_READ_API_KEY,
     nodes: [
       {
         host: "search.loqudata.org",
