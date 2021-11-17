@@ -4,8 +4,6 @@ import React from "react";
 import World from "../../../assets/world_dots_grey.svg";
 import { ChakraSearchBox } from "../../search/components/SearchBox";
 
-
-
 export const LandingPage = () => {
   const props = {} as any;
   const router = useRouter()
@@ -18,7 +16,7 @@ export const LandingPage = () => {
       justifyContent="center"
     >
       <Box display={{ base: "none", lg: "block" }} position="absolute">
-        <Img src={World}></Img>
+        <Img src={World.src}></Img>
       </Box>
       <VStack zIndex="999" position="relative" top={-16} spacing={6}>
         <VStack spacing={2}>

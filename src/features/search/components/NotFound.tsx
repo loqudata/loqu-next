@@ -16,7 +16,7 @@ export const NotFound = () => {
       borderRadius="md"
       p={8}
     >
-      <Img src={NotFoundDrawing} w="30%" />
+      <Img src={NotFoundDrawing.src} w="30%" />
       <Stack textAlign="center" mt={8}>
         <Heading size="lg" color="gray.700">
           No results found.
