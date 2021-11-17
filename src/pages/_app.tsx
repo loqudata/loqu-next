@@ -1,10 +1,21 @@
-import { ChakraProvider } from "@chakra-ui/react"
-import { theme } from "../theme"
+import { CoreApp } from "../components/CoreApp";
+
+import dynamic from "next/dynamic";
+import NoSsr from "../components/NoSsr";
+
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider theme={theme}>
+    <CoreApp>
+      <NoSsr>
       <Component {...pageProps} />
-    </ChakraProvider>
-  )
+      </NoSsr>
+    </CoreApp>
+  );
 }
-export default MyApp
+
+
+// export default dynamic(() => Promise.resolve(MyApp), {
+//   ssr: false,
+// });
+
+export default MyApp;
