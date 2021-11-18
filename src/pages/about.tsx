@@ -5,10 +5,10 @@ import React from "react";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { readFileSync } from "fs";
-import { components } from "@/components/ChakraComponents";
+import { components } from "components/ChakraComponents";
 
 import { resolve } from "path";
-import Layout from "@/components/Layout";
+import Layout from "components/Layout";
 
 const About = ({ source }) => {
   return (

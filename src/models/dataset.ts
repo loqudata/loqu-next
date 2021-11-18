@@ -65,8 +65,6 @@ export const dataset = createModel<RootModel>()({
     },
   },
   effects: (dispatch) => ({
-    bla: async (payload) => console.log("dis", payload),
-    
     // handle state changes with impure functions.
     // use async/await for async actions
     datasetLoad: async (payload: DatasetLoad, state) => {

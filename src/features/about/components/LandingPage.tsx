@@ -37,7 +37,7 @@ export const LandingPage = () => {
             textAlign="center"
             maxW="2lg"
           >
-            61,000 open datasets from 378 sources, with more on the way.
+            The open source platform for open data. Under construction.
           </Text>
         </VStack>
         <Box minW="xs" w={{ base: "95%", lg: "120%" }}>

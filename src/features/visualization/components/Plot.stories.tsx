@@ -54,5 +54,5 @@ export default {
 };
 
 export const SimpleStory = () => (
-  <Plot plot={examplePlot as any} data={{ values: data }} />
+  <Plot plot={examplePlot as any} data={{ values: data }} schema={{fieldSchemas: []} as any} />
 );

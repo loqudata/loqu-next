@@ -7,10 +7,11 @@ import { Vega, VisualizationSpec } from "react-vega";
 import { InlineData } from "vega-lite/build/src/data";
 import { TopLevelFacetSpec, TopLevelSpec } from "vega-lite/build/src/spec";
 import vegaTheme from "../services/vegaTheme";
-import { Schema } from "compassql/build/src/schema";
 import { transformFieldDefs } from "../services/filterPlots";
 import { BsBookmark, BsBookmarkFill, BsPlus, BsPlusLg } from "react-icons/bs";
 import { EditIcon } from "@chakra-ui/icons";
+import { ISchema } from "api/schema";
+
 const modifyPlot = (
   plot: TopLevelFacetSpec,
   data: any,
@@ -35,7 +36,7 @@ export const Plot = ({
 }: {
   plot: ResultPlot;
   data: InlineData;
-  schema: Schema;
+  schema: ISchema;
 }) => (
   <Box
     borderRadius="lg"

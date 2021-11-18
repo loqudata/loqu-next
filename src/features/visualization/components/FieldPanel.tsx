@@ -13,6 +13,7 @@ import {
   Button,
   Icon,
   BoxProps,
+  IconProps
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -83,7 +84,7 @@ const vegaTypeMap = {
 const FieldIcon = ({
   vegaType,
   ...props
-}: { vegaType: keyof typeof vegaTypeMap } & BoxProps) =>
+}: { vegaType: keyof typeof vegaTypeMap } & IconProps) =>
   vegaTypeMap[vegaType] ? (
     <Icon
       w={5}
@@ -326,9 +327,6 @@ the previous dataset will stay loaded.`.replace("\n", " ")
     <FieldPanel
       datasetURL={dataset.data ? dataset.data : ""}
       setDatasetURL={(url) =>{
-        console.log("going", url);
-        
-        dispatch.dataset.bla()
         dispatch.dataset.datasetLoad({
           name: "idk",
           data: { url },

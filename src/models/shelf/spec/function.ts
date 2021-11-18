@@ -157,6 +157,7 @@ export function toFieldQueryFunctionMixins(
   } else if (fn === "bin") {
     return { bin: true };
   } else if (isTimeUnit(fn)) {
+    //@ts-ignore
     return { timeUnit: fn };
   }
   return {};
@@ -200,6 +201,7 @@ export function fromFieldQueryFunctionMixins(
       fns = fns.concat(
         // We already filter composite aggregate function so it is fine to cast here
         // as the only thing left would be AggregateOp (but TS would not know that)
+        //@ts-ignore
         aggregates.filter(excludeUndefined) as AggregateOp[]
       );
       hasUndefinedInEnum =

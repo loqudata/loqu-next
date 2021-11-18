@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "components/Layout";
 import { Search } from "features/search/components/Search";
 import React from "react";
 

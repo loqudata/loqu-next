@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import enriched from "../../../data/enriched.json";
+import enriched from "data/enriched.json";
 import { countryCodeToName } from "../utils/countryCodeToName";
 
 import { sortByWikidataID } from "../utils/sort";
