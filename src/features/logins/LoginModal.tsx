@@ -14,12 +14,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { SignupForm } from "./SignupForm";
+import { LoginForm } from "./LoginForm";
 
 const loginTypes = {
   login: {
     action: "Log In",
     description: "Hi there, welcome back!",
-    components: <></>,
+    components: <LoginForm/>,
   },
   signup: {
     action: "Sign Up",
@@ -40,16 +41,16 @@ export const LoginModal = ({
   <Modal isOpen={isOpen} onClose={onClose}>
     <ModalOverlay />
     <ModalContent as="form">
-      <ModalHeader pb={2}>{loginTypes[loginOption].action}</ModalHeader>
+      <ModalHeader pb={1}>{loginTypes[loginOption].action}</ModalHeader>
       <ModalCloseButton />
       <ModalBody>
         {/* <Center> */}
-          <Text color="gray.600" mb={2}>{loginTypes[loginOption].description}</Text>
+          <Text color="gray.600" mb={1}>{loginTypes[loginOption].description}</Text>
         {/* </Center> */}
         {loginTypes[loginOption].components}
       </ModalBody>
 
-      <ModalFooter>
+      <ModalFooter pt={2}>
         {/* <Button colorScheme="red" variant="outline" mr={3} onClick={onClose}>
           Close
         </Button> */}

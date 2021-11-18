@@ -1,11 +1,5 @@
 import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Icon,
   Input,
-  useColorModeValue,
   VisuallyHidden,
   VStack,
 } from "@chakra-ui/react";
