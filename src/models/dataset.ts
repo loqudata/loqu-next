@@ -36,8 +36,6 @@ interface DatasetLoad {
   data: Data;
 }
 
-console.log("dataset model");
-
 
 /**
  * datasetLoad makes HTTP requests to data location, parses it and creates table schema.
@@ -68,7 +66,7 @@ export const dataset = createModel<RootModel>()({
     // handle state changes with impure functions.
     // use async/await for async actions
     datasetLoad: async (payload: DatasetLoad, state) => {
-      console.log(payload, state);
+      // console.log(payload, state);
       
       // console.log("This is current root state", state);
       const { name, data } = payload;

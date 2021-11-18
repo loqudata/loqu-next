@@ -300,7 +300,7 @@ export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
       fetch(ds + "?$select=count(*)")
         .then((res) => res.json())
         .then((res) => {
-          console.log("got count res", res);
+          // console.log("got count res", res);
 
           if (!res[0] || !res[0].count) {
             return;

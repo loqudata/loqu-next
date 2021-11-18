@@ -23,7 +23,7 @@ const About = ({ source }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const data = readFileSync(resolve("src/posts/about.md"), "utf-8");
   const mdxSource = await serialize(data);
-  console.log(mdxSource);
+  // console.log(mdxSource);
 
   return { props: { source: mdxSource } };
 };

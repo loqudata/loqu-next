@@ -73,7 +73,7 @@ export function fetchCompassQLBuildSchema(
 ): Promise<ISchema> {
   return new Promise((resolve) => {
     const ns = build(data);
-    console.log(ns);
+    // console.log(ns);
     resolve(ns);
   });
 }
