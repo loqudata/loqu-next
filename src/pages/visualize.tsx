@@ -6,11 +6,9 @@ import Layout from "../components/Layout";
 import { VisualizePage } from "../features/visualization/components/VisualizePage";
 import NoSsr from "../components/NoSsr";
 const VisPage = () => (
-  <VisualizePage />
-  // <Layout title="Loqu Visualizer">
-  //   {/* <NoSsr> */}
-  //   {/* </NoSsr> */}
-  // </Layout>
+  <Layout title="Visualize Open Data - Build charts, graphs, and maps">
+    <VisualizePage />
+  </Layout>
 );
 
 // export default VisPage;

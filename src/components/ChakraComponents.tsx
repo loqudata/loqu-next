@@ -1,22 +1,22 @@
 /** These components are used by the MDX provider to render MDX elements */
 /* eslint-disable react/display-name */
-import { Text, ListItem, UnorderedList, Heading, Link } from "@chakra-ui/react";
+import { Text, ListItem, UnorderedList, OrderedList, Heading, Link } from "@chakra-ui/react";
 import React from "react";
 
 //  Creating the components mapping
 export const components = {
   h1: ({ children }: { children: React.ReactElement }) => (
-    <Heading fontSize="2xl" mb={3}>
+    <Heading fontSize="3xl" mb={3}>
       {children}
     </Heading>
   ),
   h2: ({ children }: { children: React.ReactElement }) => (
-    <Heading fontSize="xl" my={3}>
+    <Heading fontSize="2xl" my={3}>
       {children}
     </Heading>
   ),
   h3: ({ children }: { children: React.ReactElement }) => (
-    <Heading fontSize="md" my={3}>
+    <Heading fontSize="lg" my={3}>
       {children}
     </Heading>
   ),
@@ -24,6 +24,11 @@ export const components = {
     <UnorderedList my={0} listStyleType={undefined}>
       {children}
     </UnorderedList>
+  ),
+  ol: ({ children }: { children: React.ReactElement }) => (
+    <OrderedList>
+      {children}
+    </OrderedList>
   ),
   li: ({ children }: { children: React.ReactElement }) => (
     <ListItem>{children}</ListItem>
@@ -36,7 +41,7 @@ export const components = {
     <Heading>{children}</Heading>
   ),
   a: ({ children, href }: { children: React.ReactElement; href: string }) => (
-    <Link href={href}>{children}</Link>
+    <Link href={href} color="primary.600">{children}</Link>
   ),
   //   Section,
   //   Layout,

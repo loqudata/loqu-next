@@ -1,30 +1,29 @@
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 
-// import { responsivePadding, theme } from "shared/theme";
+import { responsivePadding, responsivePaddingY, theme } from "shared/theme";
 
 // import ReactMarkdown from "react-markdown";
 // import Markdown from "markdown-to-jsx";
 
 // import { getMarkdownToJSXComponents } from "../../../components/ChakraComponents";
 
-export const AboutPage = ({ content = "" }: { content?: string }) => {
+export const AboutPage = ({ children }: { children?: React.ReactNode }) => {
   return (
     <Box>
-      <Stack backgroundColor="gray.50" w="full" p={0}>
+      <Stack backgroundColor="gray.50" w="full" p={responsivePadding}>
         <Heading fontFamily="serif">About</Heading>
         <Text maxW="container.sm">
-          Loqu is a platform and community focused on improving the open data
-          ecosystem. How did we get here? We’ll describe the problem and our
-          solution below.
+          Loqu is an open data platform that leverages community to
+          provide more accessible and useful data for everyone. We’ll
+          describe the problems we encountered and our solution below.
+          {/* Users collaborate on visualizations and link datasets together to make
+          them more useful for everyone. This provide benefits for all, not just
+          those who can pay for data licenses from data brokers.  */}
         </Text>
       </Stack>
-      <Container maxW="3xl" p={0}>
-        {content
-          ? // <Markdown options={{ overrides: getMarkdownToJSXComponents() }}>
-            { content }
-          : // </Markdown>
-            null}
+      <Container maxW="3xl" py={responsivePadding}>
+        {children}
       </Container>
     </Box>
   );
