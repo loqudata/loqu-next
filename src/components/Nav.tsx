@@ -1,8 +1,9 @@
-import { Box, Button, Flex, Heading, HStack } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, HStack, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import { responsivePadding } from "../shared/theme";
 import { NavLink } from "./NavLink";
 import { Link } from "./Link";
+import { LoginModal } from "features/logins/LoginModal";
 
 const routes = [
   { name: "About", path: "/about" },
@@ -12,6 +13,8 @@ const routes = [
 ];
 
 export const Nav = () => {
+  const login = useDisclosure();
+  const signUp = useDisclosure();
   return (
     // TODO: make the distance from each side uniform
     <Flex
@@ -51,12 +54,15 @@ export const Nav = () => {
         ))}
       </HStack>
       <Box flexGrow={1} />
-      <Button size="sm" variant="outline" ml={6} mr={2}>
-        Sign In
+      <Button size="sm" variant="outline" ml={6} mr={2} onClick={login.onOpen}>
+        Log in
       </Button>
-      <Button size="sm" colorScheme="primary" variant="outline">
+      <Button size="sm" colorScheme="primary" variant="outline" onClick={signUp.onOpen}>
         Sign Up
+        {/* Join Loqu? */}
       </Button>
+      <LoginModal loginOption="login" {...login}/>
+      <LoginModal loginOption="signup" {...signUp}/>
     </Flex>
   );
 };
