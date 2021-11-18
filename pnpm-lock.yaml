@@ -20,6 +20,7 @@ specifiers:
   next: ^12.0.4
   next-mdx-remote: ^3.0.8
   next-transpile-modules: ^9.0.0
+  posthog-js: ^1.16.6
   react: ^17.0.2
   react-dom: ^17.0.2
   react-icons: ^4.3.1
@@ -50,6 +51,7 @@ dependencies:
   next: 12.0.4_react-dom@17.0.2+react@17.0.2
   next-mdx-remote: 3.0.8_react-dom@17.0.2+react@17.0.2
   next-transpile-modules: 9.0.0
+  posthog-js: 1.16.6
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
@@ -1727,6 +1729,11 @@ packages:
       redux: 4.1.2
     dev: false
 
+  /@sentry/types/6.15.0:
+    resolution: {integrity: sha512-zBw5gPUsofXUSpS3ZAXqRNedLRBvirl3sqkj2Lez7X2EkKRgn5D8m9fQIrig/X3TsKcXUpijDW5Buk5zeCVzJA==}
+    engines: {node: '>=6'}
+    dev: false
+
   /@svgr/babel-plugin-add-jsx-attribute/5.4.0:
     resolution: {integrity: sha512-ZFf2gs/8/6B8PnSofI0inYXr2SDNTDScPXhN7k5EqD4aZ3gi6u+rbmZHVB8IM3wDyx8ntKACZbtXSm7oZGRqVg==}
     engines: {node: '>=10'}
@@ -3368,6 +3375,10 @@ packages:
     resolution: {integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=}
     dev: false
 
+  /fflate/0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
+
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
@@ -4792,6 +4803,14 @@ packages:
       source-map-js: 0.6.2
     dev: true
 
+  /posthog-js/1.16.6:
+    resolution: {integrity: sha512-8ntBTqYsrz8R0o7na7LyXXSYiQF0sMcV/YSQC8LHO5ROnhYIKW5T7Su5FmwqB1dvRGnzyGPbFm6Jqk+2nHZxqw==}
+    dependencies:
+      '@sentry/types': 6.15.0
+      fflate: 0.4.8
+      rrweb-snapshot: 1.1.10
+    dev: false
+
   /prelude-ls/1.1.2:
     resolution: {integrity: sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=}
     engines: {node: '>= 0.8.0'}
@@ -5327,6 +5346,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /rrweb-snapshot/1.1.10:
+    resolution: {integrity: sha512-31u0PtpM6qzEww7PajYLM9X0Nf2UA/arFA2tEFTnAVNfxX2TL12BifQYdX0l4fMtu5rnJia4GDiQO9Gwf7pIAg==}
+    dev: false
 
   /rw/1.3.3:
     resolution: {integrity: sha1-P4Yt+pGrdmsUiF700BEkv9oHT7Q=}
