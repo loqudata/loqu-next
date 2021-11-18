@@ -1,9 +1,10 @@
 import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
 
+const apiKey = process.env.NEXT_PUBLIC_TYPESENSE_READ_API_KEY || (import.meta as any).VITE_TYPESENSE_READ_API_KEY
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
     // This is the public read-only API key
-    apiKey: process.env.NEXT_PUBLIC_TYPESENSE_READ_API_KEY,
+    apiKey: apiKey,
     nodes: [
       {
         host: "search.loqudata.org",

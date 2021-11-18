@@ -288,7 +288,7 @@ export const FieldPanel = ({
   );
 };
 
-import { Dispatch } from "@/store/store";
+import { Dispatch } from "store/store";
 export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
   //@ts-ignore
   const dataset = useSelector((state) => state.dataset);

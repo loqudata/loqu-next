@@ -33,6 +33,7 @@ specifiers:
   vega-expression: ^5.0.0
   vega-lite: ~5.0.0
   vega-util: ^1.17.0
+  vite-plugin-environment: ^1.0.1
 
 dependencies:
   '@chakra-ui/icons': 1.1.1_react@17.0.2
@@ -69,6 +70,7 @@ devDependencies:
   '@types/react-dom': 17.0.11
   '@types/react-instantsearch-core': 6.10.5
   typescript: 4.0.8
+  vite-plugin-environment: 1.0.1
 
 packages:
 
@@ -5960,6 +5962,12 @@ packages:
       core-util-is: 1.0.2
       extsprintf: 1.3.0
     dev: false
+
+  /vite-plugin-environment/1.0.1:
+    resolution: {integrity: sha512-zosD4eipWFOLVG7DtcVKU/vCEXrAI/JzmoYihN/yR8DCBwXnL+zII0L18ko/kS7pLS0mUBlUzHa4e9sNbJu2sA==}
+    peerDependencies:
+      vite: ^2.0
+    dev: true
 
   /vite/2.6.2_sass@1.42.1:
     resolution: {integrity: sha512-HSIg9U15LOnbD3CUxX364Pdrm7DUjftuBljowGxvkFHgDZU/SKPqApg9t86MX/Qq1VCO7wS+mGJHlfuTF7c0Sg==}

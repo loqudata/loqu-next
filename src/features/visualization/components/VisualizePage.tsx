@@ -1,4 +1,4 @@
-import { responsivePadding } from "@/shared/theme";
+import { responsivePadding } from "shared/theme";
 import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import { FieldPanelContainer } from "./FieldPanel";

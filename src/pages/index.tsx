@@ -1,4 +1,4 @@
-import { LandingPage } from "@/features/about/components/LandingPage";
+import { LandingPage } from "features/about/components/LandingPage";
 import Link from "next/link";
 import React from "react";
 

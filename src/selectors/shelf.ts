@@ -2,14 +2,14 @@ import { Query } from "compassql/build/src/query/query";
 import { SpecQuery } from "compassql/build/src/query/spec";
 import { createSelector } from "reselect";
 import { RootState } from "../store/store";
-import { ShelfFilter } from "@/models/shelf/filter";
+import { ShelfFilter } from "models/shelf/filter";
 import {
   getDefaultGroupBy,
   Shelf,
   ShelfGroupBy,
   toQuery,
-} from "@/models/shelf/index";
-import { hasWildcards, ShelfUnitSpec } from "@/models/shelf/spec";
+} from "models/shelf/index";
+import { hasWildcards, ShelfUnitSpec } from "models/shelf/spec";
 
 export const selectShelf = (state: RootState): Shelf => state.shelf;
 

@@ -9,8 +9,8 @@ import { contains } from "compassql/build/src/util";
 import { Store } from "redux";
 import { isString } from "vega-util";
 import { NONPOSITION_SCALE_CHANNELS } from "vega-lite/build/src/channel";
-import { RootModel } from "@/models";
-import { ResultType } from "@/models/result";
+import { RootModel } from "models";
+import { ResultType } from "models/result";
 
 import { selectIsQueryEmpty, selectIsQuerySpecific } from "../selectors/shelf";
 import { RootState } from "../store/store";

@@ -1,6 +1,6 @@
 import { Plot } from "./Plot";
 
-import data from "@/data/cars.json";
+import data from "data/cars.json";
 import React from "react";
 
 const examplePlot = {

@@ -22,7 +22,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
         rel="stylesheet"
       />
     </Head>
-    <Nav></Nav>
+    {/* <Nav></Nav> */}
     {children}
     {/* <footer>
     </footer> */}

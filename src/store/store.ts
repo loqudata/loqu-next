@@ -1,5 +1,5 @@
 import { init, RematchDispatch, RematchRootState } from "@rematch/core";
-import { models, RootModel } from "@/models";
+import { models, RootModel } from "models";
 import { createQueryListener } from "./listener";
 export const store = init({
   models,

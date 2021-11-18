@@ -1,7 +1,7 @@
 import { FieldQuery } from "compassql/build/src/query/encoding";
 import { Query } from "compassql/build/src/query/query";
 import { SHORT_WILDCARD } from "compassql/build/src/wildcard";
-import { ResultIndex } from "@/models/result";
+import { ResultIndex } from "models/result";
 import { QueryCreator } from "./base";
 
 function makeFieldSuggestionQueryCreator(params: {

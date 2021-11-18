@@ -1,7 +1,7 @@
 import { Query } from "compassql/build/src/query/query";
 import { Data } from "vega-lite/build/src/data";
 
-// import {RelatedViews} from '@/models/related-views';
+// import {RelatedViews} from 'models/related-views';
 import { dispatchQueries } from "../queries/index";
 import {
   selectData,

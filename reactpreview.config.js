@@ -1,19 +1,14 @@
 // const reactpreview = require("@reactpreview/config");
+const Environment = require("vite-plugin-environment")
 
-const loc = path.resolve(__dirname + "/.");
+// const loc = path.resolve(__dirname + "/.");
 module.exports = {
   publicDir: "src/assets/",
   alias: {
       "@/": "src/"
   },
   vite: {
-    resolve: {
-      alias: {
-        "@/": loc + "/",
-        "compassql/": path.resolve(
-          __dirname + "/node_modules/compassql/build/compassql.min.js"
-        ),
-      },
-    },
+    // Doesn't do anything
+    plugins: [Environment(["NEXT_PUBLIC_TYPESENSE_READ_API_KEY"])]
   },
 };

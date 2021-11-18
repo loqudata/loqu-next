@@ -1,4 +1,4 @@
-import { ResultPlot } from "@/models/result";
+import { ResultPlot } from "models/result";
 import React from "react";
 import { Box, Flex, HStack, IconButton, Text, Tooltip } from "@chakra-ui/react";
 import { Field } from "./FieldPanel";

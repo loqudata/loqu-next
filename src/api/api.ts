@@ -10,11 +10,11 @@ const { build } = s;
 // import { build as buildSchema, Schema } from "compassql/build/src/schema";
 // import "isomorphic-fetch";
 import { Data, InlineData } from "vega-lite/build/src/data";
-import { AppConfig } from "@/models/config";
-// import {  ResultPlotWithKey } from "@/models/result";
+import { AppConfig } from "models/config";
+// import {  ResultPlotWithKey } from "models/result";
 // export {Query, Schema, Data};
 
-import { fromSpecQueryModelGroup, ResultPlotWithKey } from "@/models/result";
+import { fromSpecQueryModelGroup, ResultPlotWithKey } from "models/result";
 import { ISchema } from "./schema";
 
 /**

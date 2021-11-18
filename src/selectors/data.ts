@@ -1,6 +1,6 @@
 import { Schema } from "compassql/build/src/schema";
 import { InlineData } from "vega-lite/build/src/data";
-import { Dataset } from "@/models/dataset";
+import { Dataset } from "models/dataset";
 import { RootState } from "../store/store";
 
 export const selectData = (state: RootState): InlineData => state.dataset.data;

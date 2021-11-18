@@ -1,4 +1,4 @@
-import { AppConfig } from "@/models/config";
+import { AppConfig } from "models/config";
 import { RootState } from "../store/store";
 
 export * from "./data";

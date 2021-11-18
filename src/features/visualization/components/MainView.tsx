@@ -1,8 +1,8 @@
 import { Box, Flex, Heading, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Result } from "@/models/result";
-import { selectData, selectSchema } from "@/selectors/index";
+import { Result } from "models/result";
+import { selectData, selectSchema } from "selectors/index";
 import { filterPlots } from "../services/filterPlots";
 import { Plot } from "./Plot";
 // import { RootState } from '../store/store'
