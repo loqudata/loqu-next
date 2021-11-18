@@ -28,12 +28,12 @@ export const NavLink = ({
           </Text>
         </Center>
       </Link>
-      <Box
+      {/* <Box
         backgroundColor="green.600"
         display={active ? "block" : "none"}
         h="2px"
         w="120%"
-      ></Box>
+      ></Box> */}
     </VStack>
   );
 };
