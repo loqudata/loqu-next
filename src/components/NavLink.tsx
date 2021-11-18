@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Text } from "@chakra-ui/react";
+import { Box, VStack, Text, Center } from "@chakra-ui/react";
 import { Link } from "./Link";
 
 export const NavLink = ({
@@ -13,14 +13,27 @@ export const NavLink = ({
   const router = useRouter();
   const active = router.route == href;
   return (
-    <Link href={href} chakraProps={{ _hover: { textDecoration: "none" } }}>
-      <Text
-        color={active ? "green.600" : "gray.500"}
-        _hover={{ color: !active ? "gray.700" : "" }}
-        fontWeight={active ? "semibold" : "medium"}
+    <VStack h="full" alignItems="center" spacing={0}>
+      <Link
+        href={href}
+        chakraProps={{ _hover: { textDecoration: "none" }, h: "full" }}
       >
-        {children}
-      </Text>
-    </Link>
+        <Center h="full">
+          <Text
+            color={active ? "green.600" : "gray.500"}
+            _hover={{ color: !active ? "gray.700" : "" }}
+            fontWeight={active ? "semibold" : "medium"}
+          >
+            {children}
+          </Text>
+        </Center>
+      </Link>
+      <Box
+        backgroundColor="green.600"
+        display={active ? "block" : "none"}
+        h="2px"
+        w="120%"
+      ></Box>
+    </VStack>
   );
 };

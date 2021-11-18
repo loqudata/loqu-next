@@ -20,15 +20,15 @@ export const Nav = () => {
     <Flex
       as="nav"
       px={responsivePadding}
-      py={2}
+      // py={2}
       boxShadow="sm"
       // borderBottom="1px solid lightgrey"
-      alignItems="center"
       position="relative"
       zIndex="999"
       backgroundColor="white"
+      alignItems="center"
     >
-      <Box mr={6}>
+      <Box mr={6} my={4}>
         <Link href="/">
           <Heading
             cursor="pointer"
@@ -46,7 +46,7 @@ export const Nav = () => {
         </Link>
       </Box>
 
-      <HStack spacing={5}>
+      <HStack spacing={5} alignSelf="stretch" flexGrow={0.2}>
         {routes.map((route) => (
           <NavLink key={route.path} href={route.path}>
             {route.name}
