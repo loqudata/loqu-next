@@ -28,7 +28,7 @@ export const Nav = () => {
       backgroundColor="white"
       alignItems="center"
     >
-      <Box mr={6} my={4}>
+      <Box mr={6} my={3}>
         <Link href="/">
           <Heading
             cursor="pointer"
