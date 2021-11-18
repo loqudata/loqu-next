@@ -325,11 +325,14 @@ the previous dataset will stay loaded.`.replace("\n", " ")
   return (
     <FieldPanel
       datasetURL={dataset.data ? dataset.data : ""}
-      setDatasetURL={(url) =>
+      setDatasetURL={(url) =>{
+        console.log("going", url);
+        
+        dispatch.dataset.bla()
         dispatch.dataset.datasetLoad({
           name: "idk",
           data: { url },
-        })
+        })}
       }
       fields={dataset.schema.fieldSchemas}
       {...props}

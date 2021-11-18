@@ -65,34 +65,38 @@ export const dataset = createModel<RootModel>()({
     },
   },
   effects: (dispatch) => ({
+    bla: async (payload) => console.log("dis", payload),
+    
     // handle state changes with impure functions.
     // use async/await for async actions
-    async datasetLoad(payload: DatasetLoad, state) {
-      console.log("This is current root state", state);
+    datasetLoad: async (payload: DatasetLoad, state) => {
+      console.log(payload, state);
+      
+      // console.log("This is current root state", state);
       const { name, data } = payload;
-      this.request({ name });
+      dispatch.dataset.request({ name });
 
-      // if (isUrlData(data)) {
-      //   return fetch(data.url)
-      //     .then((response) => response.json())
-      //     .then((values: any) => {
-      //       return buildSchemaAndDispatchDataReceive(
-      //         { values },
-      //         state.config,
-      //         this,
-      //         name
-      //       );
-      //     }).catch((e) => console.error(e));
-      // } else if (isInlineData(data)) {
-      //   return buildSchemaAndDispatchDataReceive(
-      //     data,
-      //     state.config,
-      //     this,
-      //     name
-      //   );
-      // } else {
-      //   throw new Error("dataset load error: dataset type not detected");
-      // }
+      if (isUrlData(data)) {
+        return fetch(data.url)
+          .then((response) => response.json())
+          .then((values: any) => {
+            return buildSchemaAndDispatchDataReceive(
+              { values },
+              state.config,
+              dispatch,
+              name
+            );
+          }).catch((e) => console.error(e));
+      } else if (isInlineData(data)) {
+        return buildSchemaAndDispatchDataReceive(
+          data,
+          state.config,
+          dispatch,
+          name
+        );
+      } else {
+        throw new Error("dataset load error: dataset type not detected");
+      }
     },
   }),
 });
@@ -107,6 +111,6 @@ function buildSchemaAndDispatchDataReceive(
     throw new Error("Voyager only supports array values");
   }
   return fetchCompassQLBuildSchema(data.values, config).then((schema) => {
-    dispatch.receive({ name, schema, data, isLoading: false });
+    dispatch.dataset.receive({ name, schema, data, isLoading: false });
   });
 }

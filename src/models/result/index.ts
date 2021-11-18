@@ -163,13 +163,13 @@ export const result = createModel<RootModel>()({
     // handle state changes with impure functions.
     // use async/await for async actions
 
-    async requestAsync(payload: ResultRequestAsync, state) {
+    requestAsync: async (payload: ResultRequestAsync, state) => {
       const schema = selectSchema(state);
       const data = selectData(state);
       const config = selectConfig(state);
 
       const { resultType, query, filterKey } = payload;
-      this.request(resultType);
+      dispatch.result.request({resultType});
       // state.
 
       // TODO: pass in config
@@ -181,7 +181,7 @@ export const result = createModel<RootModel>()({
               : preFilteredPlots
           ).map((p) => p.plot);
 
-          this.receive({ query, plots, resultType });
+          dispatch.result.receive({ query, plots, resultType });
         }
       );
     },

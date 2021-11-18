@@ -2,32 +2,32 @@ lockfileVersion: 5.3
 
 specifiers:
   '@chakra-ui/icons': ^1.1.1
-  '@chakra-ui/react': ^1.7.0
-  '@emotion/react': ^11
-  '@emotion/styled': ^11
+  '@chakra-ui/react': ^1.7.2
+  '@emotion/react': ^11.6.0
+  '@emotion/styled': ^11.6.0
   '@formatjs/intl-displaynames': ^5.2.5
   '@reactpreview/cli': ^0.7.2
-  '@rematch/core': ^2.1.1
+  '@rematch/core': ^2.2.0
   '@types/jest': ^27.0.2
-  '@types/node': ^12.12.21
-  '@types/react': ^17.0.2
-  '@types/react-dom': ^17.0.1
+  '@types/node': ^12.20.37
+  '@types/react': ^17.0.35
+  '@types/react-dom': ^17.0.11
   '@types/react-instantsearch-core': ^6.10.5
   chakra-react-select: ^1.3.2
   compassql: ^0.21.2
-  framer-motion: ^4
+  framer-motion: ^4.1.17
   lodash: ^4.17.21
-  next: ^12.0.3
+  next: ^12.0.4
   next-transpile-modules: ^9.0.0
   react: ^17.0.2
   react-dom: ^17.0.2
   react-icons: ^4.3.1
   react-instantsearch-dom: ^6.15.0
-  react-redux: ^7.2.5
+  react-redux: ^7.2.6
   react-vega: ^7.4.4
-  redux: ^4.1.1
-  reselect: ^4.0.0
-  typescript: '4.0'
+  redux: ^4.1.2
+  reselect: ^4.1.4
+  typescript: ~4.0.8
   typesense-instantsearch-adapter: ^2.2.0
   vega: ^5.21.0
   vega-expression: ^5.0.0
@@ -1402,7 +1402,7 @@ packages:
       '@types/istanbul-reports': 3.0.1
       '@types/node': 12.20.37
       '@types/yargs': 16.0.4
-      chalk: 4.0.0
+      chalk: 4.1.2
     dev: true
 
   /@napi-rs/triples/1.0.3:
@@ -1732,7 +1732,7 @@ packages:
     resolution: {integrity: sha512-IyNhGHu71jH1jCXTHmafuoAAdsbBON3kDh7u/UUhLmjYgN5TYB54e1R8ckTCiIevl2UuZaCsi9XRxineY5yUjw==}
     deprecated: This is a stub types definition. fast-json-stable-stringify provides its own type definitions, so you do not need this installed.
     dependencies:
-      fast-json-stable-stringify: 2.1.0
+      fast-json-stable-stringify: 2.0.0
     dev: false
 
   /@types/hoist-non-react-statics/3.3.1:
@@ -2269,6 +2269,15 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: false
+
+  /chalk/4.1.2:
+    resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
+    engines: {node: '>=10'}
+    dependencies:
+      ansi-styles: 4.3.0
+      supports-color: 7.2.0
+    dev: true
 
   /chokidar/3.5.1:
     resolution: {integrity: sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==}
@@ -3743,7 +3752,7 @@ packages:
     resolution: {integrity: sha512-PCeuAH4AWUo2O5+ksW4pL9v5xJAcIKPUPfIhZBcG1RKv/0+dvaWTQK1Nrau8d67dp65fOqbeMdoil+6PedyEPQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
-      chalk: 4.0.0
+      chalk: 4.1.2
       diff-sequences: 27.0.6
       jest-get-type: 27.3.1
       pretty-format: 27.3.1
