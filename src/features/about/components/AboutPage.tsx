@@ -1,7 +1,7 @@
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 
-import { responsivePadding, theme } from "shared/theme";
+// import { responsivePadding, theme } from "shared/theme";
 
 // import ReactMarkdown from "react-markdown";
 // import Markdown from "markdown-to-jsx";
@@ -11,7 +11,7 @@ import { responsivePadding, theme } from "shared/theme";
 export const AboutPage = ({ content = "" }: { content?: string }) => {
   return (
     <Box>
-      <Stack backgroundColor="gray.50" w="full" p={responsivePadding}>
+      <Stack backgroundColor="gray.50" w="full" p={0}>
         <Heading fontFamily="serif">About</Heading>
         <Text maxW="container.sm">
           Loqu is a platform and community focused on improving the open data
@@ -19,7 +19,7 @@ export const AboutPage = ({ content = "" }: { content?: string }) => {
           solution below.
         </Text>
       </Stack>
-      <Container maxW="3xl" p={responsivePadding}>
+      <Container maxW="3xl" p={0}>
         {content
           ? // <Markdown options={{ overrides: getMarkdownToJSXComponents() }}>
             { content }
