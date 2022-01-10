@@ -6,6 +6,7 @@ specifiers:
   '@emotion/react': ^11.6.0
   '@emotion/styled': ^11.6.0
   '@formatjs/intl-displaynames': ^5.2.5
+  '@openreplay/tracker': ^3.4.16
   '@reactpreview/cli': ^0.7.2
   '@rematch/core': ^2.2.0
   '@types/jest': ^27.0.2
@@ -31,6 +32,7 @@ specifiers:
   reselect: ^4.1.4
   typescript: ~4.0.8
   typesense-instantsearch-adapter: ^2.2.0
+  ulid: ^2.3.0
   vega: ^5.21.0
   vega-expression: ^5.0.0
   vega-lite: ~5.0.0
@@ -43,6 +45,7 @@ dependencies:
   '@emotion/react': 11.6.0_812c4b915b618d5091ca1e8ce4566766
   '@emotion/styled': 11.6.0_0defef186e606f744d8b5a7a5a1334ae
   '@formatjs/intl-displaynames': 5.2.5
+  '@openreplay/tracker': 3.4.16
   '@rematch/core': 2.2.0_redux@4.1.2
   chakra-react-select: 1.3.2_e7d2d323dd6853664c50a66f3b0bb50f
   compassql: 0.21.2_vega@5.21.0
@@ -61,6 +64,7 @@ dependencies:
   redux: 4.1.2
   reselect: 4.1.4
   typesense-instantsearch-adapter: 2.2.0
+  ulid: 2.3.0
   vega: 5.21.0
   vega-expression: 5.0.0
   vega-lite: 5.0.0_vega@5.21.0
@@ -1650,6 +1654,13 @@ packages:
     dev: false
     optional: true
 
+  /@openreplay/tracker/3.4.16:
+    resolution: {integrity: sha512-V9j3bu+u9XoZ41r2395hyUz/aDyHyKztToU33ExK2mwQA0f5GxNTwdfT8n3nuEKu8wnVDjMv6VgZ+7rdF5Sr3w==}
+    engines: {node: '>=12'}
+    dependencies:
+      error-stack-parser: 2.0.6
+    dev: false
+
   /@popperjs/core/2.10.2:
     resolution: {integrity: sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==}
     dev: false
@@ -3044,6 +3055,12 @@ packages:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
     dependencies:
       is-arrayish: 0.2.1
+
+  /error-stack-parser/2.0.6:
+    resolution: {integrity: sha512-d51brTeqC+BHlwF0BhPtcYgF5nlzf9ZZ0ZIUQNZpc9ZB9qw5IJ2diTrBY9jlCJkTLITYPjmiX6OWCwH+fuyNgQ==}
+    dependencies:
+      stackframe: 1.2.0
+    dev: false
 
   /es-abstract/1.19.1:
     resolution: {integrity: sha512-2vJ6tjA/UfqLm2MPs7jxVybLoB8i1t1Jd9R3kISld20sIxPcTbLuggQOUxeWeAvIUkduv/CfMjuh4WmiXr2v9w==}
@@ -5519,6 +5536,10 @@ packages:
       tweetnacl: 0.14.5
     dev: false
 
+  /stackframe/1.2.0:
+    resolution: {integrity: sha512-GrdeshiRmS1YLMYgzF16olf2jJ/IzxXY9lhKOskuVziubpTYcYqyOwYeJKzQkwy7uN0fYSsbsC4RQaXf9LCrYA==}
+    dev: false
+
   /stacktrace-parser/0.1.10:
     resolution: {integrity: sha512-KJP1OCML99+8fhOHxwwzyWrlUuVX5GQ0ZpJTd1DFXhdkrvg1szxfHhawXUZ3g9TkXORQd4/WG68jMlQZ2p8wlg==}
     engines: {node: '>=6'}
@@ -5951,6 +5972,11 @@ packages:
       loglevel: 1.7.1
     transitivePeerDependencies:
       - debug
+    dev: false
+
+  /ulid/2.3.0:
+    resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
+    hasBin: true
     dev: false
 
   /unbox-primitive/1.0.1:
