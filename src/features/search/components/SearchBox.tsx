@@ -23,7 +23,9 @@ export const ChakraSearchBox = ({
 }: SearchBoxProvided & { styleProps?: InputProps }) => {
   const rt = useRouter();
   // console.log(pg);
-  const q = rt.query.search as string;
+  const q = rt.query.q as string;
+  // console.log(q);
+  
   if (q) {
     refine(q);
   }

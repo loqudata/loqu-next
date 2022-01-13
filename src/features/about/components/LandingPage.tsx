@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, VStack, Text, Img, Stack } from "@chakra-ui/react";
+import _ from "lodash";
 import { useRouter } from "next/router";
 import React from "react";
 import World from "../../../assets/world_dots_grey.svg";
@@ -47,7 +48,7 @@ export const LandingPage = () => {
               backgroundColor: "white",
               boxShadow: "sm",
             }}
-            refine={(v) => router.push("/search?q=" + encodeURIComponent(v))}
+            refine={_.debounce((v) => router.push("/search?q=" + encodeURIComponent(v)), 300)}
           ></ChakraSearchBox>
         </Box>
       </VStack>

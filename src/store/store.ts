@@ -5,7 +5,7 @@ import { createQueryListener } from "./listener";
 // if (typeof window =="undefined") 
 // import { openReplayMiddleware } from "components/OpenReplay";
 
-export const store = (typeof window =="undefined") ? {subscribe: ()=>{}} : init({
+export const store = init({
   models,
   redux: {
     // middlewares: [dynamic(() => import("components/OpenReplay"), { ssr: false }).middleware as any]
