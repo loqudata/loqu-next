@@ -32,6 +32,7 @@
     "react-redux": "^7.2.6",
     "react-vega": "^7.4.4",
     "redux": "^4.1.2",
+    "redux-query-sync": "^0.1.10",
     "reselect": "^4.1.4",
     "typesense-instantsearch-adapter": "^2.2.0",
     "ulid": "^2.3.0",

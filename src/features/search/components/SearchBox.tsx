@@ -21,14 +21,17 @@ export const ChakraSearchBox = ({
   styleProps,
   ...props
 }: SearchBoxProvided & { styleProps?: InputProps }) => {
-  const rt = useRouter();
-  // console.log(pg);
-  const q = rt.query.q as string;
-  // console.log(q);
-  
-  if (q) {
-    refine(q);
-  }
+  // const rt = useRouter();
+  // // console.log(pg);
+  // const q = rt.query.q as string;
+  // // console.log(q);
+  // if (q) {
+  //   refine(q);
+  // }
+  // if (currentRefinement && !q) {
+  //   rt.query.q = currentRefinement
+  //   rt.replace(rt)
+  // } 
 
   return (
     <InputGroup>

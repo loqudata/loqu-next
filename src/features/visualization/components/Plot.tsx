@@ -96,7 +96,7 @@ export const Plot = ({
       justifyContent="center"
       alignItems="center"
     >
-      <Vega spec={modifyPlot(plot.spec, data)} mode="vega-lite"></Vega>
+      <Vega spec={modifyPlot(plot.spec, data)} renderer="svg" mode="vega-lite"></Vega>
     </Flex>
   </Box>
 );
