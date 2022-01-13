@@ -1,8 +1,15 @@
 import { init, RematchDispatch, RematchRootState } from "@rematch/core";
 import { models, RootModel } from "models";
+// import dynamic from "next/dynamic";
 import { createQueryListener } from "./listener";
-export const store = init({
+// if (typeof window =="undefined") 
+// import { openReplayMiddleware } from "components/OpenReplay";
+
+export const store = (typeof window =="undefined") ? {subscribe: ()=>{}} : init({
   models,
+  redux: {
+    // middlewares: [dynamic(() => import("components/OpenReplay"), { ssr: false }).middleware as any]
+  }
 });
 export type Store = typeof store;
 export type Dispatch = RematchDispatch<RootModel>;

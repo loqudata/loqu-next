@@ -7,6 +7,7 @@ specifiers:
   '@emotion/styled': ^11.6.0
   '@formatjs/intl-displaynames': ^5.2.5
   '@openreplay/tracker': ^3.4.16
+  '@openreplay/tracker-redux': ^3.4.8
   '@reactpreview/cli': ^0.7.2
   '@rematch/core': ^2.2.0
   '@types/jest': ^27.0.2
@@ -46,6 +47,7 @@ dependencies:
   '@emotion/styled': 11.6.0_0defef186e606f744d8b5a7a5a1334ae
   '@formatjs/intl-displaynames': 5.2.5
   '@openreplay/tracker': 3.4.16
+  '@openreplay/tracker-redux': 3.4.8_2c6a4542ad0da02ffe992b7222868534
   '@rematch/core': 2.2.0_redux@4.1.2
   chakra-react-select: 1.3.2_e7d2d323dd6853664c50a66f3b0bb50f
   compassql: 0.21.2_vega@5.21.0
@@ -1653,6 +1655,16 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@openreplay/tracker-redux/3.4.8_2c6a4542ad0da02ffe992b7222868534:
+    resolution: {integrity: sha512-Jn/hgXA0xv3/+IwcyKoFb3idlZvCNu34gqN/BEJ3dKR1FEykGO4mYBkAwYics4OxPmWXF+jWQJ6ZyABnzKrXDQ==}
+    peerDependencies:
+      '@openreplay/tracker': ^3.4.8
+      redux: ^4.0.0
+    dependencies:
+      '@openreplay/tracker': 3.4.16
+      redux: 4.1.2
+    dev: false
 
   /@openreplay/tracker/3.4.16:
     resolution: {integrity: sha512-V9j3bu+u9XoZ41r2395hyUz/aDyHyKztToU33ExK2mwQA0f5GxNTwdfT8n3nuEKu8wnVDjMv6VgZ+7rdF5Sr3w==}
