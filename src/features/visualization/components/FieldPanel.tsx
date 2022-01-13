@@ -289,6 +289,8 @@ export const FieldPanel = ({
   );
 };
 
+const rowLimit = 5000
+
 import { Dispatch } from "store/store";
 export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
   //@ts-ignore
@@ -306,14 +308,14 @@ export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
             return;
           }
 
-          if (res[0].count < 1000) {
+          if (res[0].count < rowLimit) {
             dispatch.dataset.datasetLoad({
               name: "prop_provided",
               data: { url: ds },
             });
-          } else if (res[0].count > 1000) {
+          } else if (res[0].count > rowLimit) {
             alert(
-              `The dataset you selected has over 1000 rows.
+              `The dataset you selected has over ${rowLimit} rows.
 To not overload your computer in this development phase, we will not load it;
 the previous dataset will stay loaded.`.replace("\n", " ")
             );
