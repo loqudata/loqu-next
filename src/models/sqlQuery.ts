@@ -11,6 +11,7 @@ interface QueryState {
   query: string;
   /** Not currently used. Would be great if this could auto sync with thunk, or if there was a way to access thunk state. */
   status: "blank" | "loading" | "error" | "completed";
+  error?: string;
   data?: Table;
 }
 
@@ -38,6 +39,9 @@ export const sqlQuery = createModel<RootModel>()({
     setData: (state, payload: Table) => {
       state.data = payload;
     },
+    setError: (state, error) => {
+      state.error = error
+    }
   },
   effects: (dispatch) => ({
     runQuery: async (query: string, state) => {
@@ -50,6 +54,7 @@ export const sqlQuery = createModel<RootModel>()({
         console.log("done resp");
       } catch (error) {
         console.warn(error);
+        dispatch.sqlQuery.setError(error)
         return;
       }
   

@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { SQLEditor } from "features/sqlEditor/components/Editor";
+import { SQLEditor } from "features/sqlEditor/components/SQLEditor";
 import {
   IJsonModel,
   Layout,
