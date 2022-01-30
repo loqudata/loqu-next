@@ -42,7 +42,7 @@ const initialModel = {
             type: "tab",
             enableClose: false,
             name: "Table View",
-            component: "button",
+            component: "tableGrid",
           },
         ],
       },

@@ -1,6 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DataSelector } from "features/selectData/components/DataSelector";
 import { SQLEditor } from "features/sqlEditor/components/SQLEditor";
+import { TableGrid } from "features/sqlEditor/components/TableGrid";
 import {
   IJsonModel,
   Layout,
@@ -22,6 +23,7 @@ const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode }>> = {
   fields: Fields,
   sqlEditor: SQLEditor,
   selectData: DataSelector,
+  tableGrid: TableGrid
 };
 
 export const Workspace = () => {
