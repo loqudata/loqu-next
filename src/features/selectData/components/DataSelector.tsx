@@ -34,9 +34,8 @@ export const DataSelector = () => {
         border="1px solid"
         borderColor="gray.300"
         borderRadius="md"
-        w="full"
       >
-        <Text fontWeight="semibold">Local sources</Text>
+        <Text fontWeight="semibold">Local source</Text>
 
         <HStack>
           <Text>
@@ -49,21 +48,21 @@ export const DataSelector = () => {
                 Choose a different {fileTypes.join(", ")} file:
               </>
             ) : (
-              <>Choose a {fileTypes.join(", ")}file:</>
+              <>Choose a {fileTypes.join(", ")} file:</>
             )}
           </Text>
           <FileSelector />
         </HStack>
 
-        <Flex w="full">
-          <Box flexGrow={1}>
+        <Flex>
+          <Box flexGrow={1} mr={2}>
             <Text maxW="md">
-              Your files will be imported to an in-memory database called{" "}
+              Your file will be imported to an in-memory database called{" "}
               <Link href="https://duckdb.org/" target="_blank" color="blue.600">
                 DuckDB
-              </Link>
-              . It allows you to transform and analyze large datasets right in
-              your browser, using our same friendly interface.
+              </Link> so you can transform and analyze datasets right in
+              your browser.
+              {/* using our interface. */}
             </Text>
           </Box>
 

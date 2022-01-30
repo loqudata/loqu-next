@@ -18,7 +18,7 @@ interface QueryState {
 // Define the initial state using that type
 const initialState: QueryState = {
   query:
-    "SELECT AVG(TOTAL_VEHICLES), MAR_ADDRESS FROM crashes GROUP BY MAR_ADDRESS;",
+    `SELECT AVG(TOTAL_VEHICLES), MAR_ADDRESS FROM "10k_rows" GROUP BY MAR_ADDRESS;`,
   status: "blank",
 };
 
@@ -44,14 +44,15 @@ export const sqlQuery = createModel<RootModel>()({
     }
   },
   effects: (dispatch) => ({
-    runQuery: async (query: string, state) => {
-      console.log("starting q", query);
+    // Not used: a better way?
+    async runQuery(payload: null, state) {
+      
+      const query = state.sqlQuery.query
   
       let response;
       // This will error, causing a promise rejection
       try {
         response = await duckDBQuery(query);
-        console.log("done resp");
       } catch (error) {
         console.warn(error);
         dispatch.sqlQuery.setError(error)
@@ -61,7 +62,6 @@ export const sqlQuery = createModel<RootModel>()({
       // We assume these won't error, or they won't be a part of same transaction
       dispatch.sqlQuery.setData(response);
       dispatch.sqlQuery.setStatus("completed");
-      console.log("dispatched end");
   
       return response;
     },

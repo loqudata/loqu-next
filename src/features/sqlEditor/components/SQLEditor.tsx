@@ -44,7 +44,7 @@ export const SQLEditor = () => {
         id: "loqu:runDuckDBQuery",
         label: "Run SQL Query",
         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
-        run: () => dispatch.sqlQuery.runQuery(query)
+        run: () => dispatch.sqlQuery.runQuery(null)
       }
     );
   }
@@ -55,7 +55,7 @@ export const SQLEditor = () => {
         <Box flexGrow={1} />
         {/* <Text color="gray.700">Run Query</Text> */}
         <Tooltip label="You can also use Ctrl+Enter from the editor.">
-          <Button size="sm" onClick={() => dispatch.sqlQuery.runQuery(query)}>
+          <Button size="sm" onClick={() => dispatch.sqlQuery.runQuery(null)}>
             Run Query
           </Button>
         </Tooltip>
