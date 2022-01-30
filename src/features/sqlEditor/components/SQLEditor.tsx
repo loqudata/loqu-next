@@ -34,9 +34,9 @@ export const SQLEditor = () => {
     return () => {};
   }, [error]);
 
-  function runQuery() {
-    dispatch.sqlQuery.runQuery(query);
-  }
+  // function runQuery() {
+  //   dispatch.sqlQuery.runQuery(query);
+  // }
 
   function handleEditorDidMount(editor: IMonacoEditor, monaco: Monaco) {
     editor.addAction(
@@ -44,7 +44,7 @@ export const SQLEditor = () => {
         id: "loqu:runDuckDBQuery",
         label: "Run SQL Query",
         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
-        run: runQuery
+        run: () => dispatch.sqlQuery.runQuery(query)
       }
     );
   }
@@ -55,7 +55,7 @@ export const SQLEditor = () => {
         <Box flexGrow={1} />
         {/* <Text color="gray.700">Run Query</Text> */}
         <Tooltip label="You can also use Ctrl+Enter from the editor.">
-          <Button size="sm" onClick={runQuery}>
+          <Button size="sm" onClick={() => dispatch.sqlQuery.runQuery(query)}>
             Run Query
           </Button>
         </Tooltip>
