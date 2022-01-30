@@ -1,10 +1,29 @@
-import { Box, Flex, HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Flex,
+  HStack,
+  Image,
+  Link,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
 import { DataSource, DATA_SOURCES } from "./DataSource";
 
 import duckdb from "assets/duckdb-logo.svg";
 import { FileSelector } from "./FileSelector";
+import { useSelector } from "react-redux";
+import { RootState } from "store/store";
+import { IFile } from "utils/serializeableFile";
+
+const fileTypes = ["CSV"];
+/* , XLS, JSON, or GeoJSON  */
+
 export const DataSelector = () => {
+  const selectedFile = useSelector<RootState>(
+    (state) => state.sqlQuery.file
+  ) as IFile | null;
   return (
     <VStack h="full" p={2} alignItems="start">
       <Text fontWeight="bold">Choose a data source</Text>
@@ -21,8 +40,17 @@ export const DataSelector = () => {
 
         <HStack>
           <Text>
-            Choose a CSV {/* , XLS, JSON, or GeoJSON  */}
-            file:
+            {selectedFile ? (
+              <>
+                You have selected{" "}
+                <Text as={chakra.span} fontWeight="semibold">
+                  {selectedFile.name}
+                </Text>{" "}
+                Choose a different {fileTypes.join(", ")} file:
+              </>
+            ) : (
+              <>Choose a {fileTypes.join(", ")}file:</>
+            )}
           </Text>
           <FileSelector />
         </HStack>
