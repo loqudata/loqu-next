@@ -24,3 +24,14 @@ Investigating existing repos that combine Monaco and SQL: "monaco sql" search on
 - https://github.com/luobotang/monaco-sql-editor/ - very simple, custom completion logic and data structure
 - https://github.com/DiscoverForever/monaco-sqlpad/blob/master/src/core/snippets.js - custom logic, vue
 - https://github.com/raycursive/monaco-sql-parser/ - custom parser
+
+Learning about Monaco Editor
+
+- Different keybindings based on browser - e.g. in Firefox `Ctrl-K` is delete to right, in Chrome there isn't a shortcut for that command.
+- Ctrl left and right works for navigation, not deleting words in Firefox. no Chrome test.
+
+
+Apache Arrow Test Data:
+
+- https://gist.githubusercontent.com/TheNeuralBit/64d8cc13050c9b5743281dcf66059de5/raw/c146baf28a8e78cfe982c6ab5015207c4cbd84e3/scrabble.arrow (43MB)
+- https://gist.githubusercontent.com/domoritz/e2bb9f8d366832f4934cd0c687792b52/raw/f1cc2a9cbf47529c836ab23e8e0105c22b814c41/flights-1m.arrow (15MB)
