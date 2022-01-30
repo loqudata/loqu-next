@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import { SQLEditor } from "features/sqlEditor/components/Editor";
 import {
   IJsonModel,
   Layout,
@@ -32,7 +33,7 @@ const initialModel = {
           type: "tab",
           enableClose: false,
           name: "SQL Editor",
-          component: "button",
+          component: "sqlEditor",
         },
         {
           type: "tab",
@@ -108,6 +109,7 @@ const Fields = () => {
 const ComponentsMap: Record<string, React.ComponentType<{node: TabNode}>> = {
   button: ({ node }) => <button>{node.getName()}</button>,
   fields: Fields,
+  sqlEditor: SQLEditor
 };
 
 export const Workspace = () => {
