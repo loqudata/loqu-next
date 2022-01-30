@@ -1,27 +1,28 @@
 import * as duckdb from '@duckdb/duckdb-wasm';
 
 
-import duckdb_wasm from '@duckdb/duckdb-wasm/dist/duckdb.wasm';
-import duckdb_wasm_next from '@duckdb/duckdb-wasm/dist/duckdb-eh.wasm';
+// import duckdb_wasm from '@duckdb/duckdb-wasm/dist/duckdb.wasm';
+// import duckdb_wasm_next from '@duckdb/duckdb-wasm/dist/duckdb-eh.wasm';
 
 export async function initializeDuckDB() {
     // //@ts-ignore
     // const duckdb_wasm_next = await import('@duckdb/duckdb-wasm/dist/duckdb-eh.wasm');
-    const MANUAL_BUNDLES: duckdb.DuckDBBundles = {
-        mvp: {
-            mainModule: duckdb_wasm,
-            mainWorker: new URL('/duckdb-browser.worker.js', window.location.href).toString(), // , import.meta.url
-        },
-        eh: {
-            mainModule: duckdb_wasm_next,
-            mainWorker: new URL('/duckdb-browser-eh.worker.js', window.location.href).toString(), // , import.meta.url
-        },
-    };
-    console.log("bundle config", MANUAL_BUNDLES);
+    // const MANUAL_BUNDLES: duckdb.DuckDBBundles = {
+    //     mvp: {
+    //         mainModule: duckdb_wasm,
+    //         mainWorker: new URL('/duckdb-browser.worker.js', window.location.href).toString(), // , import.meta.url
+    //     },
+    //     eh: {
+    //         mainModule: duckdb_wasm_next,
+    //         mainWorker: new URL('/duckdb-browser-eh.worker.js', window.location.href).toString(), // , import.meta.url
+    //     },
+    // };
+    // console.log("bundle config", MANUAL_BUNDLES);
+    const bundles = duckdb.getJsDelivrBundles()
     
 
     // Select a bundle based on browser checks
-    const bundle = await duckdb.selectBundle(MANUAL_BUNDLES);
+    const bundle = await duckdb.selectBundle(bundles);
     // Instantiate the asynchronus version of DuckDB-wasm
     const worker = new Worker(bundle.mainWorker!);
     const logger = new duckdb.ConsoleLogger();

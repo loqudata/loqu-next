@@ -35,6 +35,7 @@ specifiers:
   react-vega: ^7.4.4
   redux: ^4.1.2
   reselect: ^4.1.4
+  sqlstring: ^2.3.2
   typescript: ~4.0.8
   typesense-instantsearch-adapter: ^2.2.0
   vega: ^5.21.0
@@ -72,6 +73,7 @@ dependencies:
   react-vega: 7.4.4_4073cc14f0b3a4b719b0071b64030d94
   redux: 4.1.2
   reselect: 4.1.4
+  sqlstring: 2.3.2
   typesense-instantsearch-adapter: 2.2.0
   vega: 5.21.0
   vega-expression: 5.0.0
@@ -5760,6 +5762,11 @@ packages:
 
   /spdx-license-ids/3.0.11:
     resolution: {integrity: sha512-Ctl2BrFiM0X3MANYgj3CkygxhRmr9mi6xhejbdO960nF6EDJApTYpn0BQnDKlnNBULKiCN1n3w9EBkHK8ZWg+g==}
+    dev: false
+
+  /sqlstring/2.3.2:
+    resolution: {integrity: sha512-vF4ZbYdKS8OnoJAWBmMxCQDkiEBkGQYU7UZPtL8flbDRSNkhaXvRJ279ZtI6M+zDaQovVU4tuRgzK5fVhvFAhg==}
+    engines: {node: '>= 0.6'}
     dev: false
 
   /sshpk/1.16.1:

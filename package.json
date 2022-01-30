@@ -37,6 +37,7 @@
     "react-vega": "^7.4.4",
     "redux": "^4.1.2",
     "reselect": "^4.1.4",
+    "sqlstring": "^2.3.2",
     "typesense-instantsearch-adapter": "^2.2.0",
     "vega": "^5.21.0",
     "vega-expression": "^5.0.0",

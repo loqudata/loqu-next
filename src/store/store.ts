@@ -1,4 +1,4 @@
-import { sqlQuerySlice } from "@/models/sqlQuery";
+import { sqlQuerySlice } from "models/sqlQuery";
 import { init, RematchDispatch, RematchRootState } from "@rematch/core";
 import { models, RootModel } from "models";
 import { createQueryListener } from "./listener";

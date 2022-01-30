@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Table } from "apache-arrow";
 
-import { loadCSVFile, query as duckDBQuery } from "@/features/duckdb";
-import { IFile, serialize } from "@/utils/serializeableFile";
+import { loadCSVFile, query as duckDBQuery } from "features/duckdb";
+import { IFile, serialize } from "utils/serializeableFile";
 // Define a type for the slice state
 interface QueryState {
   file?: IFile;

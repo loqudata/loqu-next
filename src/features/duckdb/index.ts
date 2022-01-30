@@ -3,7 +3,7 @@ import { DuckDBSingleton, initializeDuckDB } from "./init";
 import { Table } from "apache-arrow";
 import arrow from "./simpleArrow";
 
-const SqlString = require("sqlstring")
+const SqlString = await import("sqlstring")
 
 export async function loadCSVFile(file: File, tableName: string) {
   const globalDB = await DuckDBSingleton.getInstance();
