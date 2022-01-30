@@ -8,7 +8,7 @@ export type Monaco = typeof monaco;
 export type IMonacoEditor = monaco.editor.IStandaloneCodeEditor;
 
 import { useSelector, useDispatch } from "react-redux";
-import { sqlQuerySlice } from "models/sqlQuery";
+import { sqlQuery } from "models/sqlQuery";
 
 function handleEditorDidMount(editor: IMonacoEditor, monaco: Monaco) {
   editor.addCommand(monaco.KeyCode.F9, function () {
@@ -16,15 +16,16 @@ function handleEditorDidMount(editor: IMonacoEditor, monaco: Monaco) {
   });
 }
 
+import { Dispatch } from "store/store";
 export const SQLEditor = () => {
   const [query, setQuery] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<Dispatch>();
   return (
     <Flex height="100%" direction="column">
       <Flex alignItems="center" p={2}>
         <Box flexGrow={1} />
         {/* <Text color="gray.700">Run Query</Text> */}
-        <Button size="sm" onClick={()=> dispatch(sqlQuerySlice.actions.setQuery(query))}>Run Query</Button>
+        <Button size="sm" onClick={()=> {dispatch.sqlQuery.runQuery(query)}}>Run Query</Button>
       </Flex>
       <Box height="calc(100% - 80px);" >
         <Editor
