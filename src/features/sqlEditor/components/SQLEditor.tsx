@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Tooltip, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
 import Editor from "@monaco-editor/react";
@@ -12,10 +12,11 @@ import { sqlQuery } from "models/sqlQuery";
 
 import { Dispatch, RootState } from "store/store";
 export const SQLEditor = () => {
-  const [query, setQuery] = useState("");
   const dispatch = useDispatch<Dispatch>();
 
   const error = useSelector<RootState>((state) => state.sqlQuery.error);
+  const query = useSelector<RootState>((state) => state.sqlQuery.query) as string;
+  
   const toast = useToast();
 
   useEffect(() => {
@@ -38,9 +39,13 @@ export const SQLEditor = () => {
   }
 
   function handleEditorDidMount(editor: IMonacoEditor, monaco: Monaco) {
-    editor.addCommand(
-      monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
-      runQuery
+    editor.addAction(
+      {
+        id: "loqu:runDuckDBQuery",
+        label: "Run SQL Query",
+        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
+        run: runQuery
+      }
     );
   }
 
@@ -49,15 +54,17 @@ export const SQLEditor = () => {
       <Flex alignItems="center" p={2}>
         <Box flexGrow={1} />
         {/* <Text color="gray.700">Run Query</Text> */}
-        <Button size="sm" onClick={runQuery}>
-          Run Query
-        </Button>
+        <Tooltip label="You can also use Ctrl+Enter from the editor.">
+          <Button size="sm" onClick={runQuery}>
+            Run Query
+          </Button>
+        </Tooltip>
       </Flex>
       <Box height="calc(100% - 80px);">
         <Editor
           defaultLanguage="sql"
           value={query}
-          onChange={(q) => setQuery(q)}
+          onChange={(q) => dispatch.sqlQuery.setQuery(q)}
           onMount={handleEditorDidMount}
         />
       </Box>
