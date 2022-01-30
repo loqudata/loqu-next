@@ -1,4 +1,6 @@
 import * as duckdb from '@duckdb/duckdb-wasm';
+import { DuckDBBundles } from '@duckdb/duckdb-wasm';
+import { getWorkerURL } from 'utils/getWorkerURL';
 
 
 // import duckdb_wasm from '@duckdb/duckdb-wasm/dist/duckdb.wasm';
@@ -18,7 +20,17 @@ export async function initializeDuckDB() {
     //     },
     // };
     // console.log("bundle config", MANUAL_BUNDLES);
-    const bundles = duckdb.getJsDelivrBundles()
+    // debugger;
+    let bundles = duckdb.getJsDelivrBundles()
+
+    function fixBundles(bundles: DuckDBBundles): DuckDBBundles {
+        let b = Object.assign({}, bundles)
+        b.mvp.mainWorker = getWorkerURL(b.mvp.mainWorker)
+        b.eh.mainWorker = getWorkerURL(b.eh.mainWorker)
+        return b
+    }
+
+    bundles = fixBundles(bundles)
     
 
     // Select a bundle based on browser checks

@@ -11,6 +11,7 @@ specifiers:
   '@reactpreview/cli': ^0.7.2
   '@reduxjs/toolkit': ^1.7.1
   '@rematch/core': ^2.2.0
+  '@rematch/immer': ^2.1.3
   '@types/jest': ^27.0.2
   '@types/node': ^12.20.37
   '@types/react': ^17.0.35
@@ -21,6 +22,7 @@ specifiers:
   compassql: ^0.21.2
   flexlayout-react: ^0.6.5
   framer-motion: ^4.1.17
+  immer: ^9.0.12
   lodash: ^4.17.21
   monaco-editor: ^0.31.1
   next: ^12.0.4
@@ -54,11 +56,13 @@ dependencies:
   '@monaco-editor/react': 4.3.1_60c53b327c300eabacb72e8cc15737d8
   '@reduxjs/toolkit': 1.7.1_react-redux@7.2.6+react@17.0.2
   '@rematch/core': 2.2.0_redux@4.1.2
+  '@rematch/immer': 2.1.3_ed1556fc8f632794cbf1d2aaf9845db1
   apache-arrow: 6.0.1
   chakra-react-select: 1.3.2_e7d2d323dd6853664c50a66f3b0bb50f
   compassql: 0.21.2_vega@5.21.0
   flexlayout-react: 0.6.5_react-dom@17.0.2+react@17.0.2
   framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
+  immer: 9.0.12
   lodash: 4.17.21
   monaco-editor: 0.31.1
   next: 12.0.4_react-dom@17.0.2+react@17.0.2
@@ -1814,6 +1818,18 @@ packages:
     peerDependencies:
       redux: '>=4'
     dependencies:
+      redux: 4.1.2
+    dev: false
+
+  /@rematch/immer/2.1.3_ed1556fc8f632794cbf1d2aaf9845db1:
+    resolution: {integrity: sha512-ZkUuAHeNaMPblRNmSbJIqUIFe3/DMZthWt8Rp4PDlniHddRZFOSQ/+15bGAzq/iaGX1tfG1ZxsRjapBoB6eK2g==}
+    peerDependencies:
+      '@rematch/core': '>=2'
+      immer: '>=7 | >= 8 | >= 9'
+      redux: '>=4'
+    dependencies:
+      '@rematch/core': 2.2.0_redux@4.1.2
+      immer: 9.0.12
       redux: 4.1.2
     dev: false
 
