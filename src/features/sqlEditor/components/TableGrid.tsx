@@ -14,12 +14,12 @@ export const TableGrid = () => {
   const status = useAppSelector((s) => s.sqlQuery.status);
 
   // console.log(data, );
-  let rowData
-  let columns
-  if(data) {
+  let rowData;
+  let columns;
+  
+  if (data) {
     rowData = createListOfObjectsArrowProxy(data);
     columns = getFieldNames(data);
-
   }
   // console.log(rowData);
 

@@ -50,5 +50,10 @@ export function createListOfObjectsArrowProxy(table: Table): any[] {
     });
     result.push(Object.create(proto))
   }
+
+  // TODO: benchmark the memory usage of this type of Proxy system
+  // class ArrowProxy {
+  //   data = result
+  // }
   return result
 }
