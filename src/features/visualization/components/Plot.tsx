@@ -8,9 +8,10 @@ import { InlineData } from "vega-lite/build/src/data";
 import { TopLevelFacetSpec, TopLevelSpec } from "vega-lite/build/src/spec";
 import vegaTheme from "../services/vegaTheme";
 import { transformFieldDefs } from "../services/filterPlots";
-import { BsBookmark, BsBookmarkFill, BsPlus, BsPlusLg } from "react-icons/bs";
+// import { BsBookmark, BsBookmarkFill, BsPlus, BsPlusLg } from "react-icons/bs";
 import { EditIcon } from "@chakra-ui/icons";
 import { ISchema } from "api/schema";
+import { Icon } from '@iconify/react';
 
 const modifyPlot = (
   plot: TopLevelFacetSpec,
@@ -71,7 +72,7 @@ export const Plot = ({
             variant="ghost"
             p={1}
             aria-label="bookmark plot"
-            icon={<BsBookmark fontSize="md" />}
+            icon={<Icon icon="bi:bookmark" />}
           />
         </Tooltip>
         <Tooltip
@@ -84,7 +85,7 @@ export const Plot = ({
             p={1}
             colorScheme="primary"
             aria-label="edit plot"
-            icon={<BsPlusLg fontSize="md" />}
+            icon={<Icon icon="bi:plus-lg" />}
           />
         </Tooltip>
       </HStack>

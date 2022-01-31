@@ -11,4 +11,10 @@ module.exports = {
   //   // Doesn't do anything
   //   plugins: [Environment(["NEXT_PUBLIC_TYPESENSE_READ_API_KEY"])]
   // },
+
+  vite: {
+    optimizeDeps: {
+      include: ["react-vega", "vega-lite"],
+    },
+  },
 };

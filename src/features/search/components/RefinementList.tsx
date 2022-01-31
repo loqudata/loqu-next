@@ -16,7 +16,6 @@ import {
   Flex,
   IconButton,
 } from "@chakra-ui/react";
-import { BsThreeDots } from "react-icons/bs";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 export const ChakraRefinementList = ({
   items,

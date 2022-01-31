@@ -25,8 +25,8 @@ import { CreatableSelect, Select } from "chakra-react-select";
 import { useSelector, useDispatch } from "react-redux";
 import { FieldSchema } from "compassql";
 
-import { VscSymbolKey } from "react-icons/vsc";
-import { BiCalendar, BiHash, BiTime } from "react-icons/bi";
+// import { VscSymbolKey } from "react-icons/vsc";
+// import { BiCalendar, BiHash, BiTime } from "react-icons/bi";
 
 const options = [
   { value: "area", label: "Area" },
@@ -74,9 +74,9 @@ const SelectFields = () => (
 );
 
 const vegaTypeMap = {
-  nominal: { icon: VscSymbolKey },
-  quantitative: { icon: BiHash },
-  temporal: { icon: BiCalendar },
+  nominal: { icon: () => {return "nope"} }, //VscSymbolKey },
+  quantitative: { icon: () => {return "nope"} }, //BiHash },
+  temporal: { icon: () => {return "nope"} }, //BiCalendar },
 };
 
 // TODO: handle unknowns
