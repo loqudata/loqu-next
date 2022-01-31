@@ -4,13 +4,13 @@ import React from "react";
 import { FieldPanelContainer } from "./FieldPanel";
 import { MainView } from "./MainView";
 
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 
 export const VisualizePage = () => {
-  const rt = useRouter();
+  const rt: NextRouter | null = useRouter();
   // console.log(pg);
   const socrata_url =
-    rt.query && rt.query.portal
+    rt?.query && rt.query.portal
       ? "https://" + rt.query.portal + "/resource/" + rt.query.id + ".json"
       : undefined;
   // console.log(socrata_url);

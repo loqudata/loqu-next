@@ -107,6 +107,9 @@ function buildSchemaAndDispatchDataReceive(
     throw new Error("Voyager only supports array values");
   }
   return fetchCompassQLBuildSchema(data.values, config).then((schema) => {
+    debugger;
+    console.log(name, data, schema);
+    
     dispatch.dataset.receive({ name, schema, data, isLoading: false });
   });
 }

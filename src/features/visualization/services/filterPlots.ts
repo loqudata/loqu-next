@@ -1,7 +1,8 @@
 import { Schema } from "compassql/build/src/schema";
 import { ResultPlot } from "models/result";
 import { ShelfFieldDef } from "models/shelf";
-export const transformFieldDefs = (f: ShelfFieldDef): ShelfFieldDef => {
+export const transformFieldDefs = (field: ShelfFieldDef): ShelfFieldDef => {
+  const f = Object.assign({}, field)
   if (f.fn && f.fn.toString().toLowerCase() == "count" && f.field == "*") {
     f.field = "COUNT(*)";
   }
