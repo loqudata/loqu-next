@@ -36,7 +36,10 @@ export const DuckDBToVegaTypes = {
 };
 
 export async function getFields(table: string) {
-  const res = await query(`PRAGMA table_info(${SqlString.escape(table)});`);
+  const q = `PRAGMA table_info(${SqlString.escape(table)});`;
+  console.log(q);
+
+  const res = await query(q);
   const fields = arrowToJSON(res) as DuckDBField[];
   return fields;
 }

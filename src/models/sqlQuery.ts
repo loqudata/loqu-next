@@ -3,6 +3,7 @@ import { createModel } from "@rematch/core";
 import { Table } from "apache-arrow";
 
 import { loadCSVFile, query as duckDBQuery } from "features/duckdb";
+import { DuckDBField, getFields } from "features/duckdb/getFields";
 import { RootModel } from "models";
 import { IFile, serialize } from "utils/serializeableFile";
 // Define a type for the slice state
@@ -13,6 +14,7 @@ interface QueryState {
   status: "blank" | "loading" | "error" | "completed";
   error?: string;
   data?: Table;
+  duckDBFields?: DuckDBField[]
 }
 
 // Define the initial state using that type
@@ -41,6 +43,9 @@ export const sqlQuery = createModel<RootModel>()({
     },
     setError: (state, error) => {
       state.error = error
+    },
+    setDuckDBFields: (state, payload: DuckDBField[]) => {
+      state.duckDBFields = payload
     }
   },
   effects: (dispatch) => ({
@@ -66,8 +71,12 @@ export const sqlQuery = createModel<RootModel>()({
       return response;
     },
     updateFile: async (file: File, thunkAPI) => {
+      const tableName = file.name.split(".")[0]
+      await loadCSVFile(file, tableName);
       dispatch.sqlQuery.setFile(serialize(file));
-      loadCSVFile(file, file.name.split(".")[0]);
+
+      const fields = await getFields(tableName)
+      dispatch.sqlQuery.setDuckDBFields(fields)
     }
   })
   // {

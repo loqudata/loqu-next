@@ -10,10 +10,9 @@ import exampleFields from "./exampleFields.json";
 import { FieldIcon } from "./FieldIcon";
 
 export const ConnectedFields = () => {
-  const fl = useAppSelector((s) => s.sqlQuery.file);
-  if (fl) {
-    getFields(fl.name.split(".")[0]).then((res) => console.log(res));
-    return <Box p={2}></Box>;
+  const fields = useAppSelector((s) => s.sqlQuery.duckDBFields);
+  if (fields) {
+    return <Fields fields={fields}/>;
   } else {
     return <Box p={2}>You haven't loaded a file</Box>;
   }

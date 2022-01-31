@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { DataSelector } from "features/selectData/components/DataSelector";
 import { SQLEditor } from "features/sqlEditor/components/SQLEditor";
 import { TableGrid } from "features/sqlEditor/components/TableGrid";
-import { Fields } from "features/workspaceCharts/components/Fields";
+import { ConnectedFields, Fields } from "features/workspaceCharts/components/Fields";
 import {
   IJsonModel,
   Layout,
@@ -17,7 +17,7 @@ import { RootState } from "store/store";
 
 const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode }>> = {
   button: ({ node }) => <button>{node.getName()}</button>,
-  fields: Fields,
+  fields: ConnectedFields,
   sqlEditor: SQLEditor,
   selectData: DataSelector,
   tableGrid: TableGrid
