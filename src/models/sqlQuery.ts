@@ -73,10 +73,11 @@ export const sqlQuery = createModel<RootModel>()({
     updateFile: async (file: File, thunkAPI) => {
       const tableName = file.name.split(".")[0]
       await loadCSVFile(file, tableName);
-      dispatch.sqlQuery.setFile(serialize(file));
 
       const fields = await getFields(tableName)
-      dispatch.sqlQuery.setDuckDBFields(fields)
+
+      dispatch.sqlQuery.setFile(serialize(file));
+      dispatch.sqlQuery.setDuckDBFields(fields);
     }
   })
   // {

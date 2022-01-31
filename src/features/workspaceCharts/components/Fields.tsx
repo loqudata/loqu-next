@@ -35,7 +35,7 @@ export function convertDuckDBField(d: DuckDBField): IField {
 
 export const Field = ({ field }: { field: IField }) => {
   return (
-    <Box alignItems="start" mb={3}>
+    <Box alignItems="start" py={1.5} px={2} _hover={{backgroundColor: "blue.50"}}>
       {/* flex wrap + gap = good spacing and auto wrap when exceeds container width */}
       <Flex
         sx={{ rowGap: 4, columnGap: 8 }}
@@ -56,9 +56,9 @@ export const Field = ({ field }: { field: IField }) => {
 
 export const Fields = ({ fields = exampleFields }) => {
   return (
-    <Box p={2} w="xs">
+    <Box>
       {fields.map(convertDuckDBField).map((f) => (
-        <Field field={f}></Field>
+        <Field key={f.name}  field={f}></Field>
       ))}
     </Box>
   );

@@ -54,6 +54,7 @@ const initialModel = {
         {
           type: "tabset",
           weight: 20,
+          minWidth: 200,
           children: [
             {
               type: "tab",

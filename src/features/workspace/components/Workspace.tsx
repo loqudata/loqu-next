@@ -15,6 +15,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store/store";
 
+import "flexlayout-react/style/light.css";
+import "./workspace.css"
+
 const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode }>> = {
   button: ({ node }) => <button>{node.getName()}</button>,
   fields: ConnectedFields,
