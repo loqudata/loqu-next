@@ -43,10 +43,10 @@ export const Field = ({ field }: { field: IField }) => {
         alignItems="center"
       >
         <FieldIcon vegaType={field.type as any} />
-        <Text fontWeight="medium" color="gray.800" fontSize="11px">
+        <Text fontWeight="medium" color="gray.800" fontSize="12px">
           {field.name}
         </Text>
-        <Text color="gray.500" fontSize="11px" minW="fit-content">
+        <Text color="gray.500" fontSize="12px" minW="fit-content">
           {field.description}
         </Text>
       </Flex>
@@ -58,7 +58,7 @@ export const Fields = ({ fields = exampleFields }) => {
   return (
     <Box>
       {fields.map(convertDuckDBField).map((f) => (
-        <Field key={f.name}  field={f}></Field>
+        <Field key={f.name} field={f}></Field>
       ))}
     </Box>
   );

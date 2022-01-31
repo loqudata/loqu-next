@@ -18,8 +18,8 @@ export const FieldIcon = ({
 }: { vegaType: keyof typeof vegaTypeMap } & IconProps) =>
   vegaTypeMap[vegaType] ? (
     <Icon
-      w={3}
-      h={3}
+      w={4}
+      h={4}
       color="gray.400"
       as={vegaTypeMap[vegaType].icon}
       {...props}
