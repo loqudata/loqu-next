@@ -35,7 +35,7 @@ export function createListOfObjectsArrowProxy(table: Table): any[] {
   const fields = getFieldNames(table);
   let result = [];
   for (let i = 0; i < table.length; i++) {
-    let proto = { id: ulid(), ...fields };
+    let proto = {  };
 
     fields.forEach((name, index) => {
       Object.defineProperty(proto, name, {
@@ -48,7 +48,11 @@ export function createListOfObjectsArrowProxy(table: Table): any[] {
         enumerable: true,
       });
     });
-    result.push(Object.create(proto));
+
+    let out = Object.create(proto)
+    out.id = ulid()
+
+    result.push(out);
   }
 
   // TODO: benchmark the memory usage of this type of Proxy system

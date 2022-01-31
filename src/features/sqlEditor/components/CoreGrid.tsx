@@ -23,6 +23,9 @@ export const CoreGrid = ({
   rowData?: any;
   columns?: string[];
 }) => {
+  // TODO(perf): seems to re-render a lot
+  // console.log(rowData);
+  
   return (
 
     <Flex direction="column" h="full">
