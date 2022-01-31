@@ -44,6 +44,7 @@ specifiers:
   sqlstring: ^2.3.2
   typescript: ~4.0.8
   typesense-instantsearch-adapter: ^2.2.0
+  ulid: ^2.3.0
   vega: ^5.21.0
   vega-expression: ^5.0.0
   vega-lite: ~5.0.0
@@ -87,6 +88,7 @@ dependencies:
   reselect: 4.1.4
   sqlstring: 2.3.2
   typesense-instantsearch-adapter: 2.2.0
+  ulid: 2.3.0
   vega: 5.21.0
   vega-expression: 5.0.0
   vega-lite: 5.0.0_vega@5.21.0
@@ -6314,6 +6316,11 @@ packages:
   /typical/5.2.0:
     resolution: {integrity: sha512-dvdQgNDNJo+8B2uBQoqdb11eUCE1JQXhvjC/CZtgvZseVd5TYMXnq0+vuUemXbd/Se29cTaUuPX3YIc2xgbvIg==}
     engines: {node: '>=8'}
+    dev: false
+
+  /ulid/2.3.0:
+    resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
+    hasBin: true
     dev: false
 
   /unbox-primitive/1.0.1:

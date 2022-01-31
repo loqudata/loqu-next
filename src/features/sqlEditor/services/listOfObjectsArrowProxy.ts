@@ -1,5 +1,5 @@
 import { Table } from "apache-arrow";
-
+import { ulid } from "ulid";
 // function rowProxy(table) {
 //   const fields = table.schema.fields.map((d) => d.name);
 //   const proto = {};
@@ -32,10 +32,10 @@ export function getFieldNames(table: Table) {
 }
 
 export function createListOfObjectsArrowProxy(table: Table): any[] {
-  const fields = getFieldNames(table)
+  const fields = getFieldNames(table);
   let result = [];
   for (let i = 0; i < table.length; i++) {
-    let proto = {...fields};
+    let proto = { id: ulid(), ...fields };
 
     fields.forEach((name, index) => {
       Object.defineProperty(proto, name, {
@@ -48,12 +48,12 @@ export function createListOfObjectsArrowProxy(table: Table): any[] {
         enumerable: true,
       });
     });
-    result.push(Object.create(proto))
+    result.push(Object.create(proto));
   }
 
   // TODO: benchmark the memory usage of this type of Proxy system
   // class ArrowProxy {
   //   data = result
   // }
-  return result
+  return result;
 }

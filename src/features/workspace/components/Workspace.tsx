@@ -2,6 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { DataSelector } from "features/selectData/components/DataSelector";
 import { SQLEditor } from "features/sqlEditor/components/SQLEditor";
 import { TableGrid } from "features/sqlEditor/components/TableGrid";
+import { Fields } from "features/workspaceCharts/components/Fields";
 import {
   IJsonModel,
   Layout,
@@ -13,10 +14,6 @@ import {
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store/store";
-
-const Fields = () => {
-  return <div></div>;
-};
 
 const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode }>> = {
   button: ({ node }) => <button>{node.getName()}</button>,
