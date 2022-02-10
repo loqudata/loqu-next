@@ -14,30 +14,54 @@ import produce from "immer";
 import { useImmer } from "use-immer";
 import { sortBy } from "lodash";
 
-interface CustomColumn extends GridColumn {
-  idx: number;
-}
+// interface CustomColumn extends GridColumn {
+//   idx: number;
+// }
 
-const columns: CustomColumn[] = Object.keys(data[0]).map((k, i) => ({
-  idx: i,
+const columns: GridColumn[] = Object.keys(data[0]).map((k, i) => ({
+  //   idx: i,
   title: k,
   width: 150,
 }));
 
 export const GlideGrid = () => {
-  const [dynamicColumns, setDynamicColumns] = useImmer(columns);
+  const [dynamicColumns, setDynamicColumns] = useState(columns);
+//   const [colV, setColV] = useState(0)
   const [numRows, setNumRows] = useState(data.length);
+
+  const onColMoved = React.useCallback(
+    (startIndex: number, endIndex: number): void => {
+      setDynamicColumns((old) => {
+        //   no use for immer
+
+        const newCols = [...old];
+        const [toMove] = newCols.splice(startIndex, 1);
+        newCols.splice(endIndex, 0, toMove);
+        //@ts-ignore
+        return newCols.map((v) => {v.up = true; return v});
+        //   draft.filter((v) => v.idx == startIndex)[0].idx = endIndex
+        //   draft.filter((v) => v.idx == startIndex)[0].idx = endIndex
+      });
+    //   setColV((i)=>i+1)
+    },
+    []
+  );
 
   // If fetching data is slow you can use the DataEditor ref to send updates for cells
   // once data is loaded.
   const getGridCell = React.useCallback(
     ([col, row]: readonly [number, number]): GridCell => {
-      for (const refCol of dynamicColumns) {
-        if (col == refCol.idx) {
+      for (let idx = 0; idx < dynamicColumns.length; idx++) {
+        const refCol = dynamicColumns[idx];
+        if (col == idx) {
           if (!data[row]) {
             console.log(data);
             return null;
           }
+          if (row == 1) {
+            console.log(idx, refCol);
+          }
+
           const value = String(data[row][refCol.title]);
           return {
             kind: GridCellKind.Text,
@@ -54,21 +78,6 @@ export const GlideGrid = () => {
     [dynamicColumns]
   );
 
-  const onColMoved = React.useCallback(
-    (startIndex: number, endIndex: number): void => {
-      setDynamicColumns((draft) => {
-        //   no use for immer
-
-        const newCols = [...draft];
-        const [toMove] = newCols.splice(startIndex, 1);
-        newCols.splice(endIndex, 0, toMove);
-        return newCols;
-        //   draft.filter((v) => v.idx == startIndex)[0].idx = endIndex
-        //   draft.filter((v) => v.idx == startIndex)[0].idx = endIndex
-      });
-    },
-    []
-  );
 
   const {
     getCellContent,
@@ -77,13 +86,16 @@ export const GlideGrid = () => {
     setCellValueRaw,
     onRowAppended,
   } = useDataCache(numRows, setNumRows, getGridCell);
+
+  console.log(dynamicColumns);
+
   return (
     <>
       <BodyEnd />
       <DataEditorContainer width={1600} height={700}>
         <DataEditor
           getCellContent={getCellContent}
-          columns={sortBy(dynamicColumns, "idx")}
+          columns={dynamicColumns} //sortBy(, "idx")}
           onColumnMoved={onColMoved}
           rows={numRows}
           // isDraggable={true}

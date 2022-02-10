@@ -100,7 +100,7 @@ export function useDataCache(
       return val;
     },
     // [cache]?
-    []
+    [getGridCell]
   );
   const getCellsForSelection = React.useCallback(
     (selection: Rectangle): readonly (readonly GridCell[])[] => {
