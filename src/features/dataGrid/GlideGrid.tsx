@@ -9,6 +9,7 @@ import DataEditor, {
   Rectangle,
 } from "@glideapps/glide-data-grid";
 import { useDataCache } from "./dataService";
+import BodyEnd from "./BodyEnd";
 
 interface CustomColumn extends GridColumn {
   idx: number;
@@ -43,53 +44,61 @@ const numRows = data.length;
 function getGridCell([col, row]: readonly [number, number]): GridCell {
   for (const refCol of columns) {
     if (col == refCol.idx) {
-        if (!data[row]) {
-            console.log(data);
-            return null
-        }
+      if (!data[row]) {
+        console.log(data);
+        return null;
+      }
       const value = String(data[row][refCol.title]);
       return {
         kind: GridCellKind.Text,
         data: value,
         displayData: value,
-        allowOverlay: false,
+        // IMPORTANT: Critical, needed for editing
+        allowOverlay: true,
+        readonly: false
       };
     }
   }
   console.warn("er");
-  
-//   throw new Error();
+
+  //   throw new Error();
 }
 
 export const GlideGrid = () => {
   // Minimal example
-  const [numRows, setNumRows] = useState(data.length)
-  const { getCellContent, getCellsForSelection, setCellValue, setCellValueRaw, onRowAppended } = useDataCache(numRows, setNumRows, getGridCell)
+  const [numRows, setNumRows] = useState(data.length);
+  const {
+    getCellContent,
+    getCellsForSelection,
+    setCellValue,
+    setCellValueRaw,
+    onRowAppended,
+  } = useDataCache(numRows, setNumRows, getGridCell);
   return (
-    <DataEditorContainer width={1600} height={700}>
-      <DataEditor
-        getCellContent={getCellContent}
-        columns={columns}
-        rows={numRows}
+    <>
+      <BodyEnd />
+      <DataEditorContainer width={1600} height={700}>
+        <DataEditor
+          getCellContent={getCellContent}
+          columns={columns}
+          rows={numRows}
+          // isDraggable={true}
 
-        isDraggable={true}
-        
-        // edit
-        onCellEdited={setCellValue}
-
-        // copy
-        getCellsForSelection={getCellsForSelection}
-        // paste
-        onPaste={true}
-
-        // add row
-        trailingRowOptions={{
+          // edit
+          onCellEdited={setCellValue}
+          // copy
+          getCellsForSelection={getCellsForSelection}
+          // paste
+          onPaste={true}
+          // add row
+          trailingRowOptions={{
             hint: "New row...",
             sticky: true,
             tint: true,
-        }}
-        onRowAppended={onRowAppended}
-      />
-    </DataEditorContainer>
+          }}
+          onRowAppended={onRowAppended}
+        />
+      </DataEditorContainer>
+    </>
   );
 };

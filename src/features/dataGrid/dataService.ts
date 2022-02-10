@@ -91,13 +91,15 @@ export function useDataCache(
       let val = cache.current.get(col, row);
       if (val === undefined) {
         val = getGridCell([col, row])
-        if (isTextEditableGridCell(val)) {
-          val = { ...val, readonly: false };
-        }
+        // debugger;
+        // if (isTextEditableGridCell(val)) {
+        //   val = { ...val, readonly: false };
+        // }
         cache.current.set(col, row, val);
       }
       return val;
     },
+    // [cache]?
     []
   );
   const getCellsForSelection = React.useCallback(
@@ -111,6 +113,8 @@ export function useDataCache(
         }
         result.push(row);
       }
+    //   console.log(result);
+      
 
       return result;
     },
