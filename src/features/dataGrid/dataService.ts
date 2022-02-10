@@ -1,7 +1,9 @@
 import {
   GridCell,
   GridCellKind,
+  isEditableGridCell,
   isTextEditableGridCell,
+  lossyCopyData,
   Rectangle,
 } from "@glideapps/glide-data-grid";
 import React, { Dispatch, SetStateAction } from "react";
@@ -78,15 +80,17 @@ function clearCell(cell: GridCell): GridCell {
 }
 //
 // const [numRows, setNumRows] = React.useState(50);
-function useDataCache(
+export function useDataCache(
   numRows: number,
-  setNumRows: Dispatch<SetStateAction<number>>
+  setNumRows: Dispatch<SetStateAction<number>>,
+  getGridCell: ([col, row]: readonly [number, number]) => GridCell
 ) {
   const cache = React.useRef<ContentCache>(new ContentCache());
   const getCellContent = React.useCallback(
     ([col, row]: readonly [number, number]): GridCell => {
       let val = cache.current.get(col, row);
       if (val === undefined) {
+        val = getGridCell([col, row])
         if (isTextEditableGridCell(val)) {
           val = { ...val, readonly: false };
         }
@@ -119,6 +123,25 @@ function useDataCache(
     []
   );
 
+
+  const setCellValue = React.useCallback(
+    ([col, row]: readonly [number, number], val: GridCell): void => {
+        let current = cache.current.get(col, row);
+        // if (current === undefined) {
+        //     current = colsMap[col].getContent();
+        // }
+        if (isEditableGridCell(val) && isEditableGridCell(current)) {
+            const copied = lossyCopyData(val, current);
+            cache.current.set(col, row, {
+                ...copied,
+                displayData: typeof copied.data === "string" ? copied.data : (copied as any).displayData,
+                lastUpdated: performance.now(),
+            } as any);
+        }
+    },
+    []
+);
+
   const onRowAppended = React.useCallback(async () => {
     // shift all of the existing cells down
     for (let y = numRows; y > 0; y--) {
@@ -128,11 +151,13 @@ function useDataCache(
     }
     for (let c = 0; c < 6; c++) {
       const cell = getCellContent([c, 0]);
+      console.log(cell);
+      
       setCellValueRaw([c, 0], clearCell(cell));
     }
     setNumRows((cv) => cv + 1);
     return "top" as const;
   }, [getCellContent, numRows, setCellValueRaw]);
 
-  return { getCellContent, getCellsForSelection, setCellValueRaw };
+  return { getCellContent, getCellsForSelection, setCellValue, setCellValueRaw, onRowAppended };
 }
