@@ -75,7 +75,7 @@ export const GlideGrid = () => {
       }
       console.warn("er");
     },
-    [dynamicColumns]
+    [dynamicColumns[0].title]
   );
 
 
@@ -85,7 +85,7 @@ export const GlideGrid = () => {
     setCellValue,
     setCellValueRaw,
     onRowAppended,
-  } = useDataCache(numRows, setNumRows, getGridCell);
+  } = React.useCallback(useDataCache, [getGridCell])(numRows, setNumRows, getGridCell);
 
   console.log(dynamicColumns);
 
