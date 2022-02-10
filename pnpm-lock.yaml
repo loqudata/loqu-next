@@ -50,6 +50,7 @@ specifiers:
   typescript: ~4.0.8
   typesense-instantsearch-adapter: ^2.2.0
   ulid: ^2.3.0
+  use-immer: ^0.6.0
   vega: ^5.21.0
   vega-expression: ^5.0.0
   vega-lite: ~5.0.0
@@ -98,6 +99,7 @@ dependencies:
   styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
   typesense-instantsearch-adapter: 2.2.0
   ulid: 2.3.0
+  use-immer: 0.6.0_immer@9.0.12+react@17.0.2
   vega: 5.21.0
   vega-expression: 5.0.0
   vega-lite: 5.0.0_vega@5.21.0
@@ -6626,6 +6628,16 @@ packages:
         optional: true
     dependencies:
       '@types/react': 17.0.35
+      react: 17.0.2
+    dev: false
+
+  /use-immer/0.6.0_immer@9.0.12+react@17.0.2:
+    resolution: {integrity: sha512-dFGRfvWCqPDTOt/S431ETYTg6+uxbpb7A1pptufwXVzGJY3RlXr38+3wyLNpc6SbbmAKjWl6+EP6uW74fkEsXQ==}
+    peerDependencies:
+      immer: '>=2.0.0'
+      react: ^16.8.0 || ^17.0.1
+    dependencies:
+      immer: 9.0.12
       react: 17.0.2
     dev: false
 

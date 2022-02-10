@@ -10,6 +10,9 @@ import DataEditor, {
 } from "@glideapps/glide-data-grid";
 import { useDataCache } from "./dataService";
 import BodyEnd from "./BodyEnd";
+import produce from "immer";
+import { useImmer } from "use-immer";
+import { sortBy } from "lodash";
 
 interface CustomColumn extends GridColumn {
   idx: number;
@@ -21,52 +24,52 @@ const columns: CustomColumn[] = Object.keys(data[0]).map((k, i) => ({
   width: 150,
 }));
 
-const numRows = data.length;
-
-// const getCellsForSelection = (
-//   selection: Rectangle
-// ): readonly (readonly GridCell[])[] => {
-//   const result: GridCell[][] = [];
-
-//   for (let y = selection.y; y < selection.y + selection.height; y++) {
-//     const row: GridCell[] = [];
-//     for (let x = selection.x; x < selection.x + selection.width; x++) {
-//       row.push(getGridCell([x, y]));
-//     }
-//     result.push(row);
-//   }
-
-//   return result;
-// };
-
-// If fetching data is slow you can use the DataEditor ref to send updates for cells
-// once data is loaded.
-function getGridCell([col, row]: readonly [number, number]): GridCell {
-  for (const refCol of columns) {
-    if (col == refCol.idx) {
-      if (!data[row]) {
-        console.log(data);
-        return null;
-      }
-      const value = String(data[row][refCol.title]);
-      return {
-        kind: GridCellKind.Text,
-        data: value,
-        displayData: value,
-        // IMPORTANT: Critical, needed for editing
-        allowOverlay: true,
-        readonly: false
-      };
-    }
-  }
-  console.warn("er");
-
-  //   throw new Error();
-}
-
 export const GlideGrid = () => {
-  // Minimal example
+  const [dynamicColumns, setDynamicColumns] = useImmer(columns);
   const [numRows, setNumRows] = useState(data.length);
+
+  // If fetching data is slow you can use the DataEditor ref to send updates for cells
+  // once data is loaded.
+  const getGridCell = React.useCallback(
+    ([col, row]: readonly [number, number]): GridCell => {
+      for (const refCol of dynamicColumns) {
+        if (col == refCol.idx) {
+          if (!data[row]) {
+            console.log(data);
+            return null;
+          }
+          const value = String(data[row][refCol.title]);
+          return {
+            kind: GridCellKind.Text,
+            data: value,
+            displayData: value,
+            // IMPORTANT: Critical, needed for editing
+            allowOverlay: true,
+            readonly: false,
+          };
+        }
+      }
+      console.warn("er");
+    },
+    [dynamicColumns]
+  );
+
+  const onColMoved = React.useCallback(
+    (startIndex: number, endIndex: number): void => {
+      setDynamicColumns((draft) => {
+        //   no use for immer
+
+        const newCols = [...draft];
+        const [toMove] = newCols.splice(startIndex, 1);
+        newCols.splice(endIndex, 0, toMove);
+        return newCols;
+        //   draft.filter((v) => v.idx == startIndex)[0].idx = endIndex
+        //   draft.filter((v) => v.idx == startIndex)[0].idx = endIndex
+      });
+    },
+    []
+  );
+
   const {
     getCellContent,
     getCellsForSelection,
@@ -80,7 +83,8 @@ export const GlideGrid = () => {
       <DataEditorContainer width={1600} height={700}>
         <DataEditor
           getCellContent={getCellContent}
-          columns={columns}
+          columns={sortBy(dynamicColumns, "idx")}
+          onColumnMoved={onColMoved}
           rows={numRows}
           // isDraggable={true}
 

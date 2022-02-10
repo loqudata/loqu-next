@@ -50,6 +50,7 @@
     "styled-components": "^5.3.3",
     "typesense-instantsearch-adapter": "^2.2.0",
     "ulid": "^2.3.0",
+    "use-immer": "^0.6.0",
     "vega": "^5.21.0",
     "vega-expression": "^5.0.0",
     "vega-lite": "~5.0.0",
