@@ -10,11 +10,7 @@ import "./grid.css"
 
 import { Box, Flex, Text } from "@chakra-ui/react";
 
-const defaultData = [
-  { make: "Toyota", model: "Celica", price: 35000 },
-  { make: "Ford", model: "Mondeo", price: 32000 },
-  { make: "Porsche", model: "Boxter", price: 72000 },
-];
+import defaultData from "data/cars.json"
 
 export const CoreGrid = ({
   rowData = defaultData,
