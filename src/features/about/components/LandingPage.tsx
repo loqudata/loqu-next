@@ -1,58 +1,78 @@
-import { Box, Flex, Heading, VStack, Text, Img, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  VStack,
+  Text,
+  Img,
+  Stack,
+  Image,
+} from "@chakra-ui/react";
 
 import React from "react";
-import rawIcon from "assets/world_dots_grey.svg";
 import { ChakraSearchBox } from "../../search/components/SearchBox";
 import { DynamicTypist } from "./Typer";
 
-const worldIcon: string | { url: string } = rawIcon;
+// import rawIcon from "assets/world_dots_grey.svg";
+const rawIcon = await import("assets/visualize.svg");
+
+const worldIcon: string | { url: string } | { default: string } = rawIcon;
+console.log(worldIcon.default);
+
+const hProps = {
+  fontWeight: "regular",
+  letterSpacing: "tighter",
+  lineHeight: "1.2",
+};
 
 export const LandingPage = () => {
   return (
-    <Flex
-      w="full"
-      minH="80vh"
-      h="calc(100vh - 100px)"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Box display={{ base: "none", lg: "block" }} position="absolute">
-        <Img src={(worldIcon.url as any) || worldIcon}></Img>
-      </Box>
-      <VStack zIndex="999" position="relative" top={-16} spacing={2} w="full">
-        <Heading
-          w="full"
+    <Flex py={16} px={36}>
+      <VStack spacing={6} alignItems="start">
+        <VStack
           color="gray.700"
           // fontFamily="Merriweather"
-          fontSize={{ base: "48", md: "64" }}
-          fontWeight="regular"
-          letterSpacing="tighter"
-          lineHeight="1.5"
-          display="flex"
-          flexDir="row"
-          flexWrap="nowrap"
-          justifyContent="center"
+          // justifyContent="center"
+          alignItems="start"
         >
-          <Text as="span" mr={4}>
-          Explore, search and visualize
-          </Text>
+          <Heading
+            as="span"
+            letterSpacing="tighter"
+            fontSize={{ base: "28", md: "32" }}
+            {...hProps}
+          >
+            Explore, search, and visualize
+          </Heading>
           {/* Optional: */}
-          <Box minW="15rem">
-
-           <DynamicTypist />
-          </Box>
-           data
-        </Heading>
+          <Heading
+            display="flex"
+            flexDir="row"
+            flexWrap="nowrap"
+            fontSize={{ base: "48", md: "64" }}
+            {...hProps}
+          >
+            <DynamicTypist />
+            data
+          </Heading>
+        </VStack>
         <Text
+          // mt={"2rem !important"}
           color="gray.700"
           fontSize="24"
           letterSpacing="tighter"
-          textAlign="center"
+          // textAlign="center"
           maxW="2lg"
         >
-          The open source platform for open data. Under construction.
+          Discover 700 million data series and 1.2 million datasets.
         </Text>
+        {/* <worldIcon/> */}
       </VStack>
+
+      <Box flexGrow={1} />
+      
+      <Box w="50%">
+        <Image src={worldIcon.default} />
+      </Box>
     </Flex>
   );
 };
