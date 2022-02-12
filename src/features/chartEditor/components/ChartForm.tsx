@@ -22,6 +22,11 @@ export interface OptionType {
   value: string;
 }
 
+const createOption = (v: string | null): OptionType => {
+  if (!v) return;
+  return { label: v, value: v };
+};
+
 function SimpleFormItem({
   name,
   bottom,
@@ -60,7 +65,7 @@ interface FormOptionProps {
   onChange?: (value: OptionType, ...args) => void;
   isEncoding?: boolean;
   encID?: string;
-  value?: any;
+  value?: OptionType;
 }
 
 const fieldDefDetails = [
@@ -94,10 +99,11 @@ function FormOption({
   value,
 }: FormOptionProps) {
   const dispatch = useAppDispatch();
-  const selected = useAppSelector(
-    (state) => state.chartEditor[encID]
-  );
+  const selected = useAppSelector((state) => state.chartEditor.formDetails[encID]);
+
+  const [fieldType, setFieldType] = useState(null);
   // console.log(placeholder);
+  console.log(encID);
   
   return (
     <SimpleFormItem
@@ -113,11 +119,22 @@ function FormOption({
                 }),
               }}
               components={{ DropdownIndicator: null }}
-              onChange={onChange}
-              // TODO: fix
-              placeholder={
-                placeholder ? placeholder : "Select or drop field"
+              onChange={(v) => {
+                if (onChange) {
+                  onChange(v)
+                } else if (isEncoding) {
+                  dispatch.chartEditor.setEncodingField(
+                    {
+                      encodingKey: encID as any,
+                      field: v.value,
+                    },
+                    null
+                  )
+                }
               }
+              }
+              // TODO: fix
+              placeholder={placeholder ? placeholder : "Select or drop field"}
               value={value}
               size="sm"
               options={options}
@@ -134,7 +151,7 @@ function FormOption({
                 aria-label="details"
                 icon={<ChevronDownIcon />}
                 onClick={() =>
-                  dispatch.chartEditor.toggleDetailView(encID as any, null)
+                  dispatch.chartEditor.toggleDetailView(encID, null)
                 }
               />
             </Tooltip>
@@ -148,11 +165,7 @@ function FormOption({
             {fieldDefDetails.map((d) => (
               <HStack w="full" key={d.key}>
                 {/* pink-800 */}
-                <Text
-                  color="gray.500"
-                  fontWeight="medium"
-                  ml={4}
-                >
+                <Text color="gray.500" fontWeight="medium" ml={4}>
                   {d.name}
                 </Text>
                 <Box flexGrow={1} />
@@ -171,10 +184,23 @@ function FormOption({
                       }),
                     }}
                     components={{ DropdownIndicator: null }}
-                    onChange={onChange}
+                    onChange={(v) => {
+                      setFieldType(v);
+                      dispatch.chartEditor.setEncodingField(
+                        {
+                          encodingKey: encID as any,
+                          field: {
+                            name: value.value,
+                            type: v.value,
+                          },
+                        },
+                        null
+                      );
+                    }}
                     placeholder={"Select"}
                     size="sm"
                     options={d.options}
+                    value={createOption(fieldType)}
                     // TODO: style this
                     className="chakra-react-select"
                     classNamePrefix="chakra-react-select"
@@ -213,8 +239,7 @@ export const ChartForm = () => {
   // const [size, setSize] = useState(null);
   // const [shape, setShape] = useState(null);
   const [tooltip, setTooltip] = useState(true);
-  const [tooltipAllFields, setTooltipAllFields] =
-    useState(false);
+  const [tooltipAllFields, setTooltipAllFields] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -257,14 +282,10 @@ export const ChartForm = () => {
               encID={enc.key}
               name={enc.name}
               options={fieldOptions}
-              value={[formState[enc.key] ? formState[enc.key].field : ""].map(
-                (v) => ({ label: v, value: v })
-              )[0] || undefined}
-              onChange={(v) =>
-                dispatch.chartEditor.setEncodingField({
-                    encodingKey: enc.key as any,
-                    field: v.value as string,
-                  }, null)
+              value={
+                createOption(
+                  formState[enc.key] ? formState[enc.key].field : null
+                )
               }
             />
           ))}
@@ -274,16 +295,12 @@ export const ChartForm = () => {
               <HStack alignItems="center">
                 <Checkbox
                   isChecked={tooltip}
-                  onChange={(e) =>
-                    setTooltip(e.target.checked)
-                  }
+                  onChange={(e) => setTooltip(e.target.checked)}
                 ></Checkbox>
                 <Text>Enable</Text>
                 <Checkbox
                   isChecked={tooltipAllFields}
-                  onChange={(e) =>
-                    setTooltipAllFields(e.target.checked)
-                  }
+                  onChange={(e) => setTooltipAllFields(e.target.checked)}
                 ></Checkbox>
                 <Text>All fields</Text>
               </HStack>

@@ -62,7 +62,7 @@ export const chartEditor = createModel<RootModel>()({
     toggleDetailView: (state, payload: FormEncodingKeys) => {
       console.log(state, payload);
 
-      state.formDetails[payload] = !state[payload];
+      state.formDetails[payload] = !state.formDetails[payload];
     },
   },
 });
