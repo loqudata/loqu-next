@@ -27,6 +27,8 @@ const createOption = (v: string | null): OptionType => {
   return { label: v, value: v };
 };
 
+const NONE_OPTION = {label: "none", value: null}
+
 function SimpleFormItem({
   name,
   bottom,
@@ -36,8 +38,6 @@ function SimpleFormItem({
   bottom?: React.ReactNode;
   right?: React.ReactNode;
 }) {
-  // console.log(children);
-
   return (
     <VStack w="full" h="fit-content">
       <HStack direction="row" alignItems="center" w="full">
@@ -66,6 +66,7 @@ interface FormOptionProps {
   isEncoding?: boolean;
   encID?: string;
   value?: OptionType;
+  useMainNoneOption?: boolean;
 }
 
 const fieldDefDetails = [
@@ -97,13 +98,15 @@ function FormOption({
   isEncoding,
   encID,
   value: optionValue,
+  useMainNoneOption = true
 }: FormOptionProps) {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.chartEditor.formDetails[encID]);
 
-  const [fieldType, setFieldType] = useState(null);
-  // console.log(placeholder);
-  console.log(encID);
+  let openedFieldData: null | IField;
+  if (selected) {
+    openedFieldData = useAppSelector((state) => state.chartEditor[encID]);
+}
   
   return (
     <SimpleFormItem
@@ -136,7 +139,7 @@ function FormOption({
               placeholder={placeholder ? placeholder : "Select or drop field"}
               value={optionValue}
               size="sm"
-              options={options}
+              options={useMainNoneOption ? [NONE_OPTION].concat(options) : options}
               // TODO: style this
               className="chakra-react-select"
               classNamePrefix="chakra-react-select"
@@ -184,7 +187,6 @@ function FormOption({
                     }}
                     components={{ DropdownIndicator: null }}
                     onChange={(newValue) => {
-                      setFieldType(newValue);
                       dispatch.chartEditor.setEncodingField(
                         {
                           encodingKey: encID as any,
@@ -197,8 +199,8 @@ function FormOption({
                     }}
                     placeholder={"Select"}
                     size="sm"
-                    options={additionalFieldProp.options}
-                    value={createOption(fieldType)}
+                    options={[NONE_OPTION, ...additionalFieldProp.options]}
+                    value={createOption(openedFieldData[additionalFieldProp.key])}
                     // TODO: style this
                     className="chakra-react-select"
                     classNamePrefix="chakra-react-select"
@@ -219,6 +221,7 @@ import { useAppDispatch, useAppSelector } from "hooks";
 import { FieldDef } from "vega-lite/build/src/channeldef";
 import { createSpec, fieldOptions } from "../services/spec";
 import { Type } from "vega-lite/build/src/type";
+import { IField } from "models/chartEditor";
 
 const encodings = [
   { key: "x", name: "X Axis" },
