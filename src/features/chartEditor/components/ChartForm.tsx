@@ -27,7 +27,7 @@ const createOption = (v: string | null): OptionType => {
   return { label: v, value: v };
 };
 
-const NONE_OPTION = {label: "none", value: null}
+const NONE_OPTION = { label: "none", value: null };
 
 function SimpleFormItem({
   name,
@@ -98,16 +98,15 @@ function FormOption({
   isEncoding,
   encID,
   value: optionValue,
-  useMainNoneOption = true
+  useMainNoneOption = true,
 }: FormOptionProps) {
   const dispatch = useAppDispatch();
-  const selected = useAppSelector((state) => state.chartEditor.formDetails[encID]);
+  const selected = useAppSelector(
+    (state) => state.chartEditor.formDetails[encID]
+  );
 
-  let openedFieldData: null | IField;
-  if (selected) {
-    openedFieldData = useAppSelector((state) => state.chartEditor[encID]);
-}
-  
+  let openedFieldData: IField = useAppSelector((state) => state.chartEditor[encID]) || {}
+
   return (
     <SimpleFormItem
       name={name}
@@ -124,22 +123,21 @@ function FormOption({
               components={{ DropdownIndicator: null }}
               onChange={(newEncodingFieldValue) => {
                 if (onChange) {
-                  onChange(newEncodingFieldValue)
+                  onChange(newEncodingFieldValue);
                 } else if (isEncoding) {
-                  dispatch.chartEditor.setEncodingField(
-                    {
-                      encodingKey: encID as any,
-                      field: newEncodingFieldValue.value,
-                    }
-                  )
+                  dispatch.chartEditor.setEncodingField({
+                    encodingKey: encID as any,
+                    field: newEncodingFieldValue.value,
+                  });
                 }
-              }
-              }
+              }}
               // TODO: fix
               placeholder={placeholder ? placeholder : "Select or drop field"}
               value={optionValue}
               size="sm"
-              options={useMainNoneOption ? [NONE_OPTION].concat(options) : options}
+              options={
+                useMainNoneOption ? [NONE_OPTION].concat(options) : options
+              }
               // TODO: style this
               className="chakra-react-select"
               classNamePrefix="chakra-react-select"
@@ -187,20 +185,20 @@ function FormOption({
                     }}
                     components={{ DropdownIndicator: null }}
                     onChange={(newValue) => {
-                      dispatch.chartEditor.setEncodingField(
-                        {
-                          encodingKey: encID as any,
-                          field: {
-                            field: optionValue.value,
-                            [additionalFieldProp.key]: newValue.value,
-                          },
-                        }
-                      );
+                      dispatch.chartEditor.setEncodingField({
+                        encodingKey: encID as any,
+                        field: {
+                          field: optionValue.value,
+                          [additionalFieldProp.key]: newValue.value,
+                        },
+                      });
                     }}
                     placeholder={"Select"}
                     size="sm"
                     options={[NONE_OPTION, ...additionalFieldProp.options]}
-                    value={createOption(openedFieldData[additionalFieldProp.key])}
+                    value={createOption(
+                      openedFieldData[additionalFieldProp.key] ? openedFieldData[additionalFieldProp.key] : null
+                    )}
                     // TODO: style this
                     className="chakra-react-select"
                     classNamePrefix="chakra-react-select"
@@ -238,9 +236,9 @@ export const ChartForm = () => {
   const dispatch = useAppDispatch();
 
   const formState = useAppSelector((state) => state.chartEditor) || {};
-  const markType = useAppSelector((state) => state.chartEditor.mark)
-  const setMarkType = dispatch.chartEditor.setMark
-  
+  const markType = useAppSelector((state) => state.chartEditor.mark);
+  const setMarkType = dispatch.chartEditor.setMark;
+
   return (
     <HStack p={8} alignItems="start">
       <Box
@@ -279,11 +277,9 @@ export const ChartForm = () => {
               encID={enc.key}
               name={enc.name}
               options={fieldOptions}
-              value={
-                createOption(
-                  formState[enc.key] ? formState[enc.key].field : null
-                )
-              }
+              value={createOption(
+                formState[enc.key] ? formState[enc.key].field : null
+              )}
             />
           ))}
           <SimpleFormItem
