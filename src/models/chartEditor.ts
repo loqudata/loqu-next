@@ -65,6 +65,8 @@ export const chartEditor = createModel<RootModel>()({
       state.formDetails[payload] = !state.formDetails[payload];
     },
   },
+  // Didn't have this before, was causing TS issue
+  effects: {} //(dispatch) => ({})
 });
 
 

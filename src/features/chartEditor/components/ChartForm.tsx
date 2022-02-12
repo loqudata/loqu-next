@@ -96,7 +96,7 @@ function FormOption({
   onChange,
   isEncoding,
   encID,
-  value,
+  value: optionValue,
 }: FormOptionProps) {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.chartEditor.formDetails[encID]);
@@ -119,23 +119,22 @@ function FormOption({
                 }),
               }}
               components={{ DropdownIndicator: null }}
-              onChange={(v) => {
+              onChange={(newEncodingFieldValue) => {
                 if (onChange) {
-                  onChange(v)
+                  onChange(newEncodingFieldValue)
                 } else if (isEncoding) {
                   dispatch.chartEditor.setEncodingField(
                     {
                       encodingKey: encID as any,
-                      field: v.value,
-                    },
-                    null
+                      field: newEncodingFieldValue.value,
+                    }
                   )
                 }
               }
               }
               // TODO: fix
               placeholder={placeholder ? placeholder : "Select or drop field"}
-              value={value}
+              value={optionValue}
               size="sm"
               options={options}
               // TODO: style this
@@ -151,7 +150,7 @@ function FormOption({
                 aria-label="details"
                 icon={<ChevronDownIcon />}
                 onClick={() =>
-                  dispatch.chartEditor.toggleDetailView(encID, null)
+                  dispatch.chartEditor.toggleDetailView(encID as any)
                 }
               />
             </Tooltip>
@@ -162,11 +161,11 @@ function FormOption({
       bottom={
         selected ? (
           <VStack alignItems="start" w="full">
-            {fieldDefDetails.map((d) => (
-              <HStack w="full" key={d.key}>
+            {fieldDefDetails.map((additionalFieldProp) => (
+              <HStack w="full" key={additionalFieldProp.key}>
                 {/* pink-800 */}
                 <Text color="gray.500" fontWeight="medium" ml={4}>
-                  {d.name}
+                  {additionalFieldProp.name}
                 </Text>
                 <Box flexGrow={1} />
                 <Box
@@ -184,22 +183,21 @@ function FormOption({
                       }),
                     }}
                     components={{ DropdownIndicator: null }}
-                    onChange={(v) => {
-                      setFieldType(v);
+                    onChange={(newValue) => {
+                      setFieldType(newValue);
                       dispatch.chartEditor.setEncodingField(
                         {
                           encodingKey: encID as any,
                           field: {
-                            name: value.value,
-                            type: v.value,
+                            field: optionValue.value,
+                            [additionalFieldProp.key]: newValue.value,
                           },
-                        },
-                        null
+                        }
                       );
                     }}
                     placeholder={"Select"}
                     size="sm"
-                    options={d.options}
+                    options={additionalFieldProp.options}
                     value={createOption(fieldType)}
                     // TODO: style this
                     className="chakra-react-select"
@@ -231,20 +229,15 @@ const encodings = [
 ];
 
 export const ChartForm = () => {
-  // const [spec, setSpec] = useState(second);
-  const [markType, setMarkType] = useState("bar");
-  // const [y, setY] = useState(null);
-  // const [x, setX] = useState(null);
-  // const [color, setColor] = useState(null);
-  // const [size, setSize] = useState(null);
-  // const [shape, setShape] = useState(null);
   const [tooltip, setTooltip] = useState(true);
   const [tooltipAllFields, setTooltipAllFields] = useState(false);
 
   const dispatch = useAppDispatch();
 
   const formState = useAppSelector((state) => state.chartEditor) || {};
-
+  const markType = useAppSelector((state) => state.chartEditor.mark)
+  const setMarkType = dispatch.chartEditor.setMark
+  
   return (
     <HStack p={8} alignItems="start">
       <Box
@@ -273,7 +266,8 @@ export const ChartForm = () => {
               value: m,
             }))}
             placeholder="Select"
-            onChange={(v) => setMarkType(v.value)}
+            value={createOption(markType)}
+            onChange={(v) => setMarkType(v.value as any)}
           />
           {encodings.map((enc) => (
             <FormOption
