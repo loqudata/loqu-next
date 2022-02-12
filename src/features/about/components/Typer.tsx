@@ -19,10 +19,10 @@ export const DynamicTypist = () => {
     "election",
     "police",
     "demographic",
-    "open",
   ];
   //   texts = texts.slice(texts.length - 2);
   shuffleArray(texts);
+  texts.push("open")
   const tw = useRef(null);
 
   function runTyping(t: TypewriterClass, reset = false) {
