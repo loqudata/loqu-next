@@ -16,9 +16,9 @@ export type Monaco = typeof monaco;
 export type IMonacoEditor = monaco.editor.IStandaloneCodeEditor;
 
 import { useSelector, useDispatch } from "react-redux";
+import { Dispatch, RootState } from "store/store";
 import { sqlQuery } from "models/sqlQuery";
 
-import { Dispatch, RootState } from "store/store";
 import { HelpModal } from "./HelpModal";
 export const SQLEditor = () => {
   const dispatch = useDispatch<Dispatch>();

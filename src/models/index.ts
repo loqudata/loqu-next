@@ -5,6 +5,7 @@ import { shelf } from "./shelf";
 import { result } from "./result";
 import { sqlQuery } from "./sqlQuery";
 import { workspace } from "./workspace";
+import { chartEditor } from "./chartEditor";
 
 export interface RootModel extends Models<RootModel> {
   dataset: typeof dataset;
@@ -13,6 +14,7 @@ export interface RootModel extends Models<RootModel> {
   result: typeof result;
   sqlQuery: typeof sqlQuery;
   workspace: typeof workspace;
+  chartEditor: typeof chartEditor;
 }
 
-export const models: RootModel = { dataset, config, shelf, result, sqlQuery, workspace };
+export const models: RootModel = { dataset, config, shelf, result, sqlQuery, workspace, chartEditor };
