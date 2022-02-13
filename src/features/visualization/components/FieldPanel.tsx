@@ -290,6 +290,7 @@ export const FieldPanel = ({
 };
 
 import { Dispatch } from "store/store";
+import { datasetLoad } from "models/dataset";
 export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
   //@ts-ignore
   const dataset = useSelector((state) => state.dataset);
@@ -307,10 +308,10 @@ export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
           }
 
           if (res[0].count < 1000) {
-            dispatch.dataset.datasetLoad({
+            dispatch(datasetLoad({
               name: "prop_provided",
               data: { url: ds },
-            });
+            }))
           } else if (res[0].count > 1000) {
             alert(
               `The dataset you selected has over 1000 rows.
@@ -327,10 +328,10 @@ the previous dataset will stay loaded.`.replace("\n", " ")
     <FieldPanel
       datasetURL={dataset.data ? dataset.data : ""}
       setDatasetURL={(url) =>{
-        dispatch.dataset.datasetLoad({
+        dispatch(datasetLoad({
           name: "idk",
           data: { url },
-        })}
+        }))}
       }
       fields={dataset.schema.fieldSchemas}
       {...props}

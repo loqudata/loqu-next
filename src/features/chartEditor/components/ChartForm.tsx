@@ -188,7 +188,7 @@ function FormOption({
                       dispatch.chartEditor.setEncodingField({
                         encodingKey: encID as any,
                         field: {
-                          field: optionValue.value,
+                          field: optionValue?.value,
                           [additionalFieldProp.key]: newValue.value,
                         },
                       });
