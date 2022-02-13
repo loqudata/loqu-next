@@ -315,7 +315,7 @@ export const ChartForm = () => {
           />
         </VStack>
       </Box>
-      <Box w="full" maxH="80vh" overflow="scroll">
+      <Box w="full" maxH="80vh" maxW="60vw" overflow="scroll">
         <Vega
           //   data={{
           //     url: "https://vega.github.io/editor/data/cars.json",

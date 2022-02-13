@@ -13,7 +13,8 @@ import {
   Button,
   Icon,
   BoxProps,
-  IconProps
+  IconProps,
+  HStack
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -74,9 +75,9 @@ const SelectFields = () => (
 );
 
 const vegaTypeMap = {
-  nominal: { icon: () => {return "nope"} }, //VscSymbolKey },
-  quantitative: { icon: () => {return "nope"} }, //BiHash },
-  temporal: { icon: () => {return "nope"} }, //BiCalendar },
+  nominal: { icon: VscSymbolKey },
+  quantitative: { icon: BiHash },
+  temporal: { icon: BiCalendar },
 };
 
 // TODO: handle unknowns
@@ -212,22 +213,29 @@ export const FieldPanel = ({
       // boxShadow="md"
       py={3}
       pr={3}
-      // maxW="400px"
-      minW={[null, null, "xs"]}
+      maxW="300px"
+      w="fit-content"
       {...props}
     >
       <Stack spacing={2}>
         <Heading letterSpacing="tight" size="xs" color="gray.600">
           {"Dataset".toUpperCase()}
         </Heading>
-        <Flex>
+        <HStack>
           {/* <Input
             placeholder="Input dataset URL"
             value={value}
             onChange={handleChange}
           /> */}
-          <Box flexGrow={1}>
+          <Box>
             <CreatableSelect
+            size="sm"
+            chakraStyles={{
+              container: (prev) => ({
+                ...prev,
+                w: "3xs",
+              }),
+            }}
               colorScheme="teal"
               autoFocus
               placeholder="Input dataset URL"
@@ -237,15 +245,16 @@ export const FieldPanel = ({
               components={{}}
             />
           </Box>
-          <Button colorScheme="primary" ml={1} onClick={handleClick}>
+          <Button size="sm" colorScheme="primary" ml={1} onClick={handleClick}>
             Load
           </Button>
-        </Flex>
+        </HStack>
 
         <Heading letterSpacing="tight" size="xs" color="gray.600">
-          {"Add Fields".toUpperCase()}
+          {"Fields".toUpperCase()}
         </Heading>
-        <Select
+        <Fields/>
+        {/* <Select
           colorScheme="primary"
           autoFocus
           // placeholder="Select fields"
@@ -283,7 +292,7 @@ export const FieldPanel = ({
           //     );
           //   },
           // }}
-        />
+        /> */}
       </Stack>
     </Box>
   );
@@ -291,6 +300,9 @@ export const FieldPanel = ({
 
 import { Dispatch } from "store/store";
 import { datasetLoad } from "models/dataset";
+import { VscSymbolKey } from "react-icons/vsc";
+import { BiCalendar, BiHash } from "react-icons/bi";
+import { Fields } from "features/workspaceCharts/components/Fields";
 export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
   //@ts-ignore
   const dataset = useSelector((state) => state.dataset);

@@ -87,6 +87,6 @@ export function createSpec(f): TopLevelSpec {
       shape: createField(f.shape),
     },
   };
-//   console.log(s);
+  console.log(s);
   return s;
 }

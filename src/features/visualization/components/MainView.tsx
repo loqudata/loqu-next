@@ -18,7 +18,7 @@ export const MainView = () => {
   // console.log("data", data);
 
   return (
-    <Stack p={4} spacing={4} w="full">
+    <Stack flexShrink={1} p={4} spacing={4}>
       <Flex
         borderRadius="lg"
         // bgColor="gray.100"
