@@ -5,6 +5,7 @@ import { Result } from "models/result";
 import { selectData, selectSchema } from "selectors/index";
 import { filterPlots } from "../services/filterPlots";
 import { Plot } from "./Plot";
+import { ChartForm } from "features/chartEditor/components/ChartForm";
 // import { RootState } from '../store/store'
 
 // state.result.plots[].{fieldInfos, spec}
@@ -20,19 +21,13 @@ export const MainView = () => {
     <Stack p={4} spacing={4} w="full">
       <Flex
         borderRadius="lg"
-        bgColor="gray.100"
-        justifyContent="center"
-        alignItems="center"
+        // bgColor="gray.100"
+        // justifyContent="center"
+        // alignItems="center"
         minH={20}
-        p={4}
+        // p={4}
       >
-        <Text maxW="container.md" textAlign="center">
-          This section is under construction. You can load datasets and view
-          some recommended visualizations, but can't edit them in detail yet.
-          {/* You'll soon be able to add Charts to the Main View and edit them in more detail. */}
-          {/* There's no main chart selected. Use the Add Fields bar in the panel to
-          the right, or the plus icon by each recommended chart to get started. */}
-        </Text>
+        <ChartForm/>
       </Flex>
       <Heading size="md">
         Recommended Charts ({(result.plots && result.plots.length) || 0})

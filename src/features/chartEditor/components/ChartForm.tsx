@@ -105,7 +105,8 @@ function FormOption({
     (state) => state.chartEditor.formDetails[encID]
   );
 
-  let openedFieldData: IField = useAppSelector((state) => state.chartEditor[encID]) || {}
+  let openedFieldData: IField =
+    useAppSelector((state) => state.chartEditor[encID]) || {};
 
   return (
     <SimpleFormItem
@@ -197,7 +198,9 @@ function FormOption({
                     size="sm"
                     options={[NONE_OPTION, ...additionalFieldProp.options]}
                     value={createOption(
-                      openedFieldData[additionalFieldProp.key] ? openedFieldData[additionalFieldProp.key] : null
+                      openedFieldData[additionalFieldProp.key]
+                        ? openedFieldData[additionalFieldProp.key]
+                        : null
                     )}
                     // TODO: style this
                     className="chakra-react-select"
@@ -240,7 +243,7 @@ export const ChartForm = () => {
   const setMarkType = dispatch.chartEditor.setMark;
 
   return (
-    <HStack p={8} alignItems="start">
+    <HStack alignItems="start" w="full">
       <Box
         // px={10}
         p={6}
@@ -301,7 +304,7 @@ export const ChartForm = () => {
           />
         </VStack>
       </Box>
-      <Box>
+      <Box w="full" maxH="80vh" overflow="scroll">
         <Vega
           //   data={{
           //     url: "https://vega.github.io/editor/data/cars.json",
