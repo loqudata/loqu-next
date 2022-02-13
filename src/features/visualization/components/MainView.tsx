@@ -15,8 +15,7 @@ export const MainView = () => {
   const result: Result = useSelector((state) => state.result);
   const data = useSelector(selectData);
   const schema = useSelector(selectSchema);
-  // console.log("data", data);
-
+  
   return (
     <Stack flexShrink={1} p={4} spacing={4}>
       <Flex

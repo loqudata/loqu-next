@@ -70,6 +70,8 @@ interface FormOptionProps {
 }
 
 const fieldDefDetails = [
+  // TODO: make these options dynamic based on underlying supported types
+  // also, make the placeholder say the default value
   {
     name: "Type",
     key: "type",
@@ -240,6 +242,8 @@ export const ChartForm = () => {
 
   const formState = useAppSelector((state) => state.chartEditor) || {};
   const markType = useAppSelector((state) => state.chartEditor.mark);
+  const schema = useAppSelector((state: any) =>
+    state.dataset.schema.fieldSchemas)
   const fieldOptions = useAppSelector((state: any) =>
     state.dataset.schema.fieldSchemas
       .map((s) => s.name)
@@ -249,21 +253,17 @@ export const ChartForm = () => {
       }))
   );
   const data = useAppSelector((state: any) => state.dataset.data);
-  console.log(fieldOptions);
-
   const setMarkType = dispatch.chartEditor.setMark;
 
   return (
-    <HStack alignItems="start" w="full">
+    <HStack alignItems="start" w="full" borderRadius="lg" bgColor="gray.50">
       <Box
-        // px={10}
+        bgColor="white"
         p={6}
         pr={8}
-        // bgColor="gray.50"
         borderRadius="lg"
         border="1px solid"
         borderColor="gray.200"
-        // boxShadow="lg"
       >
         <VStack spacing={4} alignItems="start" w="24rem">
           <Heading
@@ -315,7 +315,7 @@ export const ChartForm = () => {
           />
         </VStack>
       </Box>
-      <Box w="full" maxH="80vh" maxW="60vw" overflow="scroll">
+      <Box p={4} maxH="80vh" maxW="60vw" overflow="scroll">
         <Vega
           //   data={{
           //     url: "https://vega.github.io/editor/data/cars.json",
@@ -326,6 +326,7 @@ export const ChartForm = () => {
               tooltip,
               tooltipAllFields,
               data,
+              fieldSchema: schema,
             })
           )}
           renderer="svg"

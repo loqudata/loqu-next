@@ -1,68 +1,16 @@
+import { FieldSchema } from "compassql/build/src/schema";
 import { FieldDef } from "vega-lite/build/src/channeldef";
 import { TopLevelSpec } from "vega-lite/build/src/spec";
 
-import { Type as VLType } from "vega-lite/build/src/type";
-
-export const fields = {
-  Name: {
-    type: "string",
-  },
-  Miles_per_Gallon: {
-    type: "integer",
-  },
-  Cylinders: {
-    type: "integer",
-  },
-  Displacement: {
-    type: "integer",
-  },
-  Horsepower: {
-    type: "integer",
-  },
-  Weight_in_lbs: {
-    type: "integer",
-  },
-  Acceleration: {
-    type: "number",
-  },
-  Year: {
-    type: "string",
-    format: "date",
-  },
-  Origin: {
-    type: "string",
-  },
-};
-
-// export const fieldOptions = Object.keys(fields)
-//   //   .map((v) => v.toLowerCase())
-//   .map((m) => ({
-//     label: m,
-//     value: m,
-//   }));
-
-function typeToVega(t: string) {
-  const mapping: Record<string, VLType> = {
-    string: "nominal",
-    integer: "quantitative",
-    number: "quantitative",
-  };
-  const m = mapping[t];
-  if (!m) {
-    console.log(t);
-  }
-  return m;
-}
-
-function createField(field: FieldDef<string>) {
+function createField(field: FieldDef<string>, fs: FieldSchema[]) {
   if (!field) return;
-  const f = fields[field.field];
+  const f = fs.filter((c) => c.name == field.field)[0];
   if (!f) {
-    console.log(field);
+    console.warn("No field found in schema for", field);
     return field;
   }
   return Object.assign({}, field, {
-    type: typeToVega(f.type),
+    type: f.vlType //typeToVega(f.type),
   });
 }
 
@@ -80,13 +28,12 @@ export function createSpec(f): TopLevelSpec {
         : false,
     },
     encoding: {
-      x: createField(f.x),
-      y: createField(f.y),
-      color: createField(f.color),
-      size: createField(f.size),
-      shape: createField(f.shape),
+      x: createField(f.x, f.fieldSchema),
+      y: createField(f.y, f.fieldSchema),
+      color: createField(f.color, f.fieldSchema),
+      size: createField(f.size, f.fieldSchema),
+      shape: createField(f.shape, f.fieldSchema),
     },
   };
-  console.log(s);
   return s;
 }
