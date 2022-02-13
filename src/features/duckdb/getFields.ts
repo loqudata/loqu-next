@@ -1,7 +1,6 @@
 import { arrowToJSON } from "features/sqlEditor/services/arrowToJSON";
 import { query } from "./index";
-
-const SqlString = await import("sqlstring");
+import SqlString from "sqlstring";
 
 // export interface DuckDBField {
 //     name: string

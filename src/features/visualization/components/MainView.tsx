@@ -22,6 +22,7 @@ export const MainView = () => {
         borderRadius="lg"
         minH={20}
         h="full"
+        maxH="70vh"
       >
         <ChartForm />
       </Flex>

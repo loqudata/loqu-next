@@ -39,7 +39,7 @@ export const Field = ({ field }: { field: IField }) => {
     <Box borderRadius="md" alignItems="start" py={1.5}  mx={-2}  px={2} _hover={{backgroundColor: "blue.50"}}>
       {/* flex wrap + gap = good spacing and auto wrap when exceeds container width */}
       <Flex
-        sx={{ rowGap: 4, columnGap: 8 }}
+        sx={{ rowGap: 4, columnGap: 2 }}
         flexWrap="wrap"
         alignItems="center"
       >

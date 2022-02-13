@@ -15,8 +15,8 @@ import { DynamicTypist } from "./Typer";
 
 import search from "assets/loqu_search.png";
 
-// import rawIcon from "assets/world_dots_grey.svg";
-const rawIcon = await import("assets/visualize.svg");
+import rawIcon from "assets/world_dots_grey.svg";
+// const rawIcon = await import("assets/visualize.svg");
 
 const worldIcon: string | { url: string } | { default: string } = rawIcon;
 console.log(worldIcon.default);

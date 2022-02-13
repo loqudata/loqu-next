@@ -260,7 +260,6 @@ export const ChartForm = () => {
     <HStack
       alignItems="start"
       w="full"
-      h="full"
       borderRadius="lg"
       border="1px solid"
       borderColor="gray.200"
@@ -324,7 +323,7 @@ export const ChartForm = () => {
           />
         </VStack>
       </Box>
-      <Box p={4} maxH="80vh" maxW="60vw" overflow="scroll">
+      <Box p={4} h="full" maxW="60vw" overflow="scroll">
         <Vega
           //   data={{
           //     url: "https://vega.github.io/editor/data/cars.json",
