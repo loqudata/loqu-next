@@ -37,7 +37,7 @@ const subHeadingSize = { base: "regular", md: "xl" };
 
 function HeadlineSection() {
   return (
-    <VStack spacing={6} alignItems="start" w="lg" mr={3} mx={{base: 16, md: 0}} >
+    <VStack spacing={6} alignItems="start" w="lg" mr={{base: -16, md: 3}} >
       <VStack color="gray.700" alignItems="start">
         <Heading {...hProps} fontSize={headingLargeSize}>
           Explore, search, and visualize
@@ -46,15 +46,16 @@ function HeadlineSection() {
           {...hProps}
           display="flex"
           flexDir="row"
-          flexWrap="nowrap"
           // size="3xl"
           fontSize={{ base: "5xl", md: "6xl" }}
+          maxW="40vw"
+          flexWrap={{base: "wrap", lg: "nowrap"}}
         >
           <DynamicTypist />
           data
         </Heading>
       </VStack>
-      <Text {...hProps} fontSize={subHeadingSize} maxW={{base: "md", md: "2lg"}}>
+      <Text {...hProps} fontSize={subHeadingSize} w="fit-content" maxW={{base: "sm", md: "2lg"}}>
         Discover 700 million data series and 1.2 million datasets from hundreds
         of official sources.
       </Text>
@@ -64,16 +65,15 @@ function HeadlineSection() {
 
 export const LandingPage = () => {
   return (
-    <Box p={16} pt={0}>
-      <Center pt={20} pb={{ base: 16, lg: 36 }} flexDir={{base: "column", md: "row"}}>
+    <Box p={{base: 4, md: 8, lg: 16}} pt={0}>
+      <Flex justifyContent="center" alignItems="center" pt={20} pb={{ base: 16, lg: 36 }} flexDir={{base: "column", md: "row"}} gap={10}>
         <HeadlineSection></HeadlineSection>
-        <Box w={16} />
         <Box mt={null}>
-          <Image h="50vh" src={visualizeImage} />
+          <Image maxH="50vh" maxW="50vw" src={visualizeImage} />
         </Box>
-      </Center>
+      </Flex>
 
-      <Flex justifyContent="center">
+      <Flex justifyContent="center" flexDir={{base: "column", md: "row"}} gap={3}>
         <Box w="md" mr={8}>
           <Heading {...hProps} fontSize={headingLargeSize}>
             Search
@@ -91,7 +91,7 @@ export const LandingPage = () => {
         </Box>
 
         <Box
-          w="60%"
+          w={{base: "fit-content", md: "60%"}}
           borderRadius="md"
           border="1px solid"
           borderColor="gray.300"
