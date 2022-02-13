@@ -10,7 +10,7 @@ import exampleFields from "./exampleFields.json";
 import { FieldIcon } from "./FieldIcon";
 
 export const ConnectedFields = () => {
-  const fields = useAppSelector((s) => s.sqlQuery.duckDBFields);
+  const fields = useAppSelector((s) => s.sqlQuery.duckDBFields.map(convertDuckDBField));
   if (fields) {
     return <Fields fields={fields}/>;
   } else {
@@ -20,7 +20,8 @@ export const ConnectedFields = () => {
 
 interface IField {
   name: string;
-  description: string;
+  description?: string;
+  /** A vega-lite type */
   type: string;
 }
 
@@ -28,7 +29,7 @@ export function convertDuckDBField(d: DuckDBField): IField {
   return {
     name: d.name,
     // To test width stuff
-    description: `The ${d.name} field`, //loremloremlorem loremloremloremloremloremloremloremlo remloremloremloremlore mloremloremloremlorem
+    description: null, //loremloremlorem loremloremloremloremloremloremloremlo remloremloremloremlore mloremloremloremlorem
     type: DuckDBToVegaTypes[d.type] || "unknown",
   };
 }
@@ -47,17 +48,17 @@ export const Field = ({ field }: { field: IField }) => {
           {field.name}
         </Text>
         <Text color="gray.500" fontSize="12px" minW="fit-content">
-          {field.description}
+          {field.description || `The ${field.name} field`}
         </Text>
       </Flex>
     </Box>
   );
 };
 
-export const Fields = ({ fields = exampleFields }) => {
+export const Fields = ({ fields = exampleFields.map(convertDuckDBField) }: {fields: IField[]}) => {
   return (
     <Box borderRadius="md">
-      {fields.map(convertDuckDBField).map((f) => (
+      {fields.map((f) => (
         <Field key={f.name} field={f}></Field>
       ))}
     </Box>

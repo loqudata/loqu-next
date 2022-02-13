@@ -26,6 +26,13 @@ import { CreatableSelect, Select } from "chakra-react-select";
 import { useSelector, useDispatch } from "react-redux";
 import { FieldSchema } from "compassql";
 
+import { Dispatch } from "store/store";
+import { datasetLoad } from "models/dataset";
+import { VscSymbolKey } from "react-icons/vsc";
+import { BiCalendar, BiHash } from "react-icons/bi";
+import { Fields } from "features/workspaceCharts/components/Fields";
+import { useAppSelector } from "hooks";
+
 // import { VscSymbolKey } from "react-icons/vsc";
 // import { BiCalendar, BiHash, BiTime } from "react-icons/bi";
 
@@ -205,6 +212,7 @@ export const FieldPanel = ({
     setValue(value);
   };
   const handleClick = () => setDatasetURL(value.value);
+    
   return (
     <Box
       backgroundColor="white"
@@ -253,56 +261,12 @@ export const FieldPanel = ({
         <Heading letterSpacing="tight" size="xs" color="gray.600">
           {"Fields".toUpperCase()}
         </Heading>
-        <Fields/>
-        {/* <Select
-          colorScheme="primary"
-          autoFocus
-          // placeholder="Select fields"
-          options={fields.map((f) => ({ value: f.name, label: f.name, ...f }))}
-          isMulti
-          menuIsOpen={true}
-          maxMenuHeight={700}
-          // TODO: remove border. This is finicky
-          styles={{
-            menu: (provided, state) => ({
-              ...provided,
-              border: "none",
-              boxShadow: "none",
-            }),
-            menuList: (provided, state) => {
-              // console.log(provided);
-
-              return {
-                ...provided,
-                border: "none",
-                borderWidth: "none",
-              };
-            },
-          }}
-          // TODO: make multiple selections with custom option actually update state and work
-          // components={{
-          //   Option: ({ data, setValue }) => {
-          //     return (
-          //       <Field
-          //         // my={1}
-          //         cursor="pointer"
-          //         field={data as any}
-          //         onClick={() => setValue(data, "select-option", data)}
-          //       />
-          //     );
-          //   },
-          // }}
-        /> */}
+        <Fields fields={fields.map((f) => ({name: f.name, type: f.vlType}))}/>
       </Stack>
     </Box>
   );
 };
 
-import { Dispatch } from "store/store";
-import { datasetLoad } from "models/dataset";
-import { VscSymbolKey } from "react-icons/vsc";
-import { BiCalendar, BiHash } from "react-icons/bi";
-import { Fields } from "features/workspaceCharts/components/Fields";
 export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
   //@ts-ignore
   const dataset = useSelector((state) => state.dataset);
