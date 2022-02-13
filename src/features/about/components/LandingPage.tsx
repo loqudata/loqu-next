@@ -8,6 +8,7 @@ import {
   Stack,
   Image,
   Center,
+  HeadingProps,
 } from "@chakra-ui/react";
 
 import React from "react";
@@ -25,31 +26,35 @@ const worldIcon = processImportedFile(rawIcon);
 import visualizeRaw from "assets/visualize.svg";
 const visualizeImage = processImportedFile(visualizeRaw);
 
-const hProps = {
+const hProps: HeadingProps = {
   fontWeight: "regular",
   letterSpacing: "tighter",
   lineHeight: "1.2",
 };
 
+const headingLargeSize = { base: "xl", md: "3xl" };
+const subHeadingSize = { base: "regular", md: "xl" };
+
 function HeadlineSection() {
   return (
-    <VStack spacing={6} alignItems="start" w="lg" mr={3}>
+    <VStack spacing={6} alignItems="start" w="lg" mr={3} mx={{base: 16, md: 0}} >
       <VStack color="gray.700" alignItems="start">
-        <Heading letterSpacing="tighter" size="lg" {...hProps}>
+        <Heading {...hProps} fontSize={headingLargeSize}>
           Explore, search, and visualize
         </Heading>
         <Heading
+          {...hProps}
           display="flex"
           flexDir="row"
           flexWrap="nowrap"
-          size="3xl"
-          {...hProps}
+          // size="3xl"
+          fontSize={{ base: "5xl", md: "6xl" }}
         >
           <DynamicTypist />
           data
         </Heading>
       </VStack>
-      <Text color="gray.700" fontSize="xl" letterSpacing="tighter" maxW="2lg">
+      <Text {...hProps} fontSize={subHeadingSize} maxW={{base: "md", md: "2lg"}}>
         Discover 700 million data series and 1.2 million datasets from hundreds
         of official sources.
       </Text>
@@ -60,7 +65,7 @@ function HeadlineSection() {
 export const LandingPage = () => {
   return (
     <Box p={16} pt={0}>
-      <Center pt={20} pb={{ base: 16, lg: 36 }}>
+      <Center pt={20} pb={{ base: 16, lg: 36 }} flexDir={{base: "column", md: "row"}}>
         <HeadlineSection></HeadlineSection>
         <Box w={16} />
         <Box mt={null}>
@@ -70,13 +75,13 @@ export const LandingPage = () => {
 
       <Flex justifyContent="center">
         <Box w="md" mr={8}>
-          <Heading letterSpacing="tighter" size="lg" {...hProps}>
+          <Heading {...hProps} fontSize={headingLargeSize}>
             Search
           </Heading>
           <Text
             mt={3}
             color="gray.700"
-            fontSize="xl"
+            fontSize={subHeadingSize}
             letterSpacing="tighter"
             maxW="2lg"
           >
