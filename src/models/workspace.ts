@@ -69,7 +69,7 @@ const initialModel = {
           children: [
             {
               type: "tab",
-              name: "Edit Chart",
+              name: "Chart Editor",
               component: "button",
             },
           ],

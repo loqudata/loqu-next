@@ -64,9 +64,25 @@ export const chartEditor = createModel<RootModel>()({
 
       state.formDetails[payload] = !state.formDetails[payload];
     },
+    mergeState: (state, payload: any) => {
+      return Object.assign({}, state, payload)
+    }
   },
   // Didn't have this before, was causing TS issue
-  effects: {} //(dispatch) => ({})
+  effects: (dispatch) => ({
+
+    /** Takes the result recommendation number to add */
+    addRecommendationToMainView: (payload: number, rootState) => {
+      // TODO: make type safe, also is this robust?
+      const recommendation = rootState.result.plots[payload].spec as any
+      // const oldFormState = rootState.chartEditor
+      const newFormState = {
+        mark: recommendation.mark,
+        ...recommendation.encoding
+      }
+      dispatch.chartEditor.mergeState(newFormState)
+    }
+  })
 });
 
 

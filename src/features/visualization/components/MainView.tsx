@@ -15,18 +15,15 @@ export const MainView = () => {
   const result: Result = useSelector((state) => state.result);
   const data = useSelector(selectData);
   const schema = useSelector(selectSchema);
-  
+
   return (
     <Stack flexShrink={1} p={4} spacing={4} w="full">
       <Flex
         borderRadius="lg"
-        // bgColor="gray.100"
-        // justifyContent="center"
-        // alignItems="center"
         minH={20}
-        // p={4}
+        h="full"
       >
-        <ChartForm/>
+        <ChartForm />
       </Flex>
       <Heading size="md">
         Recommended Charts ({(result.plots && result.plots.length) || 0})
@@ -38,8 +35,9 @@ export const MainView = () => {
           result.plots
             // .filter(filterPlots(schema))
             // .slice(0, 3)
-            .map((plot) => (
+            .map((plot, i) => (
               <Plot
+                idx={i}
                 key={JSON.stringify(plot.fieldInfos)}
                 plot={plot}
                 data={data}

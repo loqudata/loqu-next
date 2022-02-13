@@ -12,6 +12,7 @@ import { transformFieldDefs } from "../services/filterPlots";
 import { EditIcon } from "@chakra-ui/icons";
 import { ISchema } from "api/schema";
 import { Icon } from '@iconify/react';
+import { useAppDispatch } from "hooks";
 
 const modifyPlot = (
   plot: TopLevelFacetSpec,
@@ -34,11 +35,15 @@ export const Plot = ({
   plot,
   data,
   schema,
+  idx
 }: {
   plot: ResultPlot;
   data: InlineData;
   schema: ISchema;
-}) => (
+  idx: number
+}) => {
+  const dispatch = useAppDispatch()
+  return(
   <Box
     borderRadius="lg"
     border="1px solid lightgrey"
@@ -76,7 +81,8 @@ export const Plot = ({
           />
         </Tooltip>
         <Tooltip
-          label="Add Plot/Fields to Main View"
+        // Show in?
+          label="Add to Chart Editor"
           aria-label="bookmark plot"
         >
           <IconButton
@@ -86,6 +92,7 @@ export const Plot = ({
             colorScheme="primary"
             aria-label="edit plot"
             icon={<Icon icon="bi:plus-lg" />}
+            onClick={() => dispatch.chartEditor.addRecommendationToMainView(idx)}
           />
         </Tooltip>
       </HStack>
@@ -100,7 +107,7 @@ export const Plot = ({
       <Vega spec={modifyPlot(plot.spec, data)} mode="vega-lite"></Vega>
     </Flex>
   </Box>
-);
+)};
 
 // export const Plots = ({ plots }: { plots: ResultPlot[] }) =>
 //   plots.map((p) => <Plot plot={p} />);

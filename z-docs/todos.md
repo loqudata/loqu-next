@@ -14,3 +14,9 @@ Better visualize page with new fields.
 
 Move data into regular Redux so Vega/CompassQL can mutate - add Symbols to it, get CSQL working
 
+## Field View
+
+Add little pill buttons to sort by type: nominal, quantitative, temporal, etc.
+
+
+Done!: Implement the Show in/Add to Chart Editor

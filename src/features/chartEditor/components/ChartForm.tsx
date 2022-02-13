@@ -242,8 +242,9 @@ export const ChartForm = () => {
 
   const formState = useAppSelector((state) => state.chartEditor) || {};
   const markType = useAppSelector((state) => state.chartEditor.mark);
-  const schema = useAppSelector((state: any) =>
-    state.dataset.schema.fieldSchemas)
+  const schema = useAppSelector(
+    (state: any) => state.dataset.schema.fieldSchemas
+  );
   const fieldOptions = useAppSelector((state: any) =>
     state.dataset.schema.fieldSchemas
       .map((s) => s.name)
@@ -256,10 +257,16 @@ export const ChartForm = () => {
   const setMarkType = dispatch.chartEditor.setMark;
 
   return (
-    <HStack alignItems="start" w="full" borderRadius="lg" 
-    border="1px solid"
-    borderColor="gray.200">
+    <HStack
+      alignItems="start"
+      w="full"
+      h="full"
+      borderRadius="lg"
+      border="1px solid"
+      borderColor="gray.200"
+    >
       <Box
+        h="full"
         bgColor="white"
         p={6}
         pr={8}
@@ -274,7 +281,7 @@ export const ChartForm = () => {
             color="blue.700"
             fontWeight="medium"
           >
-            Edit Chart
+            Chart Editor
           </Heading>
           <FormOption
             name="Mark Type"
