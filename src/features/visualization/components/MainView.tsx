@@ -17,7 +17,7 @@ export const MainView = () => {
   const schema = useSelector(selectSchema);
   
   return (
-    <Stack flexShrink={1} p={4} spacing={4}>
+    <Stack flexShrink={1} p={4} spacing={4} w="full">
       <Flex
         borderRadius="lg"
         // bgColor="gray.100"

@@ -14,11 +14,9 @@ export const VisualizePage = () => {
       : undefined;
 
   return (
-    <Box h="90vh" px={responsivePadding} py={1}>
-      <Flex minH="full">
+    <Flex minH="100vh" w="full" px={responsivePadding} py={1}>
         <FieldPanelContainer ds={socrata_url}></FieldPanelContainer>
         <MainView></MainView>
-      </Flex>
-    </Box>
+    </Flex>
   );
 };

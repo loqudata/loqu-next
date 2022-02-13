@@ -256,13 +256,15 @@ export const ChartForm = () => {
   const setMarkType = dispatch.chartEditor.setMark;
 
   return (
-    <HStack alignItems="start" w="full" borderRadius="lg" bgColor="gray.50">
+    <HStack alignItems="start" w="full" borderRadius="lg" 
+    border="1px solid"
+    borderColor="gray.200">
       <Box
         bgColor="white"
         p={6}
         pr={8}
-        borderRadius="lg"
-        border="1px solid"
+        borderLeftRadius="lg"
+        borderRight="1px solid"
         borderColor="gray.200"
       >
         <VStack spacing={4} alignItems="start" w="24rem">
