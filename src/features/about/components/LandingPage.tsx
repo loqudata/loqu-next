@@ -34,46 +34,25 @@ const hProps = {
 function HeadlineSection() {
   return (
     <VStack spacing={6} alignItems="start" w="lg" mr={3}>
-      <VStack
-        color="gray.700" // fontFamily="Merriweather"
-        // justifyContent="center"
-        alignItems="start"
-      >
-        <Heading // as="span"
-          letterSpacing="tighter"
-          fontSize={{
-            base: "28",
-            md: "32",
-          }}
-          {...hProps}
-        >
+      <VStack color="gray.700" alignItems="start">
+        <Heading letterSpacing="tighter" size="lg" {...hProps}>
           Explore, search, and visualize
         </Heading>
-        {/* Optional: */}
         <Heading
           display="flex"
           flexDir="row"
           flexWrap="nowrap"
-          fontSize={{
-            base: "48",
-            md: "64",
-          }}
+          size="3xl"
           {...hProps}
         >
           <DynamicTypist />
           data
         </Heading>
       </VStack>
-      <Text // mt={"2rem !important"}
-        color="gray.700"
-        fontSize="24"
-        letterSpacing="tighter" // textAlign="center"
-        maxW="2lg"
-      >
+      <Text color="gray.700" fontSize="xl" letterSpacing="tighter" maxW="2lg">
         Discover 700 million data series and 1.2 million datasets from hundreds
         of official sources.
       </Text>
-      {/* <worldIcon/> */}
     </VStack>
   );
 }
@@ -81,27 +60,23 @@ function HeadlineSection() {
 export const LandingPage = () => {
   return (
     <Box p={16} pt={0}>
-      <Center pt={20} pb={36}>
+      <Center pt={20} pb={{ base: 16, lg: 36 }}>
         <HeadlineSection></HeadlineSection>
         <Box w={16} />
-        <Box maxH="50vh" mt={-24}>
-          <Image boxSize="500px" src={visualizeImage} />
+        <Box mt={null}>
+          <Image h="50vh" src={visualizeImage} />
         </Box>
       </Center>
 
       <Flex justifyContent="center">
         <Box w="md" mr={8}>
-          <Heading
-            letterSpacing="tighter"
-            fontSize={{ base: "28", md: "32" }}
-            {...hProps}
-          >
+          <Heading letterSpacing="tighter" size="lg" {...hProps}>
             Search
           </Heading>
           <Text
             mt={3}
             color="gray.700"
-            fontSize={24}
+            fontSize="xl"
             letterSpacing="tighter"
             maxW="2lg"
           >
