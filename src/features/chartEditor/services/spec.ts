@@ -34,12 +34,12 @@ export const fields = {
   },
 };
 
-export const fieldOptions = Object.keys(fields)
-  //   .map((v) => v.toLowerCase())
-  .map((m) => ({
-    label: m,
-    value: m,
-  }));
+// export const fieldOptions = Object.keys(fields)
+//   //   .map((v) => v.toLowerCase())
+//   .map((m) => ({
+//     label: m,
+//     value: m,
+//   }));
 
 function typeToVega(t: string) {
   const mapping: Record<string, VLType> = {
@@ -70,9 +70,7 @@ export function createSpec(f): TopLevelSpec {
   const s = {
     $schema:
       "https://vega.github.io/schema/vega-lite/v5.json",
-    data: {
-      url: "https://vega.github.io/editor/data/cars.json",
-    },
+    data: f.data,
     mark: {
       type: f.markType,
       tooltip: f.tooltip

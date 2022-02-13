@@ -220,7 +220,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { X } from "vega-lite/build/src/channel";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { FieldDef } from "vega-lite/build/src/channeldef";
-import { createSpec, fieldOptions } from "../services/spec";
+import { createSpec } from "../services/spec";
 import { Type } from "vega-lite/build/src/type";
 import { IField } from "models/chartEditor";
 
@@ -240,6 +240,17 @@ export const ChartForm = () => {
 
   const formState = useAppSelector((state) => state.chartEditor) || {};
   const markType = useAppSelector((state) => state.chartEditor.mark);
+  const fieldOptions = useAppSelector((state: any) =>
+    state.dataset.schema.fieldSchemas
+      .map((s) => s.name)
+      .map((m) => ({
+        label: m,
+        value: m,
+      }))
+  );
+  const data = useAppSelector((state: any) => state.dataset.data);
+  console.log(fieldOptions);
+
   const setMarkType = dispatch.chartEditor.setMark;
 
   return (
@@ -314,6 +325,7 @@ export const ChartForm = () => {
               markType,
               tooltip,
               tooltipAllFields,
+              data,
             })
           )}
           renderer="svg"
