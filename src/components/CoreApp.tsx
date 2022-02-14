@@ -15,8 +15,8 @@ import NoSsr from "./NoSsr";
 import dynamic from "next/dynamic";
 import { getUserID } from "utils/userId";
 
-
-const LocalOpenReplay = dynamic(() => import("./OpenReplay"), { ssr: false });
+import { LocalOpenReplay } from "./OpenReplay";
+// const LocalOpenReplay = dynamic(() => import("./OpenReplay"), { ssr: false });
 
 
 const AnalyticsContainer: React.FC = ({ children }) => {

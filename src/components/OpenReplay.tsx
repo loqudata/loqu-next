@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Tracker from "@openreplay/tracker/cjs";
 import { getUserID } from "utils/userId";
-import trackerRedux from '@openreplay/tracker-redux/cjs';
+import trackerRedux from "@openreplay/tracker-redux/cjs";
 
 // Based on https://github.com/thundermiracle/openreplay-examples/blob/main/examples/with-next-dynamic-import/components/OpenReplayTracker.tsx
 const tracker = new Tracker({
@@ -11,14 +11,13 @@ const tracker = new Tracker({
     tracker.setUserID(getUserID());
   },
 });
-tracker.start();
 
 export const openReplayMiddleware = tracker.use(trackerRedux({}));
 
-const OpenReplay = () => {
+export const LocalOpenReplay = () => {
+  useEffect(() => {
+    tracker.start();
+  }, []);
+
   return null;
 };
-
-OpenReplay.middleware = openReplayMiddleware
-
-export default OpenReplay;
