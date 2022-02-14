@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Text,
@@ -13,7 +13,8 @@ import {
   Button,
   Icon,
   BoxProps,
-  IconProps
+  IconProps,
+  HStack
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -25,8 +26,15 @@ import { CreatableSelect, Select } from "chakra-react-select";
 import { useSelector, useDispatch } from "react-redux";
 import { FieldSchema } from "compassql";
 
+import { Dispatch } from "store/store";
+import { datasetLoad } from "models/dataset";
 import { VscSymbolKey } from "react-icons/vsc";
-import { BiCalendar, BiHash, BiTime } from "react-icons/bi";
+import { BiCalendar, BiHash } from "react-icons/bi";
+import { Fields } from "features/workspaceCharts/components/Fields";
+import { useAppSelector } from "hooks";
+
+// import { VscSymbolKey } from "react-icons/vsc";
+// import { BiCalendar, BiHash, BiTime } from "react-icons/bi";
 
 const options = [
   { value: "area", label: "Area" },
@@ -204,6 +212,7 @@ export const FieldPanel = ({
     setValue(value);
   };
   const handleClick = () => setDatasetURL(value.value);
+    
   return (
     <Box
       backgroundColor="white"
@@ -212,22 +221,29 @@ export const FieldPanel = ({
       // boxShadow="md"
       py={3}
       pr={3}
-      // maxW="400px"
-      minW={[null, null, "xs"]}
+      maxW="300px"
+      w="fit-content"
       {...props}
     >
       <Stack spacing={2}>
         <Heading letterSpacing="tight" size="xs" color="gray.600">
           {"Dataset".toUpperCase()}
         </Heading>
-        <Flex>
+        <HStack>
           {/* <Input
             placeholder="Input dataset URL"
             value={value}
             onChange={handleChange}
           /> */}
-          <Box flexGrow={1}>
+          <Box>
             <CreatableSelect
+            size="sm"
+            chakraStyles={{
+              container: (prev) => ({
+                ...prev,
+                w: "3xs",
+              }),
+            }}
               colorScheme="teal"
               autoFocus
               placeholder="Input dataset URL"
@@ -237,53 +253,15 @@ export const FieldPanel = ({
               components={{}}
             />
           </Box>
-          <Button colorScheme="primary" ml={1} onClick={handleClick}>
+          <Button size="sm" colorScheme="primary" ml={1} onClick={handleClick}>
             Load
           </Button>
-        </Flex>
+        </HStack>
 
         <Heading letterSpacing="tight" size="xs" color="gray.600">
-          {"Add Fields".toUpperCase()}
+          {"Fields".toUpperCase()}
         </Heading>
-        <Select
-          colorScheme="primary"
-          autoFocus
-          // placeholder="Select fields"
-          options={fields.map((f) => ({ value: f.name, label: f.name, ...f }))}
-          isMulti
-          menuIsOpen={true}
-          maxMenuHeight={700}
-          // TODO: remove border. This is finicky
-          styles={{
-            menu: (provided, state) => ({
-              ...provided,
-              border: "none",
-              boxShadow: "none",
-            }),
-            menuList: (provided, state) => {
-              // console.log(provided);
-
-              return {
-                ...provided,
-                border: "none",
-                borderWidth: "none",
-              };
-            },
-          }}
-          // TODO: make multiple selections with custom option actually update state and work
-          // components={{
-          //   Option: ({ data, setValue }) => {
-          //     return (
-          //       <Field
-          //         // my={1}
-          //         cursor="pointer"
-          //         field={data as any}
-          //         onClick={() => setValue(data, "select-option", data)}
-          //       />
-          //     );
-          //   },
-          // }}
-        />
+        <Fields fields={fields.map((f) => ({name: f.name, type: f.vlType}))}/>
       </Stack>
     </Box>
   );
@@ -291,7 +269,6 @@ export const FieldPanel = ({
 
 const rowLimit = 5000
 
-import { Dispatch } from "store/store";
 export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
   //@ts-ignore
   const dataset = useSelector((state) => state.dataset);
@@ -309,10 +286,10 @@ export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
           }
 
           if (res[0].count < rowLimit) {
-            dispatch.dataset.datasetLoad({
+            dispatch(datasetLoad({
               name: "prop_provided",
               data: { url: ds },
-            });
+            }))
           } else if (res[0].count > rowLimit) {
             alert(
               `The dataset you selected has over ${rowLimit} rows.
@@ -329,10 +306,10 @@ the previous dataset will stay loaded.`.replace("\n", " ")
     <FieldPanel
       datasetURL={dataset.data ? dataset.data : ""}
       setDatasetURL={(url) =>{
-        dispatch.dataset.datasetLoad({
+        dispatch(datasetLoad({
           name: "idk",
           data: { url },
-        })}
+        }))}
       }
       fields={dataset.schema.fieldSchemas}
       {...props}

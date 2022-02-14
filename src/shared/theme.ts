@@ -28,6 +28,29 @@ export const theme = extendTheme({
     heading: f,
     serif: "Merriweather",
   },
+  styles: {
+    global: {
+      // body: {
+      //   bg: 'gray.50',
+      //   color: 'gray.900',
+      // },
+      '.typography': {
+        h2: {
+          fontSize: '2xl',
+          fontWeight: 'bold',
+        },
+        h3: {
+          fontSize: 'lg'
+        },
+        h4: {
+          fontSize: 'md'
+        },
+        ol: {
+          marginInlineStart: "1rem"
+        }
+      }
+    }
+  }
 });
 
 export const responsivePadding = [3, null, 4, 6];

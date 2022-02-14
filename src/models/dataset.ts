@@ -36,22 +36,23 @@ interface DatasetLoad {
   data: Data;
 }
 
+// Actions
+// We don't have action creators because these are internall to the `datasetLoad` thunk
+// and are only called in two places
+export const DATASET_REQUEST = "DATASET_REQUEST";
+export const DATASET_RECEIVE = "DATASET_RECEIVE";
 
-/**
- * datasetLoad makes HTTP requests to data location, parses it and creates table schema.
- * it emits dataset.request which sets the state to loading
- * then emits dataset.receive on completion to merge data and turn off loading
- */
-export const dataset = createModel<RootModel>()({
-  state: DEFAULT_DATASET, // initial state
-  reducers: {
-    request: (dataset, payload) => {
+export const DatasetReducer = (
+  dataset = DEFAULT_DATASET,
+  { payload, type }
+) => {
+  switch (type) {
+    case DATASET_REQUEST:
       return {
         ...dataset,
         isLoading: true,
       };
-    },
-    receive: (dataset, payload: Dataset) => {
+    case DATASET_RECEIVE:
       const { name, data, schema } = payload;
       return {
         ...dataset,
@@ -60,42 +61,48 @@ export const dataset = createModel<RootModel>()({
         schema,
         data,
       };
-    },
-  },
-  effects: (dispatch) => ({
-    // handle state changes with impure functions.
-    // use async/await for async actions
-    datasetLoad: async (payload: DatasetLoad, state) => {
-      // console.log(payload, state);
-      
-      // console.log("This is current root state", state);
-      const { name, data } = payload;
-      dispatch.dataset.request({ name });
+    default:
+      return dataset;
+  }
+};
 
-      if (isUrlData(data)) {
-        return fetch(data.url)
-          .then((response) => response.json())
-          .then((values: any) => {
-            return buildSchemaAndDispatchDataReceive(
-              { values },
-              state.config,
-              dispatch,
-              name
-            );
-          }).catch((e) => console.error(e));
-      } else if (isInlineData(data)) {
+/**
+ * datasetLoad makes HTTP requests to data location, parses it and creates table schema.
+ * it emits dataset.request which sets the state to loading
+ * then emits dataset.receive on completion to merge data and turn off loading
+ * It's a thunk
+ */
+ export const datasetLoad = (payload: DatasetLoad): any => async (dispatch, getState) => {
+  // console.log(payload, state);
+  const state = getState()
+
+  // console.log("This is current root state", state);
+  const { name, data } = payload;
+  dispatch({ type: DATASET_REQUEST });
+
+  if (isUrlData(data)) {
+    return fetch(data.url)
+      .then((response) => response.json())
+      .then((values: any) => {
         return buildSchemaAndDispatchDataReceive(
-          data,
+          { values },
           state.config,
           dispatch,
           name
         );
-      } else {
-        throw new Error("dataset load error: dataset type not detected");
-      }
-    },
-  }),
-});
+      })
+      .catch((e) => console.error(e));
+  } else if (isInlineData(data)) {
+    return buildSchemaAndDispatchDataReceive(
+      data,
+      state.config,
+      dispatch,
+      name
+    );
+  } else {
+    throw new Error("dataset load error: dataset type not detected");
+  }
+}
 
 function buildSchemaAndDispatchDataReceive(
   data: InlineData,
@@ -107,6 +114,6 @@ function buildSchemaAndDispatchDataReceive(
     throw new Error("Voyager only supports array values");
   }
   return fetchCompassQLBuildSchema(data.values, config).then((schema) => {
-    dispatch.dataset.receive({ name, schema, data, isLoading: false });
+    dispatch({ type: DATASET_RECEIVE, payload: { name, schema, data, isLoading: false }});
   });
 }

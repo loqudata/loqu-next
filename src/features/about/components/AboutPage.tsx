@@ -2,13 +2,10 @@ import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 
 import { responsivePadding, responsivePaddingY, theme } from "shared/theme";
+import { AboutText } from "./AboutText";
 
-// import ReactMarkdown from "react-markdown";
-// import Markdown from "markdown-to-jsx";
 
-// import { getMarkdownToJSXComponents } from "../../../components/ChakraComponents";
-
-export const AboutPage = ({ children }: { children?: React.ReactNode }) => {
+export const AboutPage = () => {
   return (
     <Box>
       <Stack backgroundColor="gray.50" w="full" p={responsivePadding}>
@@ -23,7 +20,7 @@ export const AboutPage = ({ children }: { children?: React.ReactNode }) => {
         </Text>
       </Stack>
       <Container maxW="3xl" py={responsivePadding}>
-        {children}
+        <AboutText/>
       </Container>
     </Box>
   );
