@@ -17,6 +17,8 @@
     "@formatjs/intl-displaynames": "^5.4.2",
     "@glideapps/glide-data-grid": "^3.2.1",
     "@monaco-editor/react": "^4.3.1",
+    "@openreplay/tracker": "^3.5.0",
+    "@openreplay/tracker-redux": "^3.4.8",
     "@reduxjs/toolkit": "^1.7.2",
     "@rematch/core": "^2.2.0",
     "@rematch/immer": "^2.1.3",
@@ -44,12 +46,7 @@
     "react-vega": "^7.4.4",
     "react-virtualized": "^9.22.3",
     "redux": "^4.1.2",
-<<<<<<< HEAD
     "redux-query-sync": "^0.1.10",
-    "reselect": "^4.1.4",
-    "typesense-instantsearch-adapter": "^2.2.0",
-    "ulid": "^2.3.0",
-=======
     "redux-thunk": "^2.4.1",
     "reselect": "^4.1.5",
     "sqlstring": "^2.3.2",
@@ -58,7 +55,6 @@
     "typewriter-effect": "^2.18.2",
     "ulid": "^2.3.0",
     "use-immer": "^0.6.0",
->>>>>>> better
     "vega": "^5.21.0",
     "vega-expression": "^5.0.0",
     "vega-lite": "~5.2.0",

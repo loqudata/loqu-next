@@ -10,6 +10,8 @@ specifiers:
   '@glideapps/glide-data-grid': ^3.2.1
   '@iconify/react': ^3.1.3
   '@monaco-editor/react': ^4.3.1
+  '@openreplay/tracker': ^3.5.0
+  '@openreplay/tracker-redux': ^3.4.8
   '@reactpreview/cli': ^0.7.2
   '@reduxjs/toolkit': ^1.7.2
   '@rematch/core': ^2.2.0
@@ -30,7 +32,6 @@ specifiers:
   immer: ^9.0.12
   lodash: ^4.17.21
   marked: ^3.0.8
-  monaco-editor: ^0.31.1
   next: ^12.0.4
   next-mdx-remote: ^3.0.8
   next-transpile-modules: ^9.0.0
@@ -44,13 +45,7 @@ specifiers:
   react-vega: ^7.4.4
   react-virtualized: ^9.22.3
   redux: ^4.1.2
-<<<<<<< HEAD
   redux-query-sync: ^0.1.10
-  reselect: ^4.1.4
-  typescript: ~4.0.8
-  typesense-instantsearch-adapter: ^2.2.0
-  ulid: ^2.3.0
-=======
   redux-thunk: ^2.4.1
   reselect: ^4.1.5
   sqlstring: ^2.3.2
@@ -60,7 +55,6 @@ specifiers:
   typewriter-effect: ^2.18.2
   ulid: ^2.3.0
   use-immer: ^0.6.0
->>>>>>> better
   vega: ^5.21.0
   vega-expression: ^5.0.0
   vega-lite: ~5.2.0
@@ -68,15 +62,6 @@ specifiers:
   vite-plugin-environment: ^1.0.1
 
 dependencies:
-<<<<<<< HEAD
-  '@chakra-ui/icons': 1.1.1_react@17.0.2
-  '@chakra-ui/react': 1.7.2_809eeceace88ce577d3e2b6a014eb582
-  '@emotion/react': 11.6.0_812c4b915b618d5091ca1e8ce4566766
-  '@emotion/styled': 11.6.0_0defef186e606f744d8b5a7a5a1334ae
-  '@formatjs/intl-displaynames': 5.2.5
-  '@openreplay/tracker': 3.4.16
-  '@openreplay/tracker-redux': 3.4.8_2c6a4542ad0da02ffe992b7222868534
-=======
   '@chakra-ui/icons': 1.1.5_react@17.0.2
   '@chakra-ui/react': 1.8.3_f907e6fe873ee78402d8e9eeb80ace45
   '@duckdb/duckdb-wasm': 1.13.1-dev98.0
@@ -84,9 +69,10 @@ dependencies:
   '@emotion/styled': 11.6.0_839e7c58e219964d22cd4187c81c3df4
   '@formatjs/intl-displaynames': 5.4.2
   '@glideapps/glide-data-grid': 3.2.1_3c974e2dae3e6481919426c614395958
-  '@monaco-editor/react': 4.3.1_60c53b327c300eabacb72e8cc15737d8
+  '@monaco-editor/react': 4.3.1_react-dom@17.0.2+react@17.0.2
+  '@openreplay/tracker': 3.5.0
+  '@openreplay/tracker-redux': 3.4.8_c468ab031b954810efab4d4f3dbbc115
   '@reduxjs/toolkit': 1.7.2_react-redux@7.2.6+react@17.0.2
->>>>>>> better
   '@rematch/core': 2.2.0_redux@4.1.2
   '@rematch/immer': 2.1.3_ed1556fc8f632794cbf1d2aaf9845db1
   '@types/react-virtualized': 9.21.16
@@ -100,7 +86,6 @@ dependencies:
   immer: 9.0.12
   lodash: 4.17.21
   marked: 3.0.8
-  monaco-editor: 0.31.1
   next: 12.0.4_react-dom@17.0.2+react@17.0.2
   next-mdx-remote: 3.0.8_react-dom@17.0.2+react@17.0.2
   next-transpile-modules: 9.0.0
@@ -114,12 +99,7 @@ dependencies:
   react-vega: 7.4.4_1b45b7568a54bed8a83fe31b9ddbbc40
   react-virtualized: 9.22.3_react-dom@17.0.2+react@17.0.2
   redux: 4.1.2
-<<<<<<< HEAD
   redux-query-sync: 0.1.10
-  reselect: 4.1.4
-  typesense-instantsearch-adapter: 2.2.0
-  ulid: 2.3.0
-=======
   redux-thunk: 2.4.1_redux@4.1.2
   reselect: 4.1.5
   sqlstring: 2.3.2
@@ -128,7 +108,6 @@ dependencies:
   typewriter-effect: 2.18.2_react-dom@17.0.2+react@17.0.2
   ulid: 2.3.0
   use-immer: 0.6.0_immer@9.0.12+react@17.0.2
->>>>>>> better
   vega: 5.21.0
   vega-expression: 5.0.0
   vega-lite: 5.2.0_vega@5.21.0
@@ -1657,24 +1636,22 @@ packages:
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}
     dev: false
 
-  /@monaco-editor/loader/1.2.0_monaco-editor@0.31.1:
+  /@monaco-editor/loader/1.2.0:
     resolution: {integrity: sha512-cJVCG/T/KxXgzYnjKqyAgsKDbH9mGLjcXxN6AmwumBwa2rVFkwvGcUj1RJtD0ko4XqLqJxwqsN/Z/KURB5f1OQ==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
-      monaco-editor: 0.31.1
       state-local: 1.0.7
     dev: false
 
-  /@monaco-editor/react/4.3.1_60c53b327c300eabacb72e8cc15737d8:
+  /@monaco-editor/react/4.3.1_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-f+0BK1PP/W5I50hHHmwf11+Ea92E5H1VZXs+wvKplWUWOfyMa1VVwqkJrXjRvbcqHL+XdIGYWhWNdi4McEvnZg==}
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
       react: ^16.8.0 || ^17.0.0
       react-dom: ^16.8.0 || ^17.0.0
     dependencies:
-      '@monaco-editor/loader': 1.2.0_monaco-editor@0.31.1
-      monaco-editor: 0.31.1
+      '@monaco-editor/loader': 1.2.0
       prop-types: 15.7.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -1828,27 +1805,6 @@ packages:
     dev: false
     optional: true
 
-<<<<<<< HEAD
-  /@openreplay/tracker-redux/3.4.8_2c6a4542ad0da02ffe992b7222868534:
-    resolution: {integrity: sha512-Jn/hgXA0xv3/+IwcyKoFb3idlZvCNu34gqN/BEJ3dKR1FEykGO4mYBkAwYics4OxPmWXF+jWQJ6ZyABnzKrXDQ==}
-    peerDependencies:
-      '@openreplay/tracker': ^3.4.8
-      redux: ^4.0.0
-    dependencies:
-      '@openreplay/tracker': 3.4.16
-      redux: 4.1.2
-    dev: false
-
-  /@openreplay/tracker/3.4.16:
-    resolution: {integrity: sha512-V9j3bu+u9XoZ41r2395hyUz/aDyHyKztToU33ExK2mwQA0f5GxNTwdfT8n3nuEKu8wnVDjMv6VgZ+7rdF5Sr3w==}
-    engines: {node: '>=12'}
-    dependencies:
-      error-stack-parser: 2.0.6
-    dev: false
-
-  /@popperjs/core/2.10.2:
-    resolution: {integrity: sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==}
-=======
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1870,9 +1826,25 @@ packages:
       fastq: 1.13.0
     dev: false
 
+  /@openreplay/tracker-redux/3.4.8_c468ab031b954810efab4d4f3dbbc115:
+    resolution: {integrity: sha512-Jn/hgXA0xv3/+IwcyKoFb3idlZvCNu34gqN/BEJ3dKR1FEykGO4mYBkAwYics4OxPmWXF+jWQJ6ZyABnzKrXDQ==}
+    peerDependencies:
+      '@openreplay/tracker': ^3.4.8
+      redux: ^4.0.0
+    dependencies:
+      '@openreplay/tracker': 3.5.0
+      redux: 4.1.2
+    dev: false
+
+  /@openreplay/tracker/3.5.0:
+    resolution: {integrity: sha512-Ue97LkswwbPEhHKCPG8jhnXDw8/2u6Nz8/ZVj/mozwjPeDcmiET3jpZn71XSSImCrGSy0JrQJotIInmBThDiCA==}
+    engines: {node: '>=12'}
+    dependencies:
+      error-stack-parser: 2.0.7
+    dev: false
+
   /@popperjs/core/2.11.2:
     resolution: {integrity: sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==}
->>>>>>> better
     dev: false
 
   /@reach/alert/0.13.2_react-dom@17.0.2+react@17.0.2:
@@ -2512,7 +2484,7 @@ packages:
   /babel-plugin-macros/2.8.0:
     resolution: {integrity: sha512-SEP5kJpfGYqYKpBrj5XU3ahw5p5GOHJ0U5ssOSQ/WBVdwkD2Dzlce95exQTs3jOVWPPKLBN2rlEWkCK7dSmLvg==}
     dependencies:
-      '@babel/runtime': 7.16.3
+      '@babel/runtime': 7.17.2
       cosmiconfig: 6.0.0
       resolve: 1.20.0
     dev: false
@@ -3412,7 +3384,7 @@ packages:
   /dom-helpers/5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.16.3
+      '@babel/runtime': 7.17.2
       csstype: 3.0.10
     dev: false
 
@@ -3481,10 +3453,10 @@ packages:
     dependencies:
       is-arrayish: 0.2.1
 
-  /error-stack-parser/2.0.6:
-    resolution: {integrity: sha512-d51brTeqC+BHlwF0BhPtcYgF5nlzf9ZZ0ZIUQNZpc9ZB9qw5IJ2diTrBY9jlCJkTLITYPjmiX6OWCwH+fuyNgQ==}
+  /error-stack-parser/2.0.7:
+    resolution: {integrity: sha512-chLOW0ZGRf4s8raLrDxa5sdkvPec5YdvwbFnqJme4rk0rFajP8mPtrDL1+I+CwrQDCjswDA5sREX7jYQDQs9vA==}
     dependencies:
-      stackframe: 1.2.0
+      stackframe: 1.2.1
     dev: false
 
   /es-abstract/1.19.1:
@@ -4200,7 +4172,7 @@ packages:
   /history/4.10.1:
     resolution: {integrity: sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==}
     dependencies:
-      '@babel/runtime': 7.16.3
+      '@babel/runtime': 7.17.2
       loose-envify: 1.4.0
       resolve-pathname: 3.0.0
       tiny-invariant: 1.2.0
@@ -4877,10 +4849,6 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
-
-  /monaco-editor/0.31.1:
-    resolution: {integrity: sha512-FYPwxGZAeP6mRRyrr5XTGHD9gRXVjy7GUzF4IPChnyt3fS5WrNxIkS8DNujWf6EQy0Zlzpxw8oTVE+mWI2/D1Q==}
-    dev: false
 
   /ms/2.0.0:
     resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=}
@@ -5566,7 +5534,7 @@ packages:
       algoliasearch: '>= 3.1 < 5'
       react: '>= 16.3.0 < 18'
     dependencies:
-      '@babel/runtime': 7.16.3
+      '@babel/runtime': 7.17.2
       algoliasearch-helper: 3.6.2
       prop-types: 15.7.2
       react: 17.0.2
@@ -5836,16 +5804,16 @@ packages:
       picomatch: 2.3.0
     dev: true
 
-<<<<<<< HEAD
+  /reduce-flatten/2.0.0:
+    resolution: {integrity: sha512-EJ4UNY/U1t2P/2k6oqotuX2Cc3T6nxJwsM0N0asT7dhrtH1ltUxDn4NalSYmPE2rCkVpcf/X6R0wDwcFpzhd4w==}
+    engines: {node: '>=6'}
+    dev: false
+
   /redux-query-sync/0.1.10:
     resolution: {integrity: sha512-F33z0pH7p17pNsKRAJzxOihdg5C/0CcUM8POU57a83vDPJXUXviBuuATNUI6xdhfUE3Y3gjV222EyaP7zwOktw==}
     dependencies:
       '@ungap/url-search-params': 0.1.4
       history: 4.10.1
-=======
-  /reduce-flatten/2.0.0:
-    resolution: {integrity: sha512-EJ4UNY/U1t2P/2k6oqotuX2Cc3T6nxJwsM0N0asT7dhrtH1ltUxDn4NalSYmPE2rCkVpcf/X6R0wDwcFpzhd4w==}
-    engines: {node: '>=6'}
     dev: false
 
   /redux-thunk/2.4.1_redux@4.1.2:
@@ -5854,7 +5822,6 @@ packages:
       redux: ^4
     dependencies:
       redux: 4.1.2
->>>>>>> better
     dev: false
 
   /redux/4.1.2:
@@ -6187,8 +6154,8 @@ packages:
       tweetnacl: 0.14.5
     dev: false
 
-  /stackframe/1.2.0:
-    resolution: {integrity: sha512-GrdeshiRmS1YLMYgzF16olf2jJ/IzxXY9lhKOskuVziubpTYcYqyOwYeJKzQkwy7uN0fYSsbsC4RQaXf9LCrYA==}
+  /stackframe/1.2.1:
+    resolution: {integrity: sha512-h88QkzREN/hy8eRdyNhhsO7RSJ5oyTqxxmmn0dzBIMUclZsjpfmrsg81vp8mjjAs2vAZ72nyWxRUwSwmh0e4xg==}
     dev: false
 
   /stacktrace-parser/0.1.10:
@@ -6664,8 +6631,6 @@ packages:
       - debug
     dev: false
 
-<<<<<<< HEAD
-=======
   /typewriter-effect/2.18.2_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-I6VLfaICftFgZ3sauoVrvHmqzD2r1t+roopD6pyQ1EV4fmq3kZ4ssfLJk9mPd1VHdnwb9XxSnDH09QHNJ/HrXw==}
     peerDependencies:
@@ -6688,7 +6653,6 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
->>>>>>> better
   /ulid/2.3.0:
     resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
     hasBin: true

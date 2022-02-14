@@ -2,8 +2,6 @@
 export function processImportedFile(
   f: string | { url: string } | { src: string } | { default: string }
 ): string {
-  console.log(f);
-
   if (typeof f == "string") {
     return f;
   } else if ("url" in f) {
