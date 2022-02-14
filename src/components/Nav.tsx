@@ -4,6 +4,7 @@ import { responsivePadding } from "../shared/theme";
 import { NavLink } from "./NavLink";
 import { Link } from "./Link";
 import { LoginModal } from "features/logins/LoginModal";
+import { ButtonLink } from "./ButtonLink";
 
 const routes = [
   { name: "About", path: "/about" },
@@ -54,6 +55,9 @@ export const Nav = () => {
         ))}
       </HStack>
       <Box flexGrow={1} />
+      <ButtonLink href="https://github.com/loqudata" size="sm" colorScheme="primary" variant="outline" >
+        View on Github
+      </ButtonLink>
       {/* <Button size="sm" variant="outline" ml={6} mr={2} onClick={login.onOpen}>
         Log in
       </Button>

@@ -22,11 +22,11 @@ const footerSections = [
 
 export const Footer = () => {
   return (
-    <Flex as="footer" p={8} px={10} backgroundColor="gray.50">
+    <Flex as="footer" px={16} py={10} backgroundColor="gray.50">
       {/* <hr /> */}
 
       <Box flexGrow={1}>
-        <Stack spacing={2} maxW="45vw">
+        <Stack spacing={3} maxW="45vw">
           <Link href="/">
             <Heading
               size="md"
@@ -37,8 +37,7 @@ export const Footer = () => {
             </Heading>
           </Link>
           <Text>
-            Data credits: DBNomics, Wikidata, Geonames, Geoboundaries,
-            and a basemap from CARTO.
+            Data credits: over 200 data portals, DBNomics, Wikidata, Geonames, and Geoboundaries.
             <br /> All data used is available under open licenses.
           </Text>
           <Text>
