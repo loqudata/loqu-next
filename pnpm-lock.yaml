@@ -38,6 +38,7 @@ specifiers:
   posthog-js: ^1.16.6
   react: ^17.0.2
   react-dom: ^17.0.2
+  react-error-boundary: ^3.1.4
   react-icons: ^4.3.1
   react-instantsearch-dom: ^6.15.0
   react-redux: ^7.2.6
@@ -50,7 +51,7 @@ specifiers:
   reselect: ^4.1.5
   sqlstring: ^2.3.2
   styled-components: ^5.3.3
-  typescript: ~4.5.5
+  typescript: ^4.5.5
   typesense-instantsearch-adapter: ^2.3.0
   typewriter-effect: ^2.18.2
   ulid: ^2.3.0
@@ -92,6 +93,7 @@ dependencies:
   posthog-js: 1.16.6
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-error-boundary: 3.1.4_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
   react-instantsearch-dom: 6.15.0_react-dom@17.0.2+react@17.0.2
   react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
@@ -1398,7 +1400,7 @@ packages:
     dependencies:
       '@babel/helper-module-imports': 7.16.0
       '@babel/plugin-syntax-jsx': 7.16.0
-      '@babel/runtime': 7.16.3
+      '@babel/runtime': 7.17.2
       '@emotion/hash': 0.8.0
       '@emotion/memoize': 0.7.5
       '@emotion/serialize': 1.0.2
@@ -5498,6 +5500,16 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       prop-types: 15.7.2
+    dev: false
+
+  /react-error-boundary/3.1.4_react@17.0.2:
+    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.17.2
+      react: 17.0.2
     dev: false
 
   /react-fast-compare/3.2.0:
