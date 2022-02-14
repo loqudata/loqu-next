@@ -25,7 +25,7 @@ const modifyPlot = (
   return {
     ...cp,
     data,
-    // height: 200,
+    // height: 200, 
     // width: 300,
     config: useConfig ? (vegaTheme as any) : null,
   };
@@ -100,7 +100,7 @@ export const Plot = ({
     <Flex
       p={2}
       overflow="scroll"
-      maxH="50vh"
+      maxH="300px"
       justifyContent="center"
       alignItems="center"
     >

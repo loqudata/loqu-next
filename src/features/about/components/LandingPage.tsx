@@ -27,6 +27,11 @@ const worldIcon = processImportedFile(rawIcon);
 import visualizeRaw from "assets/visualize.svg";
 const visualizeImage = processImportedFile(visualizeRaw);
 
+
+import loquVisualizeRaw from "assets/loqu_visualize.png";
+import { Footer } from "./Footer";
+const loquVisualizeImage = processImportedFile(loquVisualizeRaw);
+
 const hProps: HeadingProps = {
   fontWeight: "regular",
   letterSpacing: "tighter",
@@ -72,10 +77,10 @@ const features = [
   {
     name: "Visualize",
     description: [
-      "Easily build charts that map field data to visual properties like color, size, shape, or the X and Y axes.",
-      "Explore the data quicker, and get inspired with recommended charts.",
+      "Explore the data and get inspired with recommended charts.",
+      "Then build your own, mapping data fields to visual properties like color, size, shape, or the X and Y axes.",
     ],
-    image: searchImage,
+    image: loquVisualizeImage,
   },
   {
     name: "Search",
@@ -152,25 +157,28 @@ function Feature({
 
 export const LandingPage = () => {
   return (
-    <Box p={{ base: 4, md: 8, lg: 16 }} pt={0}>
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        pt={20}
-        pb={{ base: 16, lg: 36 }}
-        flexDir={{ base: "column", md: "row" }}
-        gap={10}
-      >
-        <HeadlineSection></HeadlineSection>
-        <Box mt={null}>
-          <Image maxH="50vh" maxW="50vw" src={visualizeImage} />
-        </Box>
-      </Flex>
-      <VStack spacing={28}>
-        {features.map((f, i) => (
-          <Feature textSide={i % 2 == 0 ? "left" : "right"} {...f}></Feature>
-        ))}
-      </VStack>
-    </Box>
+    <>
+      <Box p={{ base: 4, md: 8, lg: 16 }} pt={0}>
+        <Flex
+          justifyContent="center"
+          alignItems="center"
+          pt={20}
+          pb={{ base: 16, lg: 36 }}
+          flexDir={{ base: "column", md: "row" }}
+          gap={10}
+        >
+          <HeadlineSection></HeadlineSection>
+          <Box mt={null}>
+            <Image maxH="50vh" maxW="50vw" src={visualizeImage} />
+          </Box>
+        </Flex>
+        <VStack spacing={28}>
+          {features.map((f, i) => (
+            <Feature textSide={i % 2 == 0 ? "left" : "right"} {...f}></Feature>
+          ))}
+        </VStack>
+      </Box>
+      <Footer/>
+    </>
   );
 };
