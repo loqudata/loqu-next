@@ -1,8 +1,4 @@
 import { Box, Text } from "@chakra-ui/react";
-import { DataSelector } from "features/selectData/components/DataSelector";
-import { SQLEditor } from "features/sqlEditor/components/SQLEditor";
-import { TableGrid } from "features/sqlEditor/components/TableGrid";
-import { ConnectedFields, Fields } from "features/workspaceCharts/components/Fields";
 import {
   IJsonModel,
   Layout,
@@ -17,15 +13,22 @@ import { RootState } from "store/store";
 
 import "flexlayout-react/style/light.css";
 import "./workspace.css"
-import { ChartForm } from "features/chartEditor/components/ChartForm";
 
-const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode }>> = {
+import { ChartForm } from "features/chartEditor/components/ChartForm";
+import { DataSelector } from "features/selectData/components/DataSelector";
+import { SQLEditor } from "features/sqlEditor/components/SQLEditor";
+import { TableGrid } from "features/sqlEditor/components/TableGrid";
+import { ConnectedFields, Fields } from "features/workspaceCharts/components/Fields";
+import { RecommendedCharts } from "features/visualization/components/RecommendedCharts";
+
+const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode } & any>> = {
   button: ({ node }) => <button>{node.getName()}</button>,
   fields: ConnectedFields,
   sqlEditor: SQLEditor,
   selectData: DataSelector,
   tableGrid: TableGrid,
   chartEditor: ChartForm,
+  recommendedCharts: RecommendedCharts
 };
 
 export const Workspace = () => {
@@ -42,7 +45,7 @@ export const Workspace = () => {
     if (!Rend) {
       return <Text>Error, couldn't find component of type {component}.</Text>;
     } else {
-      return <Rend node={node}></Rend>;
+      return <Rend node={node} standalone></Rend>;
     }
   }
   return (
