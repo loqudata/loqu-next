@@ -30,6 +30,7 @@ export const DuckDBToVegaTypes = {
   BIGINT: "quantitative",
   DOUBLE: "quantitative",
   INTEGER: "quantitative",
+  DATE: "temporal",
   TIMESTAMP: "temporal",
   VARCHAR: "nominal",
 };
@@ -39,6 +40,6 @@ export async function getFields(table: string) {
   console.log(q);
 
   const res = await query(q);
-  const fields = arrowToJSON(res) as DuckDBField[];
+  const fields = arrowToJSON(res as any) as DuckDBField[];
   return fields;
 }

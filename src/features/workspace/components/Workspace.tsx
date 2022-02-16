@@ -17,13 +17,15 @@ import { RootState } from "store/store";
 
 import "flexlayout-react/style/light.css";
 import "./workspace.css"
+import { ChartForm } from "features/chartEditor/components/ChartForm";
 
 const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode }>> = {
   button: ({ node }) => <button>{node.getName()}</button>,
   fields: ConnectedFields,
   sqlEditor: SQLEditor,
   selectData: DataSelector,
-  tableGrid: TableGrid
+  tableGrid: TableGrid,
+  chartEditor: ChartForm,
 };
 
 export const Workspace = () => {

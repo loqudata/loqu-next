@@ -70,7 +70,7 @@ const initialModel = {
             {
               type: "tab",
               name: "Chart Editor",
-              component: "button",
+              component: "chartEditor",
             },
           ],
         },

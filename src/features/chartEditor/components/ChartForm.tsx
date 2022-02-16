@@ -8,7 +8,7 @@ import {
   HStack,
   Text,
   Tooltip,
-  VStack,
+  VStack as Stack,
 } from "@chakra-ui/react";
 import { Select } from "chakra-react-select";
 import { MARK_TYPES } from "../services/vegaItems";
@@ -39,8 +39,11 @@ function SimpleFormItem({
   right?: React.ReactNode;
 }) {
   return (
-    <VStack w="full" h="fit-content">
-      <HStack direction="row" alignItems="center" w="full">
+    <Stack w="full" h="fit-content">
+    <HStack direction="row" alignItems="center" w="full">
+{/* 
+    <Stack w="full" h="fit-content">
+      <Stack direction={{base: "column", xl: "row"}} alignItems={{base: "center"}} w="full"> */}
         <Heading
           size="sm"
           letterSpacing="tight"
@@ -54,7 +57,7 @@ function SimpleFormItem({
         {right}
       </HStack>
       {bottom}
-    </VStack>
+    </Stack>
   );
 }
 
@@ -164,7 +167,7 @@ function FormOption({
       // Details view
       bottom={
         selected ? (
-          <VStack alignItems="start" w="full">
+          <Stack alignItems="start" w="full">
             {fieldDefDetails.map((additionalFieldProp) => (
               <HStack w="full" key={additionalFieldProp.key}>
                 {/* pink-800 */}
@@ -211,7 +214,7 @@ function FormOption({
                 </Box>
               </HStack>
             ))}
-          </VStack>
+          </Stack>
         ) : null
       }
     />
@@ -273,7 +276,7 @@ export const ChartForm = () => {
         borderRight="1px solid"
         borderColor="gray.200"
       >
-        <VStack spacing={4} alignItems="start" w="24rem">
+        <Stack spacing={4} alignItems="start">
           <Heading
             size="md"
             letterSpacing="tight"
@@ -321,7 +324,7 @@ export const ChartForm = () => {
               </HStack>
             }
           />
-        </VStack>
+        </Stack>
       </Box>
       <Box p={4} h="full" maxW="60vw" overflow="scroll">
         <Vega

@@ -10,8 +10,8 @@ import exampleFields from "./exampleFields.json";
 import { FieldIcon } from "./FieldIcon";
 
 export const ConnectedFields = () => {
-  const fields = useAppSelector((s) => s.sqlQuery.duckDBFields.map(convertDuckDBField));
-  if (fields) {
+  const fields = useAppSelector((s) => s.sqlQuery.duckDBFields?.map(convertDuckDBField));
+  if (Array.isArray(fields) && fields.length > 0) {
     return <Fields fields={fields}/>;
   } else {
     return <Box p={2}>You haven't loaded a file</Box>;
@@ -39,7 +39,7 @@ export const Field = ({ field }: { field: IField }) => {
     <Box borderRadius="md" alignItems="start" py={1.5}  mx={-2}  px={2} _hover={{backgroundColor: "blue.50"}}>
       {/* flex wrap + gap = good spacing and auto wrap when exceeds container width */}
       <Flex
-        sx={{ rowGap: 4, columnGap: 2 }}
+        sx={{ rowGap: 1, columnGap: 2 }}
         flexWrap="wrap"
         alignItems="center"
       >
@@ -55,10 +55,10 @@ export const Field = ({ field }: { field: IField }) => {
   );
 };
 
-export const Fields = ({ fields = exampleFields.map(convertDuckDBField) }: {fields: IField[]}) => {
+export const Fields = ({ fields = exampleFields.map(convertDuckDBField), standalone = true }: {fields: IField[], standalone?: boolean}) => {
   return (
-    <Box borderRadius="md">
-      {fields.map((f) => (
+    <Box borderRadius="md" {...(standalone  ? {p: 2} : {})}>
+      {fields?.map((f) => (
         <Field key={f.name} field={f}></Field>
       ))}
     </Box>

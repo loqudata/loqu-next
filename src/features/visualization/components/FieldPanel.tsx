@@ -261,7 +261,7 @@ export const FieldPanel = ({
         <Heading letterSpacing="tight" size="xs" color="gray.600">
           {"Fields".toUpperCase()}
         </Heading>
-        <Fields fields={fields.map((f) => ({name: f.name, type: f.vlType}))}/>
+        <Fields standalone={false} fields={fields.map((f) => ({name: f.name, type: f.vlType}))}/>
       </Stack>
     </Box>
   );
