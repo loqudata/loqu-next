@@ -15,6 +15,7 @@ function createField(field: FieldDef<string>, fs: FieldSchema[]) {
 }
 
 export function createSpec(f): TopLevelSpec {
+  if (!f) return;
   const s = {
     $schema:
       "https://vega.github.io/schema/vega-lite/v5.json",

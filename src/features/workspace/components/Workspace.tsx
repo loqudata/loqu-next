@@ -14,7 +14,7 @@ import { RootState } from "store/store";
 import "flexlayout-react/style/light.css";
 import "./workspace.css"
 
-import { ChartForm } from "features/chartEditor/components/ChartForm";
+import { ChartForm, MainChart } from "features/chartEditor/components/ChartForm";
 import { DataSelector } from "features/selectData/components/DataSelector";
 import { SQLEditor } from "features/sqlEditor/components/SQLEditor";
 import { TableGrid } from "features/sqlEditor/components/TableGrid";
@@ -28,7 +28,8 @@ const ComponentsMap: Record<string, React.ComponentType<{ node: TabNode } & any>
   selectData: DataSelector,
   tableGrid: TableGrid,
   chartEditor: ChartForm,
-  recommendedCharts: RecommendedCharts
+  recommendedCharts: RecommendedCharts,
+  mainChart: MainChart
 };
 
 export const Workspace = () => {

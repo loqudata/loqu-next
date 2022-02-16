@@ -40,8 +40,8 @@ function SimpleFormItem({
 }) {
   return (
     <Stack w="full" h="fit-content">
-    <HStack direction="row" alignItems="center" w="full">
-{/* 
+      <HStack direction="row" alignItems="center" w="full">
+        {/* 
     <Stack w="full" h="fit-content">
       <Stack direction={{base: "column", xl: "row"}} alignItems={{base: "center"}} w="full"> */}
         <Heading
@@ -227,7 +227,8 @@ import { useAppDispatch, useAppSelector } from "hooks";
 import { FieldDef } from "vega-lite/build/src/channeldef";
 import { createSpec } from "../services/spec";
 import { Type } from "vega-lite/build/src/type";
-import { IField } from "models/chartEditor";
+import { FormState, IField } from "models/chartEditor";
+import { IWorkspacePanelComponentProps } from "models/workspace";
 
 const encodings = [
   { key: "x", name: "X Axis" },
@@ -237,27 +238,30 @@ const encodings = [
   { key: "shape", name: "Shape" },
 ];
 
-export const ChartForm = () => {
-  const [tooltip, setTooltip] = useState(true);
-  const [tooltipAllFields, setTooltipAllFields] = useState(false);
 
-  const dispatch = useAppDispatch();
-
-  const formState = useAppSelector((state) => state.chartEditor) || {};
+export function MainChart() {
+  const formState = useAppSelector((state) => state.chartEditor); //|| {};
   const markType = useAppSelector((state) => state.chartEditor.mark);
   const schema = useAppSelector(
     (state: any) => state.dataset.schema.fieldSchemas
   );
-  const fieldOptions = useAppSelector((state: any) =>
-    state.dataset.schema.fieldSchemas
-      .map((s) => s.name)
-      .map((m) => ({
-        label: m,
-        value: m,
-      }))
-  );
   const data = useAppSelector((state: any) => state.dataset.data);
-  const setMarkType = dispatch.chartEditor.setMark;
+  return <Vega
+    spec={createSpec(
+      Object.assign({}, formState, {
+        markType,
+        tooltip: formState.tooltip.enabled,
+        tooltipAllFields: formState.tooltip.allFields,
+        data,
+        fieldSchema: schema,
+      })
+    )}
+    renderer="svg"
+    mode="vega-lite" />;
+}
+
+
+export const ChartFormWithPlot = () => {
 
   return (
     <HStack
@@ -276,74 +280,86 @@ export const ChartForm = () => {
         borderRight="1px solid"
         borderColor="gray.200"
       >
-        <Stack spacing={4} alignItems="start">
-          <Heading
-            size="md"
-            letterSpacing="tight"
-            color="blue.700"
-            fontWeight="medium"
-          >
-            Chart Editor
-          </Heading>
-          <FormOption
-            name="Mark Type"
-            options={MARK_TYPES.map((m) => ({
-              label: m,
-              value: m,
-            }))}
-            placeholder="Select"
-            value={createOption(markType)}
-            onChange={(v) => setMarkType(v.value as any)}
-          />
-          {encodings.map((enc) => (
-            <FormOption
-              isEncoding
-              key={enc.key}
-              encID={enc.key}
-              name={enc.name}
-              options={fieldOptions}
-              value={createOption(
-                formState[enc.key] ? formState[enc.key].field : null
-              )}
-            />
-          ))}
-          <SimpleFormItem
-            name="Tooltip"
-            right={
-              <HStack alignItems="center">
-                <Checkbox
-                  isChecked={tooltip}
-                  onChange={(e) => setTooltip(e.target.checked)}
-                ></Checkbox>
-                <Text>Enable</Text>
-                <Checkbox
-                  isChecked={tooltipAllFields}
-                  onChange={(e) => setTooltipAllFields(e.target.checked)}
-                ></Checkbox>
-                <Text>All fields</Text>
-              </HStack>
-            }
-          />
-        </Stack>
+        <ChartForm />
       </Box>
       <Box p={4} h="full" maxW="60vw" overflow="scroll">
-        <Vega
-          //   data={{
-          //     url: "https://vega.github.io/editor/data/cars.json",
-          //   }}
-          spec={createSpec(
-            Object.assign({}, formState, {
-              markType,
-              tooltip,
-              tooltipAllFields,
-              data,
-              fieldSchema: schema,
-            })
-          )}
-          renderer="svg"
-          mode="vega-lite"
-        />
+        <MainChart/>
       </Box>
     </HStack>
+  );
+};
+
+export const ChartForm = ({standalone}: IWorkspacePanelComponentProps) => {
+
+  const dispatch = useAppDispatch();
+
+  const formState = useAppSelector((state) => state.chartEditor) // || {};
+  const markType = useAppSelector((state) => state.chartEditor.mark);
+  const fieldOptions = useAppSelector((state: any) =>
+    state.dataset.schema.fieldSchemas
+      .map((s) => s.name)
+      .map((m) => ({
+        label: m,
+        value: m,
+      }))
+  );
+  const setMarkType = dispatch.chartEditor.setMark;
+
+  const tooltip = formState.tooltip.enabled
+  const tooltipAllFields = formState.tooltip.allFields
+
+  const setTooltip = dispatch.chartEditor.setTooltip
+  const setTooltipAllFields = dispatch.chartEditor.setTooltipAllFields
+
+  return (
+    <Stack p={standalone ? 4 : null} spacing={4} alignItems="start">
+      <Heading
+        size="md"
+        letterSpacing="tight"
+        color="blue.700"
+        fontWeight="medium"
+      >
+        Chart Editor
+      </Heading>
+      <FormOption
+        name="Mark Type"
+        options={MARK_TYPES.map((m) => ({
+          label: m,
+          value: m,
+        }))}
+        placeholder="Select"
+        value={createOption(markType)}
+        onChange={(v) => setMarkType(v.value as any)}
+      />
+      {encodings.map((enc) => (
+        <FormOption
+          isEncoding
+          key={enc.key}
+          encID={enc.key}
+          name={enc.name}
+          options={fieldOptions}
+          value={createOption(
+            formState[enc.key] ? formState[enc.key].field : null
+          )}
+        />
+      ))}
+      <SimpleFormItem
+        name="Tooltip"
+        right={
+          <HStack alignItems="center">
+            <Checkbox
+              isChecked={tooltip}
+              onChange={(e) => setTooltip(e.target.checked)}
+            ></Checkbox>
+            <Text>Enable</Text>
+            <Checkbox
+              isChecked={tooltipAllFields}
+              onChange={(e) => setTooltipAllFields(e.target.checked)}
+            ></Checkbox>
+            <Text>All fields</Text>
+          </HStack>
+        }
+      />
+    </Stack>
   );
 };

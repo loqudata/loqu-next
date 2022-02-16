@@ -13,7 +13,7 @@ export const RecommendedCharts = ({standalone}: IWorkspacePanelComponentProps) =
   const data = useAppSelector(selectData);
   const schema = useAppSelector(selectSchema);
   return (
-    <Box p={standalone ? 2 : null}>
+    <Box p={standalone ? 4 : null}>
       <Heading size="md">
         Recommended Charts ({(result.plots && result.plots.length) || 0})
       </Heading>

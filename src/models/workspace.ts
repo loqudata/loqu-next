@@ -55,7 +55,7 @@ const initialModel = {
                   {
                     type: "tab",
                     name: "View Chart",
-                    component: "button",
+                    component: "mainChart",
                   },
                 ],
               },

@@ -1,6 +1,6 @@
 import { Flex, Stack } from "@chakra-ui/react";
 import React from "react";
-import { ChartForm } from "features/chartEditor/components/ChartForm";
+import { ChartForm, ChartFormWithPlot } from "features/chartEditor/components/ChartForm";
 import { RecommendedCharts } from "./RecommendedCharts";
 
 
@@ -13,7 +13,7 @@ export const MainView = () => {
         h="full"
         maxH="70vh"
       >
-        <ChartForm />
+        <ChartFormWithPlot />
       </Flex>
       <RecommendedCharts/>
     </Stack>
