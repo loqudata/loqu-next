@@ -32,6 +32,7 @@ import { VscSymbolKey } from "react-icons/vsc";
 import { BiCalendar, BiHash } from "react-icons/bi";
 import { Fields } from "features/workspaceCharts/components/Fields";
 import { useAppSelector } from "hooks";
+import { COMPASSQL_VEGA_ROW_LIMIT } from "shared/config";
 
 // import { VscSymbolKey } from "react-icons/vsc";
 // import { BiCalendar, BiHash, BiTime } from "react-icons/bi";
@@ -267,7 +268,6 @@ export const FieldPanel = ({
   );
 };
 
-const rowLimit = 5000
 
 export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
   //@ts-ignore
@@ -285,14 +285,14 @@ export const FieldPanelContainer = ({ ds, ...props }: { ds?: string }) => {
             return;
           }
 
-          if (res[0].count < rowLimit) {
+          if (res[0].count < COMPASSQL_VEGA_ROW_LIMIT) {
             dispatch(datasetLoad({
               name: "prop_provided",
               data: { url: ds },
             }))
-          } else if (res[0].count > rowLimit) {
+          } else if (res[0].count > COMPASSQL_VEGA_ROW_LIMIT) {
             alert(
-              `The dataset you selected has over ${rowLimit} rows.
+              `The dataset you selected has over ${COMPASSQL_VEGA_ROW_LIMIT} rows.
 To not overload your computer in this development phase, we will not load it;
 the previous dataset will stay loaded.`.replace("\n", " ")
             );

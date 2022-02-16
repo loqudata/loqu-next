@@ -4,6 +4,8 @@ import { Table } from "apache-arrow";
 import arrow from "./simpleArrow";
 import SqlString from "sqlstring";
 
+export const escapeString = SqlString.escape
+
 export async function loadCSVFile(file: File, tableName: string) {
   const globalDB = await DuckDBSingleton.getInstance();
   const connDB = await globalDB.connect();

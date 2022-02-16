@@ -104,7 +104,7 @@ export const DatasetReducer = (
   }
 }
 
-function buildSchemaAndDispatchDataReceive(
+export function buildSchemaAndDispatchDataReceive(
   data: InlineData,
   config: AppConfig,
   dispatch: any,

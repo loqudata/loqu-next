@@ -2,10 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { createModel } from "@rematch/core";
 import { Table } from "apache-arrow";
 
-import { loadCSVFile, query as duckDBQuery } from "features/duckdb";
+import { escapeString, loadCSVFile, query as duckDBQuery } from "features/duckdb";
 import { DuckDBField, getFields } from "features/duckdb/getFields";
+import { arrowToJSON } from "features/sqlEditor/services/arrowToJSON";
 import { RootModel } from "models";
+import { COMPASSQL_VEGA_ROW_LIMIT } from "shared/config";
 import { IFile, serialize } from "utils/serializeableFile";
+import { buildSchemaAndDispatchDataReceive } from "./dataset";
 // Define a type for the slice state
 interface QueryState {
   file?: IFile;
@@ -70,14 +73,29 @@ export const sqlQuery = createModel<RootModel>()({
   
       return response;
     },
-    updateFile: async (file: File, thunkAPI) => {
+    updateFile: async (file: File, state) => {
       const tableName = file.name.split(".")[0]
       await loadCSVFile(file, tableName);
 
       const fields = await getFields(tableName)
+      dispatch.sqlQuery.setDuckDBFields(fields);
+
+      let response: Table;
+      try {
+        response = await duckDBQuery(`SELECT * FROM ${escapeString(tableName)} LIMIT ${COMPASSQL_VEGA_ROW_LIMIT}`) as any;
+      } catch (error) {
+        console.warn(`Failed to request ${COMPASSQL_VEGA_ROW_LIMIT} rows from DuckDB for alternative Vega/Compassql rendering`);
+        return;
+      }
+      const jData = arrowToJSON(response)
+      console.log(JSON.stringify(jData).slice(0, 1000));
+      
+
+      await buildSchemaAndDispatchDataReceive({values: jData}, state.config, dispatch, tableName)
+      console.log("Done getting data subset");
+      
 
       dispatch.sqlQuery.setFile(serialize(file));
-      dispatch.sqlQuery.setDuckDBFields(fields);
     }
   })
   // {
