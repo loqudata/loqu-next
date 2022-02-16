@@ -1,5 +1,11 @@
 # TODOs
 
+## Meta
+
+- [ ] better habit of writing conventional commits
+- [ ] generate a changelog
+- [ ] deploy more frequently, eg after 3 good changes (eg looking at prod loqu for example datasets shows extra vertical spacing for `Field`s and no tooltip on `Plot` hover)
+
 ## Chart editor
 
 Make the none option only visible if something is selected (eg not placeholder)
