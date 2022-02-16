@@ -20,15 +20,25 @@ const modifyPlot = (
   useConfig: boolean = true
 ): VisualizationSpec => {
   const cp = Object.assign({}, plot);
+  // console.log(cp);
+  
   //@ts-ignore
   // cp.encoding.color = {scheme: "pink"}
-  return {
+  let proposed: any = {
     ...cp,
     data,
     // height: 200, 
     // width: 300,
+    
     config: useConfig ? (vegaTheme as any) : null,
   };
+  if (typeof proposed.mark =="string") {
+    proposed.mark = {
+      type: proposed.mark,
+      tooltip: true,
+    }
+  }
+  return proposed
 };
 
 export const Plot = ({
