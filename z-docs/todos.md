@@ -50,3 +50,15 @@ File:
 - [ ] At least, show the fields/recommendations for SQL output so can visualize joined data
 
 don't worry about scalability right now, pushing down Vega aggregations or Compassql statistics. Focus on join features.
+
+
+General areas of focus:
+
+- More data - integrate search for 1.2m CKAN, figure out DBNomics, (later) fix bugs with Socrata loader
+- better visualizations - recommendations
+- example visualizations/user stories
+- Allow users to share vis
+- and Edit metadata!! - tool to import/detect from PDFs etc.
+- join datasets
+- workspace/multiple datasets?
+- geographic vis
