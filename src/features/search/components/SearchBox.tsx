@@ -23,13 +23,20 @@ export const ChakraSearchBox = ({
 }: SearchBoxProvided & { styleProps?: InputProps }) => {
   const rt: NextRouter | null = useRouter();
   const q = rt?.query?.q as string;
-  if (q) {
+
+  function updateURLQueryParam(query: string) {
+    rt.query.q = query;
+    rt.replace(rt);
+  }
+
+  async function handleChange(event) {
+    refine(event.target.value)
+    updateURLQueryParam(event.target.value)
+  }
+
+  if (!currentRefinement && q) {
     refine(q);
   }
-  if (currentRefinement && !q) {
-    rt.query.q = currentRefinement
-    rt.replace(rt)
-  } 
 
   return (
     <InputGroup>
@@ -41,9 +48,9 @@ export const ChakraSearchBox = ({
         {...styleProps}
         autoFocus
         placeholder="Search datasets, sources, or visualizations"
+
         defaultValue={q}
-        // value={currentRefinement}
-        onChange={(event) => refine(event.target.value)}
+        onChange={handleChange}
       />
     </InputGroup>
   );
