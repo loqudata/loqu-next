@@ -198,7 +198,7 @@ interface FieldPanelProps {
 const dataExamples = ["cars", "driving"].map((v) => ({
   value: `https://vega.github.io/voyager2/data/${v}.json`,
   label: v,
-}));
+})).concat([{value: "https://internal.chattadata.org/resource/q6y2-66pb.json", label: "Tennesse COVID Data"}]);
 
 export const FieldPanel = ({
   datasetURL,

@@ -72,6 +72,8 @@ interface FormOptionProps {
   useMainNoneOption?: boolean;
 }
 
+const VegaTimeunitTypes = ['year', 'year-month', 'year-month-date', 'quarter', 'month', 'date', 'week', 'day', 'hours', 'hours-minutes', 'minutes', 'seconds', 'milliseconds']
+
 const fieldDefDetails = [
   // TODO: make these options dynamic based on underlying supported types
   // also, make the placeholder say the default value
@@ -89,6 +91,14 @@ const fieldDefDetails = [
     options: aggregates.map((a) => ({
       label: a.op,
       value: a.op,
+    })),
+  },
+  {
+    name: "Time Unit",
+    key: "timeUnit",
+    options: VegaTimeunitTypes.map((a) => ({
+      label: a,
+      value: a,
     })),
   },
   // TODO: true and false?
@@ -229,6 +239,7 @@ import { createSpec } from "../services/spec";
 import { Type } from "vega-lite/build/src/type";
 import { FormState, IField } from "models/chartEditor";
 import { IWorkspacePanelComponentProps } from "models/workspace";
+import { VEGALITE_TIMEFORMAT } from "vega-lite/build/src/timeunit";
 
 const encodings = [
   { key: "x", name: "X Axis" },
@@ -239,6 +250,8 @@ const encodings = [
 ];
 
 
+
+// : FormState & 
 export function MainChart() {
   const formState = useAppSelector((state) => state.chartEditor); //|| {};
   const markType = useAppSelector((state) => state.chartEditor.mark);
@@ -246,16 +259,9 @@ export function MainChart() {
     (state: any) => state.dataset.schema.fieldSchemas
   );
   const data = useAppSelector((state: any) => state.dataset.data);
+  
   return <Vega
-    spec={createSpec(
-      Object.assign({}, formState, {
-        markType,
-        tooltip: formState.tooltip.enabled,
-        tooltipAllFields: formState.tooltip.allFields,
-        data,
-        fieldSchema: schema,
-      })
-    )}
+    spec={createSpec({...formState, data, fieldSchema: schema})}
     renderer="svg"
     mode="vega-lite" />;
 }
@@ -273,6 +279,7 @@ export const ChartFormWithPlot = () => {
     >
       <Box
         h="full"
+        overflow="scroll"
         bgColor="white"
         p={6}
         pr={8}
