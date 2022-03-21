@@ -13,7 +13,7 @@ import { NormalDataset } from "../services/typesenseModel";
 
 import { Highlight } from "react-instantsearch-dom";
 // import { BsBookmark, BsSave } from "react-icons/bs";
-// import { FiExternalLink } from "react-icons/fi";
+import { FiExternalLink } from "react-icons/fi";
 
 import { IconButtonLink } from "../../../components/IconButtonLink";
 
@@ -86,8 +86,7 @@ export const Result = ({ hit }: { hit: NormalDataset }) => {
                 variant="outline"
                 aria-label="open original source"
               >
-                {/* <Icon icon="bi:three-dots" /> */}
-                {/* <FiExternalLink /> */}
+                <FiExternalLink />
               </IconButtonLink>
 
               {/* This will be a redux action. When signed out, do a modal,
